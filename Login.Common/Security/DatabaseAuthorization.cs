@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Login.Contracts.Repository;
+using Login.Contracts.Security;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
-namespace Login.Web.Security
+namespace Login.Common.Security
 {
-    public class Authorization
+    public class DatabaseAuthorization : IAuthorization
     {
-        public Authorization()
+        ILoginRepository repository;
+        public DatabaseAuthorization(ILoginRepository repository)
         {
-
+            this.repository = repository;
         }
 
-        public Task TokenValidated(TokenValidatedContext context)
-        {
+        public Task PerformPostTokenValidationAuthorization(TokenValidatedContext context)
+        {   
             var claimsIdentity = context.Ticket.Principal.Identity as ClaimsIdentity;
             var externalLookupEmail = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
 

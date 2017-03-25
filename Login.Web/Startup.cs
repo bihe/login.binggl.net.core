@@ -4,23 +4,30 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Login.Web.Security;
-using Microsoft.AspNetCore.Authentication;
+using Login.Common.Configuration;
+using Login.Common.Data;
+using Login.Common.Repository;
+using Login.Common.Security;
+using Login.Contracts.Repository;
+using Login.Contracts.Security;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 
 namespace Login.Web
 {
     public class Startup
     {
+        const string AuthenticationScheme = "LoginCookieMiddleware";
+
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -45,7 +52,16 @@ namespace Login.Web
         {
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddSingleton<Authorization>();
+            
+
+            // add configuration sections
+            services.Configure<AuthenticationConfiguration>(Configuration.GetSection("Authentication"));
+
+            // add database services
+            services.AddDbContext<LoginContext>(options => options.UseMySql(Configuration.GetConnectionString("LoginConnection")));
+
+            services.AddSingleton<IAuthorization, DatabaseAuthorization>();
+            services.AddScoped<ILoginRepository, DatabaseRepository>();
 
             // Add framework services.
             services.AddMvc()
@@ -54,26 +70,34 @@ namespace Login.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, Authorization auth)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAuthorization auth, IOptions<AuthenticationConfiguration> authOptions)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var googleClientId = "";
+            var googleClientSecret = "";
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+
+                googleClientId =  Configuration["GoogleClientId"];
+                googleClientSecret = Configuration["GoogleClientSecret"];
             }
             else
             {
+                googleClientId = authOptions.Value.GoogleClientId;
+                googleClientSecret = authOptions.Value.GoogleClientSecret;
+
                 app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = "LoginCookieMiddleware",
-                CookieName = ".binggl.net",
-                //ExpireTimeSpan = TimeSpan.FromMinutes(5),
+                AuthenticationScheme = AuthenticationScheme,
+                CookieName = authOptions.Value.CookieName,
                 AutomaticAuthenticate = true,
                 CookieSecure = env.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always
             });
@@ -81,11 +105,11 @@ namespace Login.Web
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 AuthenticationScheme = "oidc",
-                SignInScheme = "LoginCookieMiddleware",
+                SignInScheme = AuthenticationScheme,
                 Authority = "https://accounts.google.com",
                 ResponseType = "code id_token",
-                ClientId = Configuration["GoogleClientId"],
-                ClientSecret = Configuration["GoogleClientSecret"],
+                ClientId = googleClientId,
+                ClientSecret = googleClientSecret,
                 GetClaimsFromUserInfoEndpoint = true,
                 Scope = {"openid", "profile", "email"},
                 SaveTokens = true,
@@ -93,11 +117,9 @@ namespace Login.Web
                 {
                     //OnAuthenticationFailed = OnAuthenticationFailed,
                     //OnRemoteFailure = OnRemoteFailure
-                    OnTokenValidated = auth.TokenValidated
+                    OnTokenValidated = auth.PerformPostTokenValidationAuthorization
                 },
             });
-                       
-
 
             var cultures = new List<CultureInfo> { new CultureInfo("en-US"), new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("de") };
             app.UseRequestLocalization(new RequestLocalizationOptions
