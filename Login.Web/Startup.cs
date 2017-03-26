@@ -94,7 +94,6 @@ namespace Login.Web
                 googleClientSecret = appConfig.Value.Authentication.GoogleClientSecret;
 
                 app.UseMiddleware(typeof(ErrorHandling));
-                //app.UseExceptionHandler("/error");
             }
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
