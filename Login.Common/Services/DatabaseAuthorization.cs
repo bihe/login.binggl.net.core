@@ -5,13 +5,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Login.Common.Configuration;
 using Login.Contracts.Repository;
-using Login.Contracts.Security;
+using Login.Contracts.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Login.Common.Security
+namespace Login.Common.Services
 {
     public class DatabaseAuthorization : IAuthorization
     {

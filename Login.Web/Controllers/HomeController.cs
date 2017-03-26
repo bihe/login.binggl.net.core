@@ -10,6 +10,7 @@ using Login.Common.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Diagnostics;
+using Login.Contracts.Services;
 
 namespace Login.Web.Controllers
 {
@@ -17,11 +18,15 @@ namespace Login.Web.Controllers
     {
         private readonly IHtmlLocalizer<HomeController> localizer;
         private readonly ILogger logger;
+        private IFlashService flash;
+        private IMessageIntegrity messageIntegrity;
 
-        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger)
+        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger, IFlashService flash, IMessageIntegrity messageIntegrity)
         {
             this.localizer = localizer;
             this.logger = logger;
+            this.flash = flash;
+            this.messageIntegrity = messageIntegrity;
         }
 
 
@@ -40,24 +45,19 @@ namespace Login.Web.Controllers
             return View(loginInfo);
         }
 
-        [Route("error/{message?}")]
-        public IActionResult Error(string message)
+        [Route("error/{key?}")]
+        public IActionResult Error(string key)
         {
             this.CommonViewData();
-
-            if(string.IsNullOrEmpty(message))
+            var message = "";
+            if (string.IsNullOrEmpty(key))
                 message = "Error in user authorization!";
             else
             {
-                try
-                {
-                    byte[] decodedBytes = Convert.FromBase64String(message);
-                    message = System.Text.Encoding.UTF8.GetString(decodedBytes);
+                if (this.messageIntegrity.Verify(key))
+                { 
+                    message = this.flash.Get(key);
                     message = System.Net.WebUtility.HtmlEncode(message);
-                }
-                catch(Exception)
-                {
-                    message = "Error in user authorization!";
                 }
             }
 

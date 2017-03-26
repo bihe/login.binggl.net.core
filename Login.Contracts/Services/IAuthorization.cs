@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
-namespace Login.Contracts.Security
+namespace Login.Contracts.Services
 {
     public interface IAuthorization
     {

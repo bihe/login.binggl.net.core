@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Login.Contracts.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 
@@ -11,10 +12,14 @@ namespace Login.Common.Middleware
     public class ErrorHandling
     {
         private readonly RequestDelegate next;
+        private IFlashService flash;
+        private IMessageIntegrity messageIntegrity;
 
-        public ErrorHandling(RequestDelegate next)
+        public ErrorHandling(RequestDelegate next, IFlashService flash, IMessageIntegrity messageIntegrity)
         {
             this.next = next;
+            this.flash = flash;
+            this.messageIntegrity = messageIntegrity;
         }
 
         public async Task Invoke(HttpContext context /* other scoped dependencies */)
@@ -29,7 +34,7 @@ namespace Login.Common.Middleware
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var message = exception.Message;
             if(exception.InnerException != null)
@@ -37,10 +42,9 @@ namespace Login.Common.Middleware
                 message = exception.InnerException.Message;
             }
 
-            byte[] encodedBytes =Encoding.UTF8.GetBytes(message);
-            string encodedString = Convert.ToBase64String(encodedBytes);
-
-            context.Response.Redirect($"/error/{encodedString}");
+            var key = messageIntegrity.Encode(context.TraceIdentifier);
+            flash.Set(key, message);
+            context.Response.Redirect($"/error/{key}");
 
             return Task.FromResult(0);
         }

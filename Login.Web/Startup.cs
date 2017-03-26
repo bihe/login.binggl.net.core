@@ -8,9 +8,9 @@ using Login.Common.Configuration;
 using Login.Common.Data;
 using Login.Common.Middleware;
 using Login.Common.Repository;
-using Login.Common.Security;
+using Login.Common.Services;
 using Login.Contracts.Repository;
-using Login.Contracts.Security;
+using Login.Contracts.Services;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,13 +54,15 @@ namespace Login.Web
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             // add configuration sections
-            services.Configure<AuthenticationConfiguration>(Configuration.GetSection("Authentication"));
+            services.Configure<ApplicationConfiguration>(Configuration.GetSection("Application"));
 
             // add database services
             services.AddDbContext<LoginContext>(options => options.UseMySql(Configuration.GetConnectionString("LoginConnection")));
 
             services.AddSingleton<IAuthorization, DatabaseAuthorization>();
             services.AddScoped<ILoginRepository, DatabaseRepository>();
+            services.AddSingleton<IFlashService, MemoryFlashService>();
+            services.AddSingleton<IMessageIntegrity, HashedMessageIntegrity>();
 
             // Add framework services.
             services.AddMvc()
@@ -69,7 +71,7 @@ namespace Login.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAuthorization auth, IOptions<AuthenticationConfiguration> authOptions, LoginContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAuthorization auth, IOptions<ApplicationConfiguration> appConfig, LoginContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -79,7 +81,8 @@ namespace Login.Web
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseMiddleware(typeof(ErrorHandling));
+                //app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
 
                 googleClientId =  Configuration["GoogleClientId"];
@@ -87,8 +90,8 @@ namespace Login.Web
             }
             else
             {
-                googleClientId = authOptions.Value.GoogleClientId;
-                googleClientSecret = authOptions.Value.GoogleClientSecret;
+                googleClientId = appConfig.Value.Authentication.GoogleClientId;
+                googleClientSecret = appConfig.Value.Authentication.GoogleClientSecret;
 
                 app.UseMiddleware(typeof(ErrorHandling));
                 //app.UseExceptionHandler("/error");
@@ -97,7 +100,7 @@ namespace Login.Web
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationScheme = AuthenticationScheme,
-                CookieName = authOptions.Value.CookieName,
+                CookieName = appConfig.Value.Authentication.CookieName,
                 AutomaticAuthenticate = true,
                 CookieSecure = env.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always
             });
