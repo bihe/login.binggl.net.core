@@ -38,7 +38,7 @@ namespace Login.Contracts.Models
 
         public byte[] Timestamp { get; set; }
 
-        public string Username { get; set; }
+        public string UserEmail { get; set; }
         public User User { get; set; }
     }
 }

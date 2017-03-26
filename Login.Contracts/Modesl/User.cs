@@ -17,5 +17,11 @@ namespace Login.Contracts.Models
         public List<UserSite> Sites { get; set; }
 
         public byte[] Timestamp { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{DisplayName} ({Name})";
+        }
     }
 }

@@ -9,6 +9,7 @@ using Login.Common.Configuration;
 using Login.Common.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace Login.Web.Controllers
 {
@@ -24,31 +25,56 @@ namespace Login.Web.Controllers
         }
 
 
+        [Authorize]
         public IActionResult Index()
         {
-            ViewData[Constants.APP_NAME] = "login.binggl.net";
+            this.CommonViewData();
+
+            logger.LogDebug("The current user is {0}", this.User.Identity.Name);
 
             var loginInfo = new LoginInfo
             {
-                State = LoginState.Error,
-                Error = string.Format(localizer["auth_login_error"].Value, "Backend authentication system not setup!")
+                State = LoginState.Success
             };
 
             return View(loginInfo);
         }
 
-        [Authorize]
-        public IActionResult Secure()
+        [Route("error/{message?}")]
+        public IActionResult Error(string message)
         {
-            logger.LogDebug("The current user is {0}", this.User.Identity.ToString());
+            this.CommonViewData();
 
+            if(string.IsNullOrEmpty(message))
+                message = "Error in user authorization!";
+            else
+            {
+                try
+                {
+                    byte[] decodedBytes = Convert.FromBase64String(message);
+                    message = System.Text.Encoding.UTF8.GetString(decodedBytes);
+                    message = System.Net.WebUtility.HtmlEncode(message);
+                }
+                catch(Exception)
+                {
+                    message = "Error in user authorization!";
+                }
+            }
 
-            return View();
+            var loginInfo = new LoginInfo
+            {
+                State = LoginState.Error,
+                Error = string.Format(localizer["auth_login_error"].Value, message)
+            };
+
+            return View("Index", loginInfo);
         }
 
-        public IActionResult Error()
+
+        void CommonViewData()
         {
-            return View();
+            ViewData[Constants.APP_NAME] = "login.binggl.net";
         }
+
     }
 }

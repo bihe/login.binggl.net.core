@@ -15,12 +15,12 @@ namespace Login.Tests.Data
         public async Task TestBasicDataAccess()
         {
             var options = new DbContextOptionsBuilder<LoginContext>()
-                .UseInMemoryDatabase(databaseName: "Add_writes_to_database")
+                .UseInMemoryDatabase(databaseName: "Test_Login_Databases_Basic_Tests")
                 .Options;
 
             using (var context = new LoginContext(options))
             {
-                context.Logins.Add(new Contracts.Models.Login { Type = Contracts.Enums.LoginType.DIRECT, UserId = "abc", UserName = "Hugo" });
+                context.Logins.Add(new Contracts.Models.Login { Type = Contracts.Enums.LoginType.DIRECT, UserName = "abc", UserDisplayName = "Hugo" });
                 context.SaveChanges();
 
                 var allEntires = await context.Logins.ToListAsync();

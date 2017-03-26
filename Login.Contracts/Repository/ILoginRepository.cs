@@ -9,5 +9,7 @@ namespace Login.Contracts.Repository
     public interface ILoginRepository
     {
         Task<User> GetUserByEmail(string email);
+
+        Task<UserSite> GetSiteByName(string siteName);
     }
 }

@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Login.Common.Configuration;
 using Login.Common.Data;
+using Login.Common.Middleware;
 using Login.Common.Repository;
 using Login.Common.Security;
 using Login.Contracts.Repository;
@@ -52,8 +53,6 @@ namespace Login.Web
         {
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            
-
             // add configuration sections
             services.Configure<AuthenticationConfiguration>(Configuration.GetSection("Authentication"));
 
@@ -70,7 +69,7 @@ namespace Login.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAuthorization auth, IOptions<AuthenticationConfiguration> authOptions)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAuthorization auth, IOptions<AuthenticationConfiguration> authOptions, LoginContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -91,7 +90,8 @@ namespace Login.Web
                 googleClientId = authOptions.Value.GoogleClientId;
                 googleClientSecret = authOptions.Value.GoogleClientSecret;
 
-                app.UseExceptionHandler("/Home/Error");
+                app.UseMiddleware(typeof(ErrorHandling));
+                //app.UseExceptionHandler("/error");
             }
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -139,6 +139,11 @@ namespace Login.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
+
+            if(env.IsDevelopment())
+            {
+                ContextInitializer.InitialData(context);
+            }
+         }
     }
 }

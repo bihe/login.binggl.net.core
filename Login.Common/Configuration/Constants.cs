@@ -7,5 +7,7 @@ namespace Login.Common.Configuration
     public static class Constants
     {
         public const string APP_NAME = "App.Name";
+
+        public const string ROLE_USER = "User";
     }
 }

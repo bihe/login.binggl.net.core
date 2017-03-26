@@ -54,8 +54,8 @@ namespace Login.Common.Data
                 e.HasKey(b => b.Id);
 
                 e.Property(b => b.Id).IsRequired().ValueGeneratedOnAdd();
+                e.Property(b => b.UserDisplayName).IsRequired().HasMaxLength(128);
                 e.Property(b => b.UserName).IsRequired().HasMaxLength(128);
-                e.Property(b => b.UserId).IsRequired().HasMaxLength(128);
             });
 
             modelBuilder.Entity<Model.UserSite>(e =>
@@ -68,7 +68,7 @@ namespace Login.Common.Data
                 e.Ignore(b => b.Permissions);
                 e.Property(b => b.Timestamp).ValueGeneratedOnAddOrUpdate().IsConcurrencyToken();
 
-                e.HasOne(b => b.User).WithMany(b => b.Sites).HasForeignKey(b => b.Username);
+                e.HasOne(b => b.User).WithMany(b => b.Sites).HasForeignKey(b => b.UserEmail);
             });
 
             modelBuilder.Entity<Model.User>(e =>

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.EntityFrameworkCore;
+
 using Login.Common.Data;
 using Login.Contracts.Models;
 using Login.Contracts.Repository;
+
 
 namespace Login.Common.Repository
 {
@@ -19,7 +23,14 @@ namespace Login.Common.Repository
 
         public async Task<User> GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            var query = from u in context.Users where email.ToLower() == u.Email.ToLower() select u;
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<UserSite> GetSiteByName(string siteName)
+        {
+            var query = from s in context.UserSites where siteName.ToLower() == s.Name.ToLower() select s;
+            return await query.FirstOrDefaultAsync();
         }
     }
 }
