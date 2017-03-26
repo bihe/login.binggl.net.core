@@ -40,7 +40,6 @@ namespace Login.Common.Services
             if(lookupUser == null)
             {
                 logger.LogWarning("Could not find a user by email {0}", externalLookupEmail);
-                //throw new SecurityTokenValidationException("Supplied user is not allowed to access the system!");
                 return Task.FromException(new SecurityTokenValidationException("Supplied user is not allowed to access the system!"));
             }
 

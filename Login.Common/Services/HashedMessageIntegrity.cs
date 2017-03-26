@@ -12,11 +12,16 @@ namespace Login.Common.Services
 {
     public class HashedMessageIntegrity : IMessageIntegrity
     {
-        private IOptions<ApplicationConfiguration> appConfig;
+        private string secret;
+
+        public HashedMessageIntegrity(string secret)
+        {
+            this.secret = secret;
+        }
 
         public HashedMessageIntegrity(IOptions<ApplicationConfiguration> appConfig)
         {
-            this.appConfig = appConfig;
+            this.secret = appConfig?.Value?.Secret ?? "";
         }
 
         public string Encode(string key)
@@ -49,7 +54,7 @@ namespace Login.Common.Services
 
         private byte[] Hash(string value)
         {
-            var payload = $"{this.appConfig.Value.Secret}.{value}";
+            var payload = $"{secret}.{value}";
             byte[] hash = null;
             using (var algorithm = SHA256.Create())
             {
