@@ -1,16 +1,41 @@
 {
-    "version": "0.1.0",
-    "command": "dotnet",
+    "version": "2.0.0",
+    "command": " ",
     "isShellCommand": true,
     "args": [],
-    "tasks": [
-        {
+    "tasks": [{
             "taskName": "build",
+            "command": "dotnet",
             "args": [
-                "${workspaceRoot}\\Login.Tests\\Login.Tests.csproj"
+                "build"
             ],
+            //"isShellCommand": true,
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
             "isBuildCommand": true,
+            "showOutput": "always",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "xunit.tests",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "Login.XTests.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/Login.XTests"
+            },
+            "isTestCommand": true,
+            "showOutput": "always",
             "problemMatcher": "$msCompile"
         }
+        // {
+        //     "taskName": "TestAll",
+        //     "dependsOn": [
+        //         "Unit Tests"
+        //     ]
+        // }
     ]
 }

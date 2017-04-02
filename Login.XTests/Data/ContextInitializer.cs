@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Login.Common.Data;
+﻿using Login.Common.Data;
 
 namespace Login.Tests.Data
 {
-    public static class ContextInitializer
+  public static class ContextInitializer
     {
         public static void Initialize(LoginContext context, bool forceDropDatabase = false)
         {

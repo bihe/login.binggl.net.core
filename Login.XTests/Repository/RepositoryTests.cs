@@ -1,48 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Login.Common.Data;
 using Login.Common.Repository;
 using Login.Contracts.Repository;
-using Login.Tests.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Login.Tests.Repository
 {
-    [TestClass]
-    public class RepositoryTests
+  public class RepositoryTests
     {
-        static DbContextOptions<LoginContext> options;
-
-        [ClassInitialize]
-        public static void Setup(TestContext context)
-        {
-            options = new DbContextOptionsBuilder<LoginContext>()
+        static DbContextOptions<LoginContext> options = new DbContextOptionsBuilder<LoginContext>()
                 .UseInMemoryDatabase(databaseName: "Test_Login_Databases_Repository_Tests")
                 .Options;
-        }
 
-
-        [TestMethod]
+        [Fact]
         public async Task TestEmailLookup()
         {
             var user = await Repository.GetUserByEmail("user1@site.com");
-            Assert.IsNotNull(user);
+            Assert.NotNull(user);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task TestSiteAndPermissionRelation()
         {
             var site = await Repository.GetSiteByName("site1");
-            Assert.IsNotNull(site);
-            Assert.AreEqual("http://www.site1.com", site.Url);
-            Assert.AreEqual("Permission1;Permission2", site.PermissionList);
-            Assert.AreEqual("Permission1", site.Permissions[0]);
+            Assert.NotNull(site);
+            Assert.Equal("http://www.site1.com", site.Url);
+            Assert.Equal("Permission1;Permission2", site.PermissionList);
+            Assert.Equal("Permission1", site.Permissions[0]);
 
-            Assert.AreEqual("user1@site.com", site.UserEmail);
-            Assert.AreEqual("User1", site.User.Name);
+            Assert.Equal("user1@site.com", site.UserEmail);
+            Assert.Equal("User1", site.User.Name);
         }
 
 
