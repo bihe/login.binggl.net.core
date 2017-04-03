@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Login.Common.Services
 {
-    public class DatabaseAuthorization : IAuthorization
+  public class DatabaseAuthorization : IAuthorization
     {
         ILoginRepository repository;
         readonly ILogger logger;

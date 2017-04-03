@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Login.Common.Configuration;
@@ -21,7 +20,7 @@ namespace Login.Common.Services
 
         public HashedMessageIntegrity(IOptions<ApplicationConfiguration> appConfig)
         {
-            this.secret = appConfig?.Value?.Secret ?? "";
+            this.secret = appConfig?.Value?.ApplicationSalt ?? "";
         }
 
         public string Encode(string key)

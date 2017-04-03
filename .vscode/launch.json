@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "launchBrowser": {
                 "enabled": true,
@@ -16,7 +17,7 @@
                     "command": "xdg-open"
                 }
             },
-            "name": ".NET Core Launch (console)",
+            "name": "Start asp.net core (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",

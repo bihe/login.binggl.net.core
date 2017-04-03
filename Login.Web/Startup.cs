@@ -21,6 +21,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace Login.Web
 {
@@ -31,6 +32,11 @@ namespace Login.Web
 
         public Startup(IHostingEnvironment env)
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.LiterateConsole()
+                .CreateLogger();
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -71,10 +77,12 @@ namespace Login.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAuthorization auth, IOptions<ApplicationConfiguration> appConfig, LoginContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IAuthorization auth, IOptions<ApplicationConfiguration> appConfig, LoginContext context,
+            IApplicationLifetime appLifetime)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
+            appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
 
             var googleClientId = "";
             var googleClientSecret = "";
@@ -100,7 +108,7 @@ namespace Login.Web
             {
                 AuthenticationScheme = AuthenticationScheme,
                 CookieName = appConfig.Value.Authentication.CookieName,
-                AutomaticAuthenticate = true,
+                AutomaticAuthenticate = false,
                 CookieSecure = env.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always
             });
 
@@ -108,6 +116,7 @@ namespace Login.Web
             {
                 AuthenticationScheme = "oidc",
                 SignInScheme = AuthenticationScheme,
+                AutomaticAuthenticate = true,
                 Authority = "https://accounts.google.com",
                 ResponseType = "code id_token",
                 ClientId = googleClientId,
@@ -122,6 +131,8 @@ namespace Login.Web
                     OnTokenValidated = auth.PerformPostTokenValidationAuthorization
                 },
             });
+
+            app.UseMiddleware(typeof(JwtProcessor));
 
             var cultures = new List<CultureInfo> { new CultureInfo("en-US"), new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("de") };
             app.UseRequestLocalization(new RequestLocalizationOptions

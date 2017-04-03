@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Login.Contracts.Services;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 
 namespace Login.Common.Middleware
 {
-    public class ErrorHandling
+  public class ErrorHandling
     {
         private readonly RequestDelegate next;
         private IFlashService flash;

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Login.Tests.Repository
 {
-  public class RepositoryTests
+    public class RepositoryTests
     {
         static DbContextOptions<LoginContext> options = new DbContextOptionsBuilder<LoginContext>()
                 .UseInMemoryDatabase(databaseName: "Test_Login_Databases_Repository_Tests")
@@ -32,9 +32,6 @@ namespace Login.Tests.Repository
             Assert.Equal("user1@site.com", site.UserEmail);
             Assert.Equal("User1", site.User.Name);
         }
-
-
-
 
         ILoginRepository Repository
         {

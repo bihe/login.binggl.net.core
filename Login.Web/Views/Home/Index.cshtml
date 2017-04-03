@@ -1,75 +1,17 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@using Login.Common.Configuration
-@inject IViewLocalizer Localizer
-
-@{
-    ViewData["Title"] = "Login";
+﻿@{
+    ViewData["Title"] = "Security";
 }
-@model Login.Common.ViewModels.LoginInfo
+
 
 <div class="container">
-    
-    <div class="row" style="padding-bottom: 40px; text-align:center;">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <h1>@Localizer["auth_login_heading"]</h1>
-            
 
-            @if (Model.State == Login.Common.ViewModels.LoginState.Error)
-            {
-                <div class="alert alert-danger" role="alert">
-                    <i class="fa fa-times-circle">&nbsp;</i>
-                    <strong>@Localizer["base_error"]:&nbsp;</strong>
-                    <span>@Model.Error</span>
-                </div>
-            }
+    <h2>Secure</h2>
 
-            @if (Model.State == Login.Common.ViewModels.LoginState.Success)
-            {
-                <div class="alert alert-info" role="alert">
-                    <i class="fa fa-info">&nbsp;</i>
-                    <span>@Model.Success</span>
-                </div>
-            }
-
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6" style="text-align:center;">
-            <img src="/images/Google_2015_logo.svg" style="width:200px" />
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <blockquote>
-                <p>@Localizer["auth_login_description"] </p>
-            </blockquote>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-
-            <form class="form-signin">
-                <a href="startauth" class="btn btn-lg btn-success btn-block" type="submit"><i class="fa fa-google"></i>: @Localizer["auth_login_button"] </a>
-            </form>
-
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-
-</div> <!-- /container -->
-
-<footer class="footer hidden-md hidden-xs">
-    <div class="container">
-        <p class="text-muted"> &copy; @DateTime.Now.Year Henrik Binggl | <i class="fa fa-lock"></i>  @ViewData[Constants.APP_NAME] application</p>
-    </div>
-</footer>
+    <dl>
+        @foreach (var claim in User.Claims)
+        {
+            <dt>@claim.Type</dt>
+            <dd>@claim.Value</dd>
+        }
+    </dl>
+</div>

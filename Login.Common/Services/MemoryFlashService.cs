@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
-using Login.Common.Configuration;
+﻿using System.Collections.Concurrent;
 using Login.Contracts.Services;
-using Microsoft.Extensions.Options;
 
 namespace Login.Common.Services
 {
-    public class MemoryFlashService : IFlashService
+  public class MemoryFlashService : IFlashService
     {
         private readonly ConcurrentDictionary<string, string> flashMessageHolder = new ConcurrentDictionary<string,string>();
         

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Login.Common.Configuration
+﻿namespace Login.Common.Configuration
 {
     public class ApplicationConfiguration
     {
@@ -10,6 +6,7 @@ namespace Login.Common.Configuration
         { }
 
         public AuthenticationConfiguration Authentication { get; set; }
-        public string Secret { get; set; }
+        public JwtConfiguration Jwt { get; set; }
+        public string ApplicationSalt { get; set; }
     }
 }

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 
 using Login.Common.Configuration;
 using Login.Common.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Diagnostics;
 using Login.Contracts.Services;
 
 namespace Login.Web.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
     {
         private readonly IHtmlLocalizer<HomeController> localizer;
         private readonly ILogger logger;
@@ -67,7 +62,7 @@ namespace Login.Web.Controllers
                 Error = string.Format(localizer["auth_login_error"].Value, message)
             };
 
-            return View("Index", loginInfo);
+            return View(loginInfo);
         }
 
 

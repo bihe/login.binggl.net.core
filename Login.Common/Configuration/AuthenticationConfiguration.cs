@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Login.Common.Configuration
+﻿namespace Login.Common.Configuration
 {
     public class AuthenticationConfiguration
     {
