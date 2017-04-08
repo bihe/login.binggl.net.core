@@ -38,7 +38,7 @@ namespace Login.Tests.Repository
             {
                 var context = new LoginContext(options);
                 Login.Tests.Data.ContextInitializer.Initialize(context, true);
-                ILoginService repo = new LoginService(context, null /*Cache*/);
+                ILoginService repo = new LoginService(context, null /*Logger*/, null /*Cache*/);
                 return repo;
             }
         }

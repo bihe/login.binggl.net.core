@@ -24,9 +24,6 @@ namespace Login.Web
 {
     public class Startup
     {
-        const string AuthenticationScheme = "LoginCookieMiddleware";
-
-
         public Startup(IHostingEnvironment env)
         {
             Log.Logger = new LoggerConfiguration()
@@ -105,7 +102,7 @@ namespace Login.Web
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = AuthenticationScheme,
+                AuthenticationScheme = Constants.AUTH_SCHEME,
                 CookieName = appConfig.Value.Authentication.CookieName,
                 AutomaticAuthenticate = false,
                 CookieSecure = env.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always
@@ -114,7 +111,7 @@ namespace Login.Web
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 AuthenticationScheme = "oidc",
-                SignInScheme = AuthenticationScheme,
+                SignInScheme = Constants.AUTH_SCHEME,
                 AutomaticAuthenticate = true,
                 Authority = "https://accounts.google.com",
                 ResponseType = "code id_token",
@@ -132,8 +129,6 @@ namespace Login.Web
             });
 
             app.UseJwtProcessor();
-
-            app.UseMiddleware(typeof(JwtProcessor));
 
             var cultures = new List<CultureInfo> { new CultureInfo("en-US"), new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("de") };
             app.UseRequestLocalization(new RequestLocalizationOptions

@@ -1,17 +1,19 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
-
-using Login.Core.Configuration;
-using Login.Core.Services;
-using Login.Web.ViewModels;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Text;
-using System;
+using System.Threading.Tasks;
+using Login.Core.Configuration;
+using Login.Core.Exceptions;
+using Login.Core.Services;
+using Login.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Login.Web.Controllers
 {
@@ -19,33 +21,47 @@ namespace Login.Web.Controllers
     {
         private readonly IHtmlLocalizer<HomeController> localizer;
         private readonly ILogger logger;
+        private readonly IOptions<ApplicationConfiguration> appConfig;
         private IFlashService flash;
         private IMessageIntegrity messageIntegrity;
         private ILoginService loginService;
 
-        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger, IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService)
+        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger, 
+            IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService, 
+            IOptions<ApplicationConfiguration> appConfig)
         {
             this.localizer = localizer;
             this.logger = logger;
             this.flash = flash;
             this.messageIntegrity = messageIntegrity;
             this.loginService = loginService;
+            this.appConfig = appConfig;
         }
 
-
+        [Route("logout")]
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Logout()
         {
             this.CommonViewData();
 
-            logger.LogDebug("The current user is {0}", this.User.Identity.Name);
+            var cookies = HttpContext.Request.Cookies.Keys;
+            foreach (var cookie in cookies)
+            {
+                HttpContext.Response.Cookies.Delete(cookie, new CookieOptions
+                {
+                    Domain = appConfig.Value.Jwt.CookieDomain
+                });
+            }
+
+            await HttpContext.Authentication.SignOutAsync(Constants.AUTH_SCHEME);
 
             var loginInfo = new LoginInfo
             {
-                State = LoginState.Success
+                State = LoginState.Success,
+                Success = localizer["auth_logout"].Value
             };
 
-            return View(loginInfo);
+            return View("Error", loginInfo);
         }
 
         [Route("api/user/{nocache?}")]
@@ -55,7 +71,7 @@ namespace Login.Web.Controllers
             var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail, nocache);
             if(user == null)
             {
-                // throw something;
+                throw new ApplicationException("No user is available!");
             }
 
             var sitePermissions = from u in user.Sites select new SiteInfo() { Name = u.Name, Url = u.Url, Permissions = u.Permissions };
@@ -72,21 +88,31 @@ namespace Login.Web.Controllers
 
         [Route("auth/flow")]
         [Authorize]
-        public async Task<IActionResult> AuthenticationFlow()
+        public async Task<IActionResult> AuthenticationFlow([FromQuery(Name = "~site")] string site, [FromQuery(Name = "~url")] string url)
         {
+            if(string.IsNullOrEmpty(site) || string.IsNullOrEmpty(url))
+            {
+                throw new ApplicationException("Invalid paramters supplied for auth-flow!");
+            }
+            
             var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
             if (user == null)
             {
-                // throw something;
+                throw new ApplicationException("No user is available!");
             }
 
-            return Json(new UserInfo
+            if (!this.loginService.IsValidRedirectUrl(user, site, url))
             {
-                DisplayName = user.DisplayName,
-                Email = user.Email,
-                Id = Hash(user.Email),
-                UserName = user.Name,
-            });
+                var loginInfo = new LoginInfo
+                {
+                    State = LoginState.Error,
+                    Error = string.Format(localizer["auth_flow_redirect_error"].Value, url)
+                };
+
+                return View("Error", loginInfo); ;
+            }
+
+            return Redirect(url);
         }
 
         [Route("error/{key?}")]
@@ -114,6 +140,21 @@ namespace Login.Web.Controllers
             return View(loginInfo);
         }
 
+        [Authorize]
+        public IActionResult Index()
+        {
+            this.CommonViewData();
+
+            logger.LogDebug("The current user is {0}", this.User.Identity.Name);
+
+            var loginInfo = new LoginInfo
+            {
+                State = LoginState.Success
+            };
+
+            return View(loginInfo);
+        }
+
 
         void CommonViewData()
         {
@@ -132,7 +173,6 @@ namespace Login.Web.Controllers
         {
             using (var algorithm = SHA256.Create())
             {
-                // Create the at_hash using the access token returned by CreateAccessTokenAsync.
                 var hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
                 return BitConverter.ToString(hash).Replace("-", "").ToLower();
             }

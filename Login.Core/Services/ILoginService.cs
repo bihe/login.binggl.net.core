@@ -11,5 +11,9 @@ namespace Login.Core.Services
         Task<User> GetUserByEmail(string email, bool noCache=false);
 
         Task<UserSite> GetSiteByName(string siteName, bool noCache = false);
+
+        Task SaveLoginSession(string username, string displayname, Enums.LoginType loginType);
+
+        bool IsValidRedirectUrl(User user, String siteName, String redirectUrl);
     }
 }

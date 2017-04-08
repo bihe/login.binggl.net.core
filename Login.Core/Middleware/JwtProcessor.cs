@@ -52,7 +52,7 @@ namespace Login.Core.Middleware
 
         public async Task Invoke(HttpContext context /* other scoped dependencies */)
         {
-            logger.LogInformation($"Processing middleware: [JwtProcessor]");
+            logger.LogInformation($"Processing middleware: 'JwtProcessor' for Request [Method: {context.Request.Method}, Path: {context.Request.Path}]");
 
             try
             {
@@ -87,8 +87,19 @@ namespace Login.Core.Middleware
                             };
 
                             var token = JWT.Encode(payload, tokenSecretKey, JwsAlgorithm.HS256);
-
                             var expires = new DateTimeOffset(DateTime.Now.AddDays(this.jwtCookieExpiryDays));
+
+                            var type = Enums.LoginType.DIRECT;
+                            if(context.Request.Path.HasValue)
+                            {
+                                if(context.Request.Path.Value.IndexOf("auth/flow") > -1)
+                                {
+                                    type = Enums.LoginType.FORWARD;
+                                }
+                            }
+
+                            // save the login process
+                            await this.loginService.SaveLoginSession(user.Name, user.DisplayName, type);
 
                             context.Response.Cookies.Append(this.jwtCookieName, token, new CookieOptions
                             {
@@ -97,6 +108,7 @@ namespace Login.Core.Middleware
                                 Expires = expires,
                                 Path = this.jwtCookiePath
                             });
+
                         }
                         else
                         {
@@ -112,6 +124,7 @@ namespace Login.Core.Middleware
             catch (Exception EX)
             {
                 logger.LogError(500, EX, $"Error during processing of middleware!");
+                throw;
             }
 
             await next(context);
