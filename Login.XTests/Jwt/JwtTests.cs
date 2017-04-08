@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Jose;
-using Login.Common.Middleware;
+using Login.Core.Middleware;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -43,7 +43,8 @@ namespace Login.XTests.Jwt
 
             var middleware = new JwtProcessor(null /*Microsoft.AspNetCore.Http.RequestDelegate*/,
                 null /*Microsoft.Extensions.Logging.ILogger*/,
-                null /*Microsoft.Extensions.Options.IOptions<Common.Configuration>*/);
+                null /*Login.Core.Services.ILoginService*/,
+                null /*Microsoft.Extensions.Options.IOptions<Core.Configuration>*/);
 
             await middleware.Invoke(null /*Microsoft.AspNetCore.Http.HttpContext*/);
 

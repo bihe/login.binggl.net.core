@@ -4,13 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Login.Common.Configuration;
-using Login.Common.Data;
-using Login.Common.Middleware;
-using Login.Common.Repository;
-using Login.Common.Services;
-using Login.Contracts.Repository;
-using Login.Contracts.Services;
+using Login.Core.Configuration;
+using Login.Core.Data;
+using Login.Core.Middleware;
+using Login.Core.Services;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -65,8 +62,10 @@ namespace Login.Web
             // add database services
             services.AddDbContext<LoginContext>(options => options.UseMySql(Configuration.GetConnectionString("LoginConnection")));
 
+            services.AddMemoryCache();
+
             services.AddSingleton<IAuthorization, DatabaseAuthorization>();
-            services.AddScoped<ILoginRepository, DatabaseRepository>();
+            services.AddScoped<ILoginService, LoginService>();
             services.AddSingleton<IFlashService, MemoryFlashService>();
             services.AddSingleton<IMessageIntegrity, HashedMessageIntegrity>();
 
@@ -89,7 +88,7 @@ namespace Login.Web
 
             if (env.IsDevelopment())
             {
-                app.UseMiddleware(typeof(ErrorHandling));
+                app.UseErrorHandling();
                 //app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
 
@@ -101,7 +100,7 @@ namespace Login.Web
                 googleClientId = appConfig.Value.Authentication.GoogleClientId;
                 googleClientSecret = appConfig.Value.Authentication.GoogleClientSecret;
 
-                app.UseMiddleware(typeof(ErrorHandling));
+                app.UseErrorHandling();
             }
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -131,6 +130,8 @@ namespace Login.Web
                     OnTokenValidated = auth.PerformPostTokenValidationAuthorization
                 },
             });
+
+            app.UseJwtProcessor();
 
             app.UseMiddleware(typeof(JwtProcessor));
 

@@ -13,12 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Login.Common\Login.Common.csproj" />
-    <ProjectReference Include="..\Login.Contracts\Login.Contracts.csproj" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+    <ProjectReference Include="..\Login.Core\Login.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

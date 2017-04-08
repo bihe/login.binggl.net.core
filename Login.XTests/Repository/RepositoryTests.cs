@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Login.Common.Data;
-using Login.Common.Repository;
-using Login.Contracts.Repository;
+using Login.Core.Data;
+using Login.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -33,13 +32,13 @@ namespace Login.Tests.Repository
             Assert.Equal("User1", site.User.Name);
         }
 
-        ILoginRepository Repository
+        ILoginService Repository
         {
             get
             {
                 var context = new LoginContext(options);
                 Login.Tests.Data.ContextInitializer.Initialize(context, true);
-                ILoginRepository repo = new DatabaseRepository(context);
+                ILoginService repo = new LoginService(context, null /*Cache*/);
                 return repo;
             }
         }

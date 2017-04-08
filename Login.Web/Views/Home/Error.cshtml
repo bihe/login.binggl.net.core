@@ -1,11 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
-@using Login.Common.Configuration
+@using Login.Core.Configuration
 @inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Login";
 }
-@model Login.Common.ViewModels.LoginInfo
+@model Login.Web.ViewModels.LoginInfo
 
 <div class="container">
     
@@ -15,7 +15,7 @@
             <h1>@Localizer["auth_login_heading"]</h1>
             
 
-            @if (Model.State == Login.Common.ViewModels.LoginState.Error)
+            @if (Model.State == Login.Web.ViewModels.LoginState.Error)
             {
                 <div class="alert alert-danger" role="alert">
                     <i class="fa fa-times-circle">&nbsp;</i>
@@ -24,7 +24,7 @@
                 </div>
             }
 
-            @if (Model.State == Login.Common.ViewModels.LoginState.Success)
+            @if (Model.State == Login.Web.ViewModels.LoginState.Success)
             {
                 <div class="alert alert-info" role="alert">
                     <i class="fa fa-info">&nbsp;</i>
