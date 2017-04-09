@@ -10,6 +10,7 @@ using Login.Core.Services;
 using Login.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Logging;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Options;
 
 namespace Login.Web.Controllers
 {
+    [Authorize(ActiveAuthenticationSchemes = "LoginCookieMiddleware")]
     public class HomeController : Controller
     {
         private readonly IHtmlLocalizer<HomeController> localizer;
@@ -39,7 +41,6 @@ namespace Login.Web.Controllers
         }
 
         [Route("logout")]
-        [Authorize]
         public async Task<IActionResult> Logout()
         {
             this.CommonViewData();
@@ -65,7 +66,6 @@ namespace Login.Web.Controllers
         }
 
         [Route("api/user/{nocache?}")]
-        [Authorize]
         public async Task<IActionResult> CurrentUser(bool nocache)
         {
             var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail, nocache);
@@ -87,7 +87,6 @@ namespace Login.Web.Controllers
         }
 
         [Route("auth/flow")]
-        [Authorize]
         public async Task<IActionResult> AuthenticationFlow([FromQuery(Name = "~site")] string site, [FromQuery(Name = "~url")] string url)
         {
             if(string.IsNullOrEmpty(site) || string.IsNullOrEmpty(url))
@@ -116,12 +115,13 @@ namespace Login.Web.Controllers
         }
 
         [Route("error/{key?}")]
+        [AllowAnonymous]
         public IActionResult Error(string key)
         {
             this.CommonViewData();
             var message = "";
             if (string.IsNullOrEmpty(key))
-                message = "Error in user authorization!";
+                message = localizer["auth_needs_login"].Value;
             else
             {
                 if (this.messageIntegrity.Verify(key))
@@ -140,7 +140,18 @@ namespace Login.Web.Controllers
             return View(loginInfo);
         }
 
-        [Authorize]
+        [Route("login")]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            var props = new AuthenticationProperties
+            {
+                RedirectUri = "/"
+            };
+
+            return new ChallengeResult(Constants.AUTH_OAUTH_SCHEME, props);
+        }
+
         public IActionResult Index()
         {
             this.CommonViewData();

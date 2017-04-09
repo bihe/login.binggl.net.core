@@ -11,5 +11,7 @@ namespace Login.Core.Configuration
         public const string ROLE_USER = "User";
 
         public const string AUTH_SCHEME = "LoginCookieMiddleware";
+
+        public const string AUTH_OAUTH_SCHEME = "oidc";
     }
 }

@@ -126,4 +126,7 @@
   <data name="auth_logout" xml:space="preserve">
     <value>The user was successfully loged out!</value>
   </data>
+  <data name="auth_needs_login" xml:space="preserve">
+    <value>No active user token available - login is needed!</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ using Login.Core.Configuration;
 using Login.Core.Data;
 using Login.Core.Middleware;
 using Login.Core.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -103,14 +104,29 @@ namespace Login.Web
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationScheme = Constants.AUTH_SCHEME,
+                CookieDomain = appConfig.Value.Authentication.CookieDomain,
                 CookieName = appConfig.Value.Authentication.CookieName,
                 AutomaticAuthenticate = false,
+                Events = new CookieAuthenticationEvents()
+                {
+                    OnRedirectToAccessDenied = ctx =>
+                    {
+                        ctx.Response.Redirect(new PathString("/Error").ToUriComponent());
+                        return Task.FromResult(0);
+                    },
+                    OnRedirectToLogin = ctx =>
+                    {
+                        ctx.Response.Redirect(new PathString("/Error").ToUriComponent());
+                        return Task.FromResult(0);
+                    }
+                },
+                ReturnUrlParameter = "",
                 CookieSecure = env.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always
             });
 
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
-                AuthenticationScheme = "oidc",
+                AuthenticationScheme = Constants.AUTH_OAUTH_SCHEME,
                 SignInScheme = Constants.AUTH_SCHEME,
                 AutomaticAuthenticate = true,
                 Authority = "https://accounts.google.com",

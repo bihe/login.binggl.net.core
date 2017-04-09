@@ -2,7 +2,7 @@
 
 namespace Login.Tests.Data
 {
-  public static class ContextInitializer
+    public static class ContextInitializer
     {
         public static void Initialize(LoginContext context, bool forceDropDatabase = false)
         {
