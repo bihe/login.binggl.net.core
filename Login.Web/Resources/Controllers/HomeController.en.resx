@@ -121,7 +121,7 @@
     <value>Could not redirect to the desired url {0}.</value>
   </data>
   <data name="auth_login_error" xml:space="preserve">
-    <value>Failed to login the user! {0}</value>
+    <value>Failed to login the user!</value>
   </data>
   <data name="auth_logout" xml:space="preserve">
     <value>The user was successfully loged out!</value>

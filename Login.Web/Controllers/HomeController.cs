@@ -18,7 +18,7 @@ using Microsoft.Extensions.Options;
 
 namespace Login.Web.Controllers
 {
-    [Authorize(ActiveAuthenticationSchemes = "LoginCookieMiddleware")]
+    [Authorize(ActiveAuthenticationSchemes = Constants.AUTH_SCHEME)]
     public class HomeController : Controller
     {
         private readonly IHtmlLocalizer<HomeController> localizer;
@@ -119,7 +119,8 @@ namespace Login.Web.Controllers
         public IActionResult Error(string key)
         {
             this.CommonViewData();
-            var message = "";
+            var message = string.Format(localizer["auth_login_error"].Value);
+
             if (string.IsNullOrEmpty(key))
                 message = localizer["auth_needs_login"].Value;
             else
@@ -134,7 +135,7 @@ namespace Login.Web.Controllers
             var loginInfo = new LoginInfo
             {
                 State = LoginState.Error,
-                Error = string.Format(localizer["auth_login_error"].Value, message)
+                Error = message
             };
 
             return View(loginInfo);
