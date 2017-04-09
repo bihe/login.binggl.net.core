@@ -6,6 +6,14 @@ using Login.Core.Middleware;
 using Newtonsoft.Json;
 using Xunit;
 
+using Moq;
+using FluentAssertions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Login.Core.Services;
+using Login.Core.Models;
+using System;
+
 namespace Login.XTests.Jwt
 {
     public class JwtTests
@@ -36,20 +44,63 @@ namespace Login.XTests.Jwt
             await Task.FromResult(1);
         }
 
-        [Fact]
-        public async Task TestJwtMiddleware()
-        {
-            // MockMock
+        //[Fact]
+        //public async Task TestJwtMiddleware()
+        //{
+        //    var email = "a.b@c.de";
+        //    var username = "tuser";
+        //    var displayName = "Test User";
+        //    var user = new User
+        //    {
+        //        Created = DateTime.Now,
+        //        DisplayName = displayName,
+        //        Email = email,
+        //        Modified = DateTime.Now,
+        //        Name = username,
+        //        Sites = new List<UserSite>()
+        //        {
+        //            new UserSite
+        //            {
+        //                Created = DateTime.Now,
+        //                Modified = DateTime.Now,
+        //                Name = "testsite",
+        //                Url = "http://www.test.com",
+        //                PermissionList = "user"
+        //            }
+        //        }
+        //    };
 
-            var middleware = new JwtProcessor(null /*Microsoft.AspNetCore.Http.RequestDelegate*/,
-                null /*Microsoft.Extensions.Logging.ILogger*/,
-                null /*Login.Core.Services.ILoginService*/,
-                null /*Microsoft.Extensions.Options.IOptions<Core.Configuration>*/);
+        //    // MockMock
+        //    var mockHttpContext = new Mock<DefaultHttpContext>();
 
-            await middleware.Invoke(null /*Microsoft.AspNetCore.Http.HttpContext*/);
+        //    var mockLogger = new Mock<ILogger<JwtProcessor>>();
+            
+        //    var mockLoginService = new Mock<ILoginService>();
+        //    mockLoginService
+        //        .Setup(x => x.GetUserByEmail(email, true))
+        //        .Returns(Task.FromResult(user));
 
-            // check
-        }
+        //    mockLoginService
+        //        .Setup(x => x.SaveLoginSession(username, displayName, Core.Enums.LoginType.DIRECT))
+        //        .Returns(Task.FromResult(0));
+
+        //    var middleware = new JwtProcessor(next: (innerHttpContext) => Task.FromResult(0),
+        //        logger: mockLogger.Object,
+        //        loginService: mockLoginService.Object,
+        //        jwtCookieDomain: "domain",
+        //        jwtCookieExpiryDays: 7,
+        //        jwtCookieName: "name",
+        //        jwtCookiePath: "/",
+        //        tokenSecret: "12345678");
+
+        //    await middleware.Invoke(mockHttpContext.Object);
+
+
+        //    mockLoginService.Verify(service => service.SaveLoginSession(username, displayName, Core.Enums.LoginType.DIRECT), Times.AtMostOnce);
+
+
+        //    // check
+        //}
 
     }
 }
