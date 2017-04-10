@@ -59,7 +59,7 @@ namespace Login.Web.Controllers
             var loginInfo = new LoginInfo
             {
                 State = LoginState.Success,
-                Success = localizer["auth_logout"].Value
+                Success = localizer["The user was successfully loged out!"].Value
             };
 
             return View("Error", loginInfo);
@@ -105,7 +105,7 @@ namespace Login.Web.Controllers
                 var loginInfo = new LoginInfo
                 {
                     State = LoginState.Error,
-                    Error = string.Format(localizer["auth_flow_redirect_error"].Value, url)
+                    Error = string.Format(localizer["Could not redirect to the desired url {0}."].Value, url)
                 };
 
                 return View("Error", loginInfo); ;
@@ -119,10 +119,10 @@ namespace Login.Web.Controllers
         public IActionResult Error(string key)
         {
             this.CommonViewData();
-            var message = string.Format(localizer["auth_login_error"].Value);
+            var message = string.Format(localizer["Failed to login the user!"].Value);
 
             if (string.IsNullOrEmpty(key))
-                message = localizer["auth_needs_login"].Value;
+                message = localizer["No active user token available - login is needed!"].Value;
             else
             {
                 if (this.messageIntegrity.Verify(key))

@@ -12,14 +12,14 @@
     <div class="row" style="padding-bottom: 40px; text-align:center;">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h1>@Localizer["auth_login_heading"]</h1>
+            <h1>@Localizer["Login with Google Account"]</h1>
             
 
             @if (Model.State == Login.Web.ViewModels.LoginState.Error)
             {
                 <div class="alert alert-danger" role="alert">
                     <i class="fa fa-times-circle">&nbsp;</i>
-                    <strong>@Localizer["base_error"]:&nbsp;</strong>
+                    <strong>@Localizer["Error"]:&nbsp;</strong>
                     <span>@Model.Error</span>
                 </div>
             }
@@ -48,7 +48,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <blockquote>
-                <p>@Localizer["auth_login_description"] </p>
+                <p>@Localizer["The authorization is done via Google. Once you click on the login button you are forwarded to a Google login. After the process is finished you are redirected to this application."] </p>
             </blockquote>
         </div>
         <div class="col-md-3"></div>
@@ -59,7 +59,7 @@
         <div class="col-md-4">
 
             <form class="form-signin">
-                <a href="/login" class="btn btn-lg btn-success btn-block" type="submit"><i class="fa fa-google"></i>: @Localizer["auth_login_button"] </a>
+                <a href="/login" class="btn btn-lg btn-success btn-block" type="submit"><i class="fa fa-google"></i>: @Localizer["Google Login!"] </a>
             </form>
 
         </div>

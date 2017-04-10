@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="auth_flow_redirect_error" xml:space="preserve">
+  <data name="Could not redirect to the desired url {0}." xml:space="preserve">
     <value>Could not redirect to the desired url {0}.</value>
   </data>
-  <data name="auth_login_error" xml:space="preserve">
+  <data name="Failed to login the user!" xml:space="preserve">
     <value>Failed to login the user!</value>
   </data>
-  <data name="auth_logout" xml:space="preserve">
-    <value>The user was successfully loged out!</value>
-  </data>
-  <data name="auth_needs_login" xml:space="preserve">
+  <data name="No active user token available - login is needed!" xml:space="preserve">
     <value>No active user token available - login is needed!</value>
+  </data>
+  <data name="The user was successfully loged out!" xml:space="preserve">
+    <value>The user was successfully loged out!</value>
   </data>
 </root>
