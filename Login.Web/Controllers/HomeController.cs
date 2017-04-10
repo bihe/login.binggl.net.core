@@ -128,7 +128,7 @@ namespace Login.Web.Controllers
                 if (this.messageIntegrity.Verify(key))
                 { 
                     message = this.flash.Get(key);
-                    message = System.Net.WebUtility.HtmlEncode(message);
+                    //message = System.Net.WebUtility.HtmlEncode(message);
                 }
             }
 
@@ -153,18 +153,23 @@ namespace Login.Web.Controllers
             return new ChallengeResult(Constants.AUTH_OAUTH_SCHEME, props);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             this.CommonViewData();
 
             logger.LogDebug("The current user is {0}", this.User.Identity.Name);
-
-            var loginInfo = new LoginInfo
+            var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
+            var sitePermissions = from u in user.Sites select new SiteInfo() { Name = u.Name, Url = u.Url, Permissions = u.Permissions };
+            var userInfo = new UserInfo
             {
-                State = LoginState.Success
+                DisplayName = user.DisplayName,
+                Email = user.Email,
+                Id = Hash(user.Email),
+                UserName = user.Name,
+                SitePermissions = new System.Collections.Generic.List<SiteInfo>(sitePermissions)
             };
 
-            return View(loginInfo);
+            return View(userInfo);
         }
 
 

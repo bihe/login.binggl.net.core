@@ -28,10 +28,10 @@ namespace Login.Web
     {
         public Startup(IHostingEnvironment env)
         {
-            Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .WriteTo.LiterateConsole()
-                .CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //    .Enrich.FromLogContext()
+            //    .WriteTo.LiterateConsole()
+            //    .CreateLogger();
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -39,7 +39,12 @@ namespace Login.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
-            if(env.IsDevelopment())
+            Log.Logger = new LoggerConfiguration()
+               .ReadFrom.Configuration(builder.Build())
+               .CreateLogger();
+
+
+            if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets("941c25ef-e985-4331-86ca-066139a141b9");
