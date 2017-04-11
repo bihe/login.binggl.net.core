@@ -87,31 +87,43 @@ namespace Login.Web.Controllers
         }
 
         [Route("auth/flow")]
+        [AllowAnonymous]
         public async Task<IActionResult> AuthenticationFlow([FromQuery(Name = "~site")] string site, [FromQuery(Name = "~url")] string url)
         {
             if(string.IsNullOrEmpty(site) || string.IsNullOrEmpty(url))
             {
                 throw new ApplicationException("Invalid paramters supplied for auth-flow!");
             }
-            
-            var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
-            if (user == null)
-            {
-                throw new ApplicationException("No user is available!");
-            }
 
-            if (!this.loginService.IsValidRedirectUrl(user, site, url))
+            // if no authenticated user email is available - challenge the user by an auth request
+            if (string.IsNullOrEmpty(this.AuthenticatedUserEmail))
             {
-                var loginInfo = new LoginInfo
+                var props = new AuthenticationProperties
                 {
-                    State = LoginState.Error,
-                    Error = string.Format(localizer["Could not redirect to the desired url {0}."].Value, url)
+                    // redirect where I came from
+                    RedirectUri = $"/auth/flow?~site={site}&~url={url}"
                 };
-
-                return View("Error", loginInfo); ;
+                return new ChallengeResult(Constants.AUTH_OAUTH_SCHEME, props);
             }
+            else
+            {
+                var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
+                if (user == null)
+                {
+                    throw new ApplicationException("No user is available!");
+                }
 
-            return Redirect(url);
+                if (!this.loginService.IsValidRedirectUrl(user, site, url))
+                {
+                    var loginInfo = new LoginInfo
+                    {
+                        State = LoginState.Error,
+                        Error = string.Format(localizer["Could not redirect to the desired url {0}."].Value, url)
+                    };
+                    return View("Error", loginInfo); ;
+                }
+                return Redirect(url);
+            }
         }
 
         [Route("error/{key?}")]

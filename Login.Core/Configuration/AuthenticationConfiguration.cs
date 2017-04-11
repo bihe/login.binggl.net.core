@@ -7,6 +7,7 @@
 
         public string CookieDomain { get; set; }
         public string CookieName { get; set; }
+        public int CookieExpiryDays { get; set; }
         public string GoogleClientId { get; set; }
         public string GoogleClientSecret { get; set; }
     }

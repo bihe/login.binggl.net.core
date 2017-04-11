@@ -47,12 +47,13 @@
             <p class="hidden-md hidden-xs">Permissions are available for the following sites!</p>
         }
         
-        @foreach (var site in Model.SitePermissions)
-        {
-            <div class="row cardsection">
+        <div class="row cardsection">
+
+            @foreach (var site in Model.SitePermissions)
+            {
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        
+
                         <div class="caption text-center">
                             <p>
                                 <h3><i class="fa fa-external-link"></i> @site.Name</h3>
@@ -70,8 +71,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+
+        </div>
 
     </div>
 

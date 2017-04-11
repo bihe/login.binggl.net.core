@@ -129,9 +129,11 @@ namespace Login.Web
                     {
                         ctx.Response.Redirect(new PathString("/Error").ToUriComponent());
                         return Task.FromResult(0);
-                    }
+                    },
                 },
                 ReturnUrlParameter = "",
+                SlidingExpiration = true,
+                ExpireTimeSpan = TimeSpan.FromDays(appConfig.Value.Authentication.CookieExpiryDays),
                 CookieSecure = env.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always
             });
 
@@ -151,7 +153,7 @@ namespace Login.Web
                 {
                     //OnAuthenticationFailed = OnAuthenticationFailed,
                     //OnRemoteFailure = OnRemoteFailure
-                    OnTokenValidated = auth.PerformPostTokenValidationAuthorization
+                    OnTokenValidated = auth.PerformPostTokenValidationAuthorization,
                 },
             });
 
