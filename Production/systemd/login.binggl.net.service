@@ -1,0 +1,16 @@
+[Unit]
+Description=dotnet.core application login.binggl.net
+After=local-fs.target network.target
+
+[Service]
+WorkingDirectory=/var/www/dotnet/login.binggl.net/bin
+ExecStart=/usr/bin/dotnet /var/www/dotnet/login.binggl.net/bin/Login.Web.dll
+Restart=always
+RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=login.binggl.net
+User=dotnet
+Environment=ASPNETCORE_ENVIRONMENT=Production 
+Environment=ASPNETCORE_URLS=http://localhost:3003
+
+[Install]
+WantedBy=multi-user.target

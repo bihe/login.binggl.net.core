@@ -116,7 +116,6 @@ namespace Login.Web
             app.UseCustomCookieAuthentication(new CustomCookieAuthenticationOptions
             {
                 AuthenticationScheme = Constants.AUTH_SCHEME,
-                CookieDomain = appConfig.Value.Authentication.CookieDomain,
                 CookieName = appConfig.Value.Authentication.CookieName,
                 AutomaticAuthenticate = false,
                 Events = new CookieAuthenticationEvents()

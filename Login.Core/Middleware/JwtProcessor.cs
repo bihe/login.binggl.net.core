@@ -106,6 +106,7 @@ namespace Login.Core.Middleware
                             context.Response.Cookies.Append(this.jwtCookieName, token, new CookieOptions
                             {
                                 HttpOnly = true,
+                                Secure = true,
                                 Domain = this.jwtCookieDomain,
                                 Expires = expires,
                                 Path = this.jwtCookiePath
