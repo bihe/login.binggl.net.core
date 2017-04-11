@@ -82,8 +82,10 @@ namespace Login.Core.Middleware
                                 Email = user.Email,
                                 UserId = claims.Where(x => x.Type == ClaimTypes.Sid).FirstOrDefault()?.Value,
                                 UserName = user.Name,
-                                Type = "login.User"
-
+                                Type = "login.User",
+                                GivenName = claims.Where(x => x.Type == ClaimTypes.GivenName).FirstOrDefault()?.Value,
+                                Surname = claims.Where(x => x.Type == ClaimTypes.Surname).FirstOrDefault()?.Value,
+                                Issued = DateTime.UtcNow
                             };
 
                             var token = JWT.Encode(payload, tokenSecretKey, JwsAlgorithm.HS256);

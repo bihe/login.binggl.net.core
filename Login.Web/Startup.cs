@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Login.Core.Configuration;
 using Login.Core.Data;
 using Login.Core.Middleware;
+using Login.Core.Middleware.Authentication;
 using Login.Core.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -112,7 +113,7 @@ namespace Login.Web
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            app.UseCustomCookieAuthentication(new CustomCookieAuthenticationOptions
             {
                 AuthenticationScheme = Constants.AUTH_SCHEME,
                 CookieDomain = appConfig.Value.Authentication.CookieDomain,
@@ -131,6 +132,8 @@ namespace Login.Web
                         return Task.FromResult(0);
                     },
                 },
+                JwtCookieName = appConfig.Value.Jwt.CookieName,
+                JwtTokenSecret = appConfig.Value.Jwt.TokenSecret,
                 ReturnUrlParameter = "",
                 SlidingExpiration = true,
                 ExpireTimeSpan = TimeSpan.FromDays(appConfig.Value.Authentication.CookieExpiryDays),
