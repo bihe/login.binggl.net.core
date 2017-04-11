@@ -2,14 +2,13 @@
 
 namespace Login.Core.Services
 {
-  public class MemoryFlashService : IFlashService
+    public class MemoryFlashService : IFlashService
     {
         private readonly ConcurrentDictionary<string, string> flashMessageHolder = new ConcurrentDictionary<string,string>();
         
         public string Get(string key)
         {
-            string value = "";
-            this.flashMessageHolder.TryRemove(key, out value);
+            this.flashMessageHolder.TryRemove(key, out string value);
             return value;
         }
 
