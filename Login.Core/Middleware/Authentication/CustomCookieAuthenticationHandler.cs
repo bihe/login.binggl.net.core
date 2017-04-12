@@ -126,6 +126,9 @@ namespace Login.Core.Middleware.Authentication
                 }
                 catch (Exception)
                 {
+                    // there was an error dehydrating the user by cookie - remove the cookie
+                    Options.CookieManager.DeleteCookie(Context, Options.CookieName, BuildCookieOptions());
+
                     return AuthenticateResult.Skip();
                 }
             }
