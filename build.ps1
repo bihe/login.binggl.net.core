@@ -4,7 +4,10 @@ echo "Build the login.binggl.net.core Application"
 dotnet clean -c Debug
 dotnet clean -c Release
 
-dotnet build -c Release
+$ts = Get-Date -format "yyyyMMdd"
+echo $ts
+
+dotnet build --version-suffix $ts -c Release 
 
 dotnet publish .\Login.Web\Login.Web.csproj -c Release -v m -o "$pwd\..\deployment"
 # cleanup/prepare for deployment

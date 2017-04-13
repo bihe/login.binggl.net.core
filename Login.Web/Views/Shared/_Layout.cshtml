@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@using Login.Core.Configuration
+
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -8,7 +10,7 @@
         <meta name="description" content="Central authentication for all my applications.">
         <meta name="author" content="Henrik Binggl">
         <link rel="shortcut icon" href="html5.ico">
-        <title>@ViewData["Title"] (version: 20170412)</title>
+        <title>@ViewData["Title"]</title>
 
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -24,6 +26,13 @@
     <body>
 
         @RenderBody()
+
+
+        <footer class="footer hidden-md hidden-xs">
+            <div class="container">
+                <p class="text-muted"> <i class="fa fa-copyright" aria-hidden="true"></i> @DateTime.Now.Year Henrik Binggl | <i class="fa fa-lock"></i>  <b>@ViewData[Constants.APP_NAME] application</b> | <i class="fa fa-code-fork"></i> <small>@ViewData[Constants.APP_VERSION]</small></p>
+            </div>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>

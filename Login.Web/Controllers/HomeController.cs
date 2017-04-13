@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -18,9 +19,11 @@ using Microsoft.Extensions.Options;
 
 namespace Login.Web.Controllers
 {
-    [Authorize(ActiveAuthenticationSchemes = Constants.AUTH_SCHEME)]
+    [Authorize(ActiveAuthenticationSchemes = Constants.AUTHENTICATION_SCHEME_COOKIES)]
     public class HomeController : Controller
     {
+        private static readonly string AssemblyVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+
         private readonly IHtmlLocalizer<HomeController> localizer;
         private readonly ILogger logger;
         private readonly IOptions<ApplicationConfiguration> appConfig;
@@ -54,7 +57,7 @@ namespace Login.Web.Controllers
                 });
             }
 
-            await HttpContext.Authentication.SignOutAsync(Constants.AUTH_SCHEME);
+            await HttpContext.Authentication.SignOutAsync(Constants.AUTHENTICATION_SCHEME_COOKIES);
 
             var loginInfo = new LoginInfo
             {
@@ -103,7 +106,7 @@ namespace Login.Web.Controllers
                     // redirect where I came from
                     RedirectUri = $"/auth/flow?~site={site}&~url={url}"
                 };
-                return new ChallengeResult(Constants.AUTH_OAUTH_SCHEME, props);
+                return new ChallengeResult(Constants.AUTHENTICATION_SCHEME_EXTERNAL_OAUTH, props);
             }
             else
             {
@@ -162,7 +165,7 @@ namespace Login.Web.Controllers
                 RedirectUri = "/"
             };
 
-            return new ChallengeResult(Constants.AUTH_OAUTH_SCHEME, props);
+            return new ChallengeResult(Constants.AUTHENTICATION_SCHEME_EXTERNAL_OAUTH, props);
         }
 
         public async Task<IActionResult> Index()
@@ -188,6 +191,7 @@ namespace Login.Web.Controllers
         void CommonViewData()
         {
             ViewData[Constants.APP_NAME] = "login.binggl.net";
+            ViewData[Constants.APP_VERSION] = AssemblyVersion;
         }
 
         string AuthenticatedUserEmail

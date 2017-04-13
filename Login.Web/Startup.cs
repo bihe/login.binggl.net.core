@@ -115,7 +115,7 @@ namespace Login.Web
 
             app.UseCustomCookieAuthentication(new CustomCookieAuthenticationOptions
             {
-                AuthenticationScheme = Constants.AUTH_SCHEME,
+                AuthenticationScheme = Constants.AUTHENTICATION_SCHEME_COOKIES,
                 CookieName = appConfig.Value.Authentication.CookieName,
                 AutomaticAuthenticate = false,
                 Events = new CookieAuthenticationEvents()
@@ -141,8 +141,8 @@ namespace Login.Web
 
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
-                AuthenticationScheme = Constants.AUTH_OAUTH_SCHEME,
-                SignInScheme = Constants.AUTH_SCHEME,
+                AuthenticationScheme = Constants.AUTHENTICATION_SCHEME_EXTERNAL_OAUTH,
+                SignInScheme = Constants.AUTHENTICATION_SCHEME_COOKIES,
                 AutomaticAuthenticate = true,
                 Authority = "https://accounts.google.com",
                 ResponseType = "code id_token",

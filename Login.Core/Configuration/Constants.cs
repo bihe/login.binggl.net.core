@@ -10,8 +10,10 @@ namespace Login.Core.Configuration
 
         public const string ROLE_USER = "User";
 
-        public const string AUTH_SCHEME = "LoginCookieMiddleware";
+        public const string APP_VERSION = "App.Version";
 
-        public const string AUTH_OAUTH_SCHEME = "oidc";
+        public const string AUTHENTICATION_SCHEME_COOKIES = "LoginCookieMiddleware";
+
+        public const string AUTHENTICATION_SCHEME_EXTERNAL_OAUTH = "oidc";
     }
 }
