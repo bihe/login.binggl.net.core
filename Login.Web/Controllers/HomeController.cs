@@ -6,20 +6,24 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Login.Core.Configuration;
-using Login.Core.Exceptions;
 using Login.Core.Services;
 using Login.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace Login.Web.Controllers
 {
-    [Authorize(ActiveAuthenticationSchemes = Constants.AUTHENTICATION_SCHEME_COOKIES)]
+    /// <summary>
+    /// main controller of application
+    /// </summary>
+    [Authorize]
     public class HomeController : Controller
     {
         private static readonly string AssemblyVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
@@ -31,6 +35,15 @@ namespace Login.Web.Controllers
         private IMessageIntegrity messageIntegrity;
         private ILoginService loginService;
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="localizer"></param>
+        /// <param name="logger"></param>
+        /// <param name="flash"></param>
+        /// <param name="messageIntegrity"></param>
+        /// <param name="loginService"></param>
+        /// <param name="appConfig"></param>
         public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger, 
             IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService, 
             IOptions<ApplicationConfiguration> appConfig)
@@ -43,7 +56,32 @@ namespace Login.Web.Controllers
             this.appConfig = appConfig;
         }
 
+        /// <summary>
+        /// show logoff page
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("logoff")]
+        public IActionResult LogOff()
+        {
+            this.CommonViewData();
+
+            var loginInfo = new LoginInfo
+            {
+                State = LoginState.Success,
+                Success = localizer["The user was successfully loged out!"].Value
+            };
+
+            return View("Error", loginInfo);
+        }
+
+        /// <summary>
+        /// perform logout
+        /// </summary>
+        /// <returns></returns>
         [Route("logout")]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             this.CommonViewData();
@@ -57,7 +95,11 @@ namespace Login.Web.Controllers
                 });
             }
 
-            await HttpContext.Authentication.SignOutAsync(Constants.AUTHENTICATION_SCHEME_COOKIES);
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
 
             var loginInfo = new LoginInfo
             {
@@ -68,13 +110,19 @@ namespace Login.Web.Controllers
             return View("Error", loginInfo);
         }
 
+        /// <summary>
+        /// retrieve the current user
+        /// </summary>
+        /// <param name="nocache"></param>
+        /// <returns></returns>
         [Route("api/user/{nocache?}")]
+        [HttpGet]
         public async Task<IActionResult> CurrentUser(bool nocache)
         {
             var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail, nocache);
             if(user == null)
             {
-                throw new ApplicationException("No user is available!");
+                throw new Core.Exceptions.ApplicationException("No user is available!");
             }
 
             var sitePermissions = from u in user.Sites select new SiteInfo() { Name = u.Name, Url = u.Url, Permissions = u.Permissions };
@@ -89,13 +137,20 @@ namespace Login.Web.Controllers
             });
         }
 
+        /// <summary>
+        /// start the authtentication flow
+        /// </summary>
+        /// <param name="site"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        [HttpGet]
         [Route("auth/flow")]
         [AllowAnonymous]
         public async Task<IActionResult> AuthenticationFlow([FromQuery(Name = "~site")] string site, [FromQuery(Name = "~url")] string url)
         {
             if(string.IsNullOrEmpty(site) || string.IsNullOrEmpty(url))
             {
-                throw new ApplicationException("Invalid paramters supplied for auth-flow!");
+                throw new Core.Exceptions.ApplicationException("Invalid paramters supplied for auth-flow!");
             }
 
             // if no authenticated user email is available - challenge the user by an auth request
@@ -106,14 +161,15 @@ namespace Login.Web.Controllers
                     // redirect where I came from
                     RedirectUri = $"/auth/flow?~site={site}&~url={url}"
                 };
-                return new ChallengeResult(Constants.AUTHENTICATION_SCHEME_EXTERNAL_OAUTH, props);
+                //return await HttpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, props);
+                return new ChallengeResult(OpenIdConnectDefaults.AuthenticationScheme, props);
             }
             else
             {
                 var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
                 if (user == null)
                 {
-                    throw new ApplicationException("No user is available!");
+                    throw new Core.Exceptions.ApplicationException("No user is available!");
                 }
 
                 if (!this.loginService.IsValidRedirectUrl(user, site, url))
@@ -129,6 +185,12 @@ namespace Login.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// display error
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        [HttpGet]
         [Route("error/{key?}")]
         [AllowAnonymous]
         public IActionResult Error(string key)
@@ -156,18 +218,31 @@ namespace Login.Web.Controllers
             return View(loginInfo);
         }
 
+        /// <summary>
+        /// Perform a login
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         [Route("login")]
         [AllowAnonymous]
-        public IActionResult Login()
+        public async Task Login()
         {
             var props = new AuthenticationProperties
             {
                 RedirectUri = "/"
             };
 
-            return new ChallengeResult(Constants.AUTHENTICATION_SCHEME_EXTERNAL_OAUTH, props);
+            if (HttpContext.User == null || !HttpContext.User.Identity.IsAuthenticated)
+            {
+                await HttpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, props);
+            }
         }
 
+        /// <summary>
+        /// Display the start screen
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             this.CommonViewData();

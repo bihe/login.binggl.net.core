@@ -85,7 +85,7 @@ namespace Login.Core.Services
                     logger.LogError($"Could not save the login operation {EX}!");
                     tx.Rollback();
 
-                    throw new ApplicationException("Could not save the login.", EX);
+                    throw new Exceptions.ApplicationException("Could not save the login.", EX);
                 }
             }
         }

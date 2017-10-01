@@ -24,13 +24,11 @@ namespace Login.Core.Middleware
         readonly string jwtCookieDomain;
         readonly string jwtCookiePath;
         readonly int jwtCookieExpiryDays;
-        readonly ILoginService loginService;
 
-        public JwtProcessor(RequestDelegate next, ILogger<JwtProcessor> logger, ILoginService loginService, IOptions<ApplicationConfiguration> appConfig)
+        public JwtProcessor(RequestDelegate next, ILogger<JwtProcessor> logger, IOptions<ApplicationConfiguration> appConfig)
         {
             this.next = next;
             this.logger = logger;
-            this.loginService = loginService;
             this.tokenSecret = appConfig?.Value?.Jwt?.TokenSecret ?? "";
             this.jwtCookieName = appConfig?.Value?.Jwt?.CookieName ?? "";
             this.jwtCookieDomain = appConfig?.Value?.Jwt?.CookieDomain ?? "";
@@ -38,11 +36,10 @@ namespace Login.Core.Middleware
             this.jwtCookieExpiryDays = appConfig?.Value?.Jwt?.CookieExpiryDays ?? 0;
         }
 
-        public JwtProcessor(RequestDelegate next, ILogger<JwtProcessor> logger, ILoginService loginService, string tokenSecret, string jwtCookieName, string jwtCookieDomain, string jwtCookiePath, int jwtCookieExpiryDays)
+        public JwtProcessor(RequestDelegate next, ILogger<JwtProcessor> logger, string tokenSecret, string jwtCookieName, string jwtCookieDomain, string jwtCookiePath, int jwtCookieExpiryDays)
         {
             this.next = next;
             this.logger = logger;
-            this.loginService = loginService;
             this.tokenSecret = tokenSecret;
             this.jwtCookieName = jwtCookieName;
             this.jwtCookieDomain = jwtCookieDomain;
@@ -50,7 +47,7 @@ namespace Login.Core.Middleware
             this.jwtCookieExpiryDays = jwtCookieExpiryDays;
         }
 
-        public async Task Invoke(HttpContext context /* other scoped dependencies */)
+        public async Task Invoke(HttpContext context, ILoginService loginService)
         {
             logger.LogInformation($"Processing middleware: 'JwtProcessor' for Request [Method: {context.Request.Method}, Path: {context.Request.Path}]");
 
@@ -70,7 +67,7 @@ namespace Login.Core.Middleware
 
                         var tokenSecretKey = Encoding.UTF8.GetBytes(this.tokenSecret);
                         var userEmail = claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()?.Value;
-                        var user = await this.loginService.GetUserByEmail(userEmail);
+                        var user = await loginService.GetUserByEmail(userEmail);
 
                         if(user != null)
                         {
@@ -101,12 +98,16 @@ namespace Login.Core.Middleware
                             }
 
                             // save the login process
-                            await this.loginService.SaveLoginSession(user.Name, user.DisplayName, type);
+                            await loginService.SaveLoginSession(user.Name, user.DisplayName, type);
 
                             context.Response.Cookies.Append(this.jwtCookieName, token, new CookieOptions
                             {
                                 HttpOnly = true,
+#if DEBUG
+                                Secure = false,
+#else
                                 Secure = true,
+#endif
                                 Domain = this.jwtCookieDomain,
                                 Expires = expires,
                                 Path = this.jwtCookiePath

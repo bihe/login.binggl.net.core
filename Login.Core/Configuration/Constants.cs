@@ -12,8 +12,5 @@ namespace Login.Core.Configuration
 
         public const string APP_VERSION = "App.Version";
 
-        public const string AUTHENTICATION_SCHEME_COOKIES = "LoginCookieMiddleware";
-
-        public const string AUTHENTICATION_SCHEME_EXTERNAL_OAUTH = "oidc";
     }
 }

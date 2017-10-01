@@ -23,7 +23,7 @@ namespace Login.Core.Services
 
         public Task PerformPostTokenValidationAuthorization(TokenValidatedContext context)
         {   
-            var claimsIdentity = context.Ticket.Principal.Identity as ClaimsIdentity;
+            var claimsIdentity = context.Principal.Identity as ClaimsIdentity;
             var externalLookupEmail = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
 
             logger.LogDebug("Final phase of token-validation; check supplied identiy with database entries. Supplied: {0}", externalLookupEmail);
@@ -55,7 +55,7 @@ namespace Login.Core.Services
             var identity = new ClaimsIdentity(claims, "Google" /*a.Ticket.AuthenticationScheme*/);
             var principal = new ClaimsPrincipal(identity);
 
-            context.Ticket = new AuthenticationTicket(principal, context.Properties, "remote_system" /*a.Ticket.AuthenticationScheme*/);
+            context.HttpContext.User = principal;
 
             return Task.FromResult(0);
         }
