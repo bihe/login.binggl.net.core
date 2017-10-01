@@ -115,7 +115,7 @@ namespace Login.Web.Controllers
         /// </summary>
         /// <param name="nocache"></param>
         /// <returns></returns>
-        [Route("api/user/{nocache?}")]
+        [Route("api/v1/user/{nocache?}")]
         [HttpGet]
         public async Task<IActionResult> CurrentUser(bool nocache)
         {
