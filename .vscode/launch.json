@@ -21,7 +21,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\Login.Web\\bin\\Debug\\netcoreapp1.1\\Login.Web.dll",
+            "program": "${workspaceRoot}\\Login.Web\\bin\\Debug\\netcoreapp2.0\\Login.Web.dll",
             "args": [],
             "cwd": "${workspaceRoot}\\Login.Web",
             "console": "internalConsole",

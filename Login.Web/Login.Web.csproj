@@ -7,9 +7,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <PropertyGroup>
     <UserSecretsId>941c25ef-e985-4331-86ca-066139a141b9</UserSecretsId>
   </PropertyGroup>
