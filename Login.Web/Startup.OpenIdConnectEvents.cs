@@ -39,7 +39,6 @@ namespace Login.Web
 
             logger.LogDebug("Final phase of token-validation; check supplied identiy with database entries. Supplied: {0}", externalLookupEmail);
 
-
             var scopeFactory = _serviceColletion
                     .BuildServiceProvider()
                     .GetRequiredService<IServiceScopeFactory>();
@@ -76,9 +75,9 @@ namespace Login.Web
             logger.LogDebug("User {0} has {1} sites assigned.", externalLookupEmail, lookupUser?.Sites?.Count ?? 0);
 
             var identity = new ClaimsIdentity(claims, OpenIdConnectDefaults.AuthenticationScheme);
-
             var principal = new ClaimsPrincipal(identity);
             context.Principal = principal;
+
             return Task.FromResult(0);
         }
     }

@@ -95,7 +95,7 @@ namespace Login.Web
                 options.Events = new OpenIdConnectEvents
                 {
                     OnRemoteFailure = OnAuthenticationFailed,
-                    OnTokenValidated = PerformPostTokenValidationAuthorization, //GetAuthorization(services).PerformPostTokenValidationAuthorization,
+                    OnTokenValidated = PerformPostTokenValidationAuthorization,
                     OnRedirectToIdentityProviderForSignOut = OnRedirectToIdentityProviderForSignOut
                 };
             });
@@ -170,6 +170,5 @@ namespace Login.Web
                 ContextInitializer.InitialData(context);
             }
         }
-        
     }
 }
