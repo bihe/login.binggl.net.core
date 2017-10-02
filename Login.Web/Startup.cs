@@ -23,8 +23,9 @@ namespace Login.Web
 {
     public partial class Startup
     {
-        const string SwaggerApiDescription = "login.binggl.net API";
-        readonly Microsoft.Extensions.Logging.ILogger logger;
+        const string ApplicationName = "login.binggl.net";
+        const string ApplicationDescription = "login.binggl.net API";
+        readonly ILogger logger;
         private IServiceCollection _serviceColletion;
 
         public Startup(IConfiguration configuration, IHostingEnvironment env, ILogger<Startup> logger)
@@ -32,6 +33,8 @@ namespace Login.Web
             CurrentEnvironment = env;
             Configuration = configuration;
             this.logger = logger;
+
+            logger.LogInformation($"Started application '{ApplicationName}' in mode '{env.EnvironmentName}'.");
         }
 
         public IConfiguration Configuration { get; }
@@ -107,7 +110,7 @@ namespace Login.Web
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = SwaggerApiDescription, Version = "v1" });
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = ApplicationDescription, Version = "v1" });
                 var filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "Login.Web.xml");
                 c.IncludeXmlComments(filePath);
             });
@@ -162,7 +165,7 @@ namespace Login.Web
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", SwaggerApiDescription);
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", ApplicationDescription);
             });
 
             if (env.IsDevelopment())

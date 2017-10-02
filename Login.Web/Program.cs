@@ -36,10 +36,6 @@ namespace Login.Web
 
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
-                //.MinimumLevel.Debug()
-                //.MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                //.Enrich.FromLogContext()
-                //.WriteTo.Console()
                 .CreateLogger();
 
             return WebHost.CreateDefaultBuilder(args)

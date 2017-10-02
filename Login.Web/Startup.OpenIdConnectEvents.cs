@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,8 +22,8 @@ namespace Login.Web
         Task OnAuthenticationFailed(RemoteFailureContext context)
         {
             context.HandleResponse();
-            context.Response.Redirect("/error?message=" + context.Failure.Message);
-            return Task.FromResult(0);
+            var message = context?.Failure?.Message ?? "Remote authentication error!";
+            return Task.FromException(new SecurityTokenValidationException(message));
         }
 
         Task OnRedirectToIdentityProviderForSignOut(RedirectContext context)
@@ -39,20 +40,15 @@ namespace Login.Web
 
             logger.LogDebug("Final phase of token-validation; check supplied identiy with database entries. Supplied: {0}", externalLookupEmail);
 
-            var scopeFactory = _serviceColletion
-                    .BuildServiceProvider()
-                    .GetRequiredService<IServiceScopeFactory>();
-
             User lookupUser = null;
-            using (var scope = scopeFactory.CreateScope())
-            {
-                var provider = scope.ServiceProvider;
-                var repository = provider.GetRequiredService<ILoginService>();
 
-                var awaiter = repository.GetUserByEmail(externalLookupEmail);
+            this.UseService((provider) =>
+            {
+                var loginService = provider.GetRequiredService<ILoginService>();
+                var awaiter = loginService.GetUserByEmail(externalLookupEmail);
                 awaiter.Wait();
                 lookupUser = awaiter.Result;
-            }
+            });
 
             logger.LogDebug("User from lookup: {0}", lookupUser);
 
@@ -80,5 +76,19 @@ namespace Login.Web
 
             return Task.FromResult(0);
         }
+
+        void UseService(Action<IServiceProvider> action)
+        {
+            using (var serviceProvider = _serviceColletion.BuildServiceProvider())
+            {
+                var scopeFactory = serviceProvider.GetRequiredService<IServiceScopeFactory>();
+                using (var scope = scopeFactory.CreateScope())
+                {
+                    var provider = scope.ServiceProvider;
+                    action(provider);
+                }
+            }
+        }
+
     }
 }
