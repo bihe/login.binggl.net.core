@@ -72,21 +72,24 @@ namespace Login.Core.Middleware
                         if(user != null)
                         {
                             var query = from u in user.Sites select (u.Name + "|" + u.Url + "|" + u.PermissionList);
+                            var expires = new DateTimeOffset(DateTime.Now.AddDays(this.jwtCookieExpiryDays));
                             var payload = new JwtPayload
                             {
+                                jti = Guid.NewGuid().ToString("N"),
+                                iat = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+                                iss = "login.binggl.net",
+                                exp = expires.ToUnixTimeSeconds(),
+                                sub = "login.User",
+                                Type = "login.User", // backwards compatibility
                                 Claims = query.ToList(),
                                 DisplayName = user.DisplayName,
                                 Email = user.Email,
                                 UserId = claims.Where(x => x.Type == ClaimTypes.Sid).FirstOrDefault()?.Value,
                                 UserName = user.Name,
-                                Type = "login.User",
                                 GivenName = claims.Where(x => x.Type == ClaimTypes.GivenName).FirstOrDefault()?.Value,
-                                Surname = claims.Where(x => x.Type == ClaimTypes.Surname).FirstOrDefault()?.Value,
-                                Issued = DateTime.UtcNow
+                                Surname = claims.Where(x => x.Type == ClaimTypes.Surname).FirstOrDefault()?.Value
                             };
-
                             var token = JWT.Encode(payload, tokenSecretKey, JwsAlgorithm.HS256);
-                            var expires = new DateTimeOffset(DateTime.Now.AddDays(this.jwtCookieExpiryDays));
 
                             var type = Enums.LoginType.DIRECT;
                             if(context.Request.Path.HasValue)

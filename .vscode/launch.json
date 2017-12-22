@@ -4,17 +4,11 @@
 
         {
             "launchBrowser": {
-                "enabled": true,
+                "enabled": false,
                 "args": "${auto-detect-url}",
                 "windows": {
                     "command": "cmd.exe",
                     "args": "/C start ${auto-detect-url}"
-                },
-                "osx": {
-                    "command": "open"
-                },
-                "linux": {
-                    "command": "xdg-open"
                 }
             },
             "name": "Start asp.net core (console)",
@@ -29,7 +23,7 @@
             "internalConsoleOptions": "openOnSessionStart",
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://*:2540"
+                "ASPNETCORE_URLS": "http://localhost:2540"
             }
         },
         {
