@@ -16,7 +16,6 @@ namespace Login.Core.Data
                 return;
             }
 
-
             var user1 = context.Users.Add(new Core.Models.User { Name = "User1", DisplayName = "User 1", Email = "user@user1.com" });
 
             context.SaveChanges();

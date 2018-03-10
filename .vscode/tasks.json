@@ -1,10 +1,12 @@
 {
     "version": "2.0.0",
     "command": " ",
-    "isShellCommand": true,
     "args": [],
-    "tasks": [{
-            "taskName": "build",
+    "tasks": [
+        {
+            "group": "build",
+            "type": "shell",
+            "label": "build",
             "command": "dotnet",
             "args": [
                 "build"
@@ -13,12 +15,17 @@
             "options": {
                 "cwd": "${workspaceRoot}"
             },
-            "isBuildCommand": true,
-            "showOutput": "always",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$msCompile"
         },
         {
-            "taskName": "xunit.tests",
+            "group": "test",
+            "label": "xunit.tests",
             "command": "dotnet",
             "args": [
                 "test",
@@ -27,8 +34,12 @@
             "options": {
                 "cwd": "${workspaceRoot}/Login.XTests"
             },
-            "isTestCommand": true,
-            "showOutput": "always",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$msCompile"
         }
         // {

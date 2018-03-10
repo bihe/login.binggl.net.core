@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Model = Login.Core.Models;
 
 namespace Login.Core.Data
 {
@@ -14,9 +13,9 @@ namespace Login.Core.Data
         public LoginContext(DbContextOptions<LoginContext> options) : base(options)
         {}
 
-        public DbSet<Model.Login> Logins { get; set; }
-        public DbSet<Model.UserSite> UserSites { get; set; }
-        public DbSet<Model.User> Users { get; set; }
+        public DbSet<Models.Login> Logins { get; set; }
+        public DbSet<Models.UserSite> UserSites { get; set; }
+        public DbSet<Models.User> Users { get; set; }
 
 
         public override int SaveChanges()
@@ -31,7 +30,7 @@ namespace Login.Core.Data
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
-        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             AddTimestamps();
             return await base.SaveChangesAsync(cancellationToken);
@@ -48,7 +47,7 @@ namespace Login.Core.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Model.Login>(e =>
+            modelBuilder.Entity<Models.Login>(e =>
             {
                 e.ToTable("login");
                 e.HasKey(b => b.Id);
@@ -58,7 +57,7 @@ namespace Login.Core.Data
                 e.Property(b => b.UserName).IsRequired().HasMaxLength(128);
             });
 
-            modelBuilder.Entity<Model.UserSite>(e =>
+            modelBuilder.Entity<Models.UserSite>(e =>
             {
                 e.ToTable("usersite");
                 e.HasKey(b => b.Name);
@@ -71,7 +70,7 @@ namespace Login.Core.Data
                 e.HasOne(b => b.User).WithMany(b => b.Sites).HasForeignKey(b => b.UserEmail);
             });
 
-            modelBuilder.Entity<Model.User>(e =>
+            modelBuilder.Entity<Models.User>(e =>
             {
                 e.ToTable("user");
                 e.HasKey(b => b.Email);
@@ -84,16 +83,16 @@ namespace Login.Core.Data
 
         private void AddTimestamps()
         {
-            var entities = ChangeTracker.Entries().Where(x => x.Entity is Model.BaseModel && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is Models.BaseModel && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
             foreach (var entity in entities)
             {
                 if (entity.State == EntityState.Added)
                 {
-                    ((Model.BaseModel)entity.Entity).Created = DateTime.UtcNow;
+                    ((Models.BaseModel)entity.Entity).Created = DateTime.UtcNow;
                 }
 
-                ((Model.BaseModel)entity.Entity).Modified = DateTime.UtcNow;
+                ((Models.BaseModel)entity.Entity).Modified = DateTime.UtcNow;
             }
         }
 

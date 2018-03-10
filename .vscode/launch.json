@@ -15,7 +15,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\Login.Web\\bin\\Debug\\netcoreapp2.0\\Login.Web.dll",
+            "program": "${workspaceRoot}\\Login.Web\\bin\\Debug\\netcoreapp2.1\\Login.Web.dll",
             "args": [],
             "cwd": "${workspaceRoot}\\Login.Web",
             "console": "internalConsole",
@@ -23,7 +23,7 @@
             "internalConsoleOptions": "openOnSessionStart",
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://localhost:2540"
+                "ASPNETCORE_URLS": "http://devel.binggl.net:3000;https://devel.binggl.net:3001"
             }
         },
         {

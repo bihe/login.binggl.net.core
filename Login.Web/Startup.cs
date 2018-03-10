@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,7 +55,7 @@ namespace Login.Web
             services.AddMemoryCache();
 
             services.AddDbContextPool<LoginContext>(options => {
-                options.UseMySql(Configuration.GetConnectionString("LoginConnection"));
+                options.UseSqlite(Configuration.GetConnectionString("LoginConnection"));
             });
 
             services.AddScoped<ILoginService, LoginService>();
@@ -104,7 +105,7 @@ namespace Login.Web
             });
 
             // Add framework services.
-            services.AddMvc()
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();
 
@@ -128,6 +129,7 @@ namespace Login.Web
             }
             else
             {
+                app.UseHsts();
                 app.UseErrorHandling();
             }
 
@@ -150,6 +152,8 @@ namespace Login.Web
             app.UseAuthentication();
 
             app.UseJwtProcessor();
+
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
