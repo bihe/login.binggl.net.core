@@ -46,7 +46,7 @@
         {
             <p class="hidden-md hidden-xs">Permissions are available for the following sites!</p>
         }
-        
+
         <div class="row cardsection">
 
             @foreach (var site in Model.SitePermissions)
@@ -56,6 +56,10 @@
 
                         <div class="caption text-center">
                             <p>
+                                @if (Model.Editable && site.Name != Model.ThisSite)
+                                {
+                                  <strong>Edit</strong>
+                                }
                                 <h3><i class="fa fa-external-link"></i> @site.Name</h3>
                                 <br />
                                 <a href="@site.Url" title="@site.Name">@site.Url</a>.

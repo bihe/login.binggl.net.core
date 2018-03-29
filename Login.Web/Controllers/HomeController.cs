@@ -44,8 +44,8 @@ namespace Login.Web.Controllers
         /// <param name="messageIntegrity"></param>
         /// <param name="loginService"></param>
         /// <param name="appConfig"></param>
-        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger, 
-            IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService, 
+        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger,
+            IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService,
             IOptions<ApplicationConfiguration> appConfig)
         {
             this.localizer = localizer;
@@ -203,7 +203,7 @@ namespace Login.Web.Controllers
             else
             {
                 if (this.messageIntegrity.Verify(key))
-                { 
+                {
                     message = this.flash.Get(key);
                     //message = System.Net.WebUtility.HtmlEncode(message);
                 }
@@ -247,11 +247,13 @@ namespace Login.Web.Controllers
         {
             this.CommonViewData();
 
-            logger.LogDebug("The current user is {0}", this.User.Identity.Name);
+            logger.LogDebug($"The current user is `{this.User.Identity.Name}`; User has Admin-Role? `{this.User.IsInRole(Constants.ROLE_ADMIN)}`");
             var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
             var sitePermissions = from u in user.Sites select new SiteInfo() { Name = u.Name, Url = u.Url, Permissions = u.Permissions };
             var userInfo = new UserInfo
             {
+                ThisSite = this.appConfig.Value.Name,
+                Editable = this.User.IsInRole(Constants.ROLE_ADMIN) ? true: false,
                 DisplayName = user.DisplayName,
                 Email = user.Email,
                 Id = Hash(user.Email),
@@ -265,7 +267,7 @@ namespace Login.Web.Controllers
 
         void CommonViewData()
         {
-            ViewData[Constants.APP_NAME] = "login.binggl.net";
+            ViewData[Constants.APP_NAME] = this.appConfig.Value.Name;
             ViewData[Constants.APP_VERSION] = AssemblyVersion;
         }
 

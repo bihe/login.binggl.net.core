@@ -26,7 +26,9 @@
     <Content Remove="wwwroot/js\site.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.2" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.0.0" />

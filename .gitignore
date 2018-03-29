@@ -289,3 +289,6 @@ __pycache__/
 
 
 Dist/
+
+Login.Web/_db/
+Login.Web/_logs/

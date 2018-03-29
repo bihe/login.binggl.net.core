@@ -14,7 +14,7 @@
             "name": "Start asp.net core (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "BUILD: build",
             "program": "${workspaceRoot}\\Login.Web\\bin\\Debug\\netcoreapp2.1\\Login.Web.dll",
             "args": [],
             "cwd": "${workspaceRoot}\\Login.Web",

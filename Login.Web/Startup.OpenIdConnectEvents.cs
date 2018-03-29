@@ -58,6 +58,19 @@ namespace Login.Web
                 return Task.FromException(new SecurityTokenValidationException("Supplied user is not allowed to access the system!"));
             }
 
+
+            // a valid user has the role USER
+            // if there is a permission for the `this` site - assign the ADMIN Role
+            var appSiteUrl = this.Configuration["Application:Url"];
+            var appSiteName = this.Configuration["Application:Name"];
+            var userPermissionRole = Constants.ROLE_USER;
+            var siteQuery = from s in lookupUser.Sites where s.Url == appSiteUrl &&
+                s.Name == appSiteName && s.Permissions.IndexOf(Constants.ROLE_ADMIN) > -1 select s;
+            if (siteQuery.Any())
+            {
+                userPermissionRole = Constants.ROLE_ADMIN;
+            }
+
             IList<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, lookupUser.DisplayName)
@@ -65,7 +78,7 @@ namespace Login.Web
                 , new Claim(ClaimTypes.GivenName,  claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.GivenName)?.Value ?? "")
                 , new Claim(ClaimTypes.Surname, claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Surname)?.Value ?? "")
                 , new Claim(ClaimTypes.Email, claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value ?? "")
-                , new Claim(ClaimTypes.Role, Constants.ROLE_USER)
+                , new Claim(ClaimTypes.Role, userPermissionRole)
             };
 
             logger.LogDebug("User {0} has {1} sites assigned.", externalLookupEmail, lookupUser?.Sites?.Count ?? 0);

@@ -125,7 +125,6 @@ namespace Login.Web
             if (env.IsDevelopment())
             {
                 app.UseErrorHandling();
-                app.UseBrowserLink();
             }
             else
             {
