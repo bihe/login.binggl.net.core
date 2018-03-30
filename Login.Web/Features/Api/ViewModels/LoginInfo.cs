@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Web.ViewModels
+namespace Login.Web.Features.Api.ViewModels
 {
     public enum LoginState
     {

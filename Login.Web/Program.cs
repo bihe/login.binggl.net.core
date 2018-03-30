@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Login.Web.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +45,6 @@ namespace Login.Web
                 .UseStartup<Startup>()
                 .UseSerilog();
         }
-            
+
     }
 }

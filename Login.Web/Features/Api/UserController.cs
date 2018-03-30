@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Login.Core.Configuration;
 using Login.Core.Services;
-using Login.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
@@ -17,18 +16,19 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Login.Web.Features.Api.ViewModels;
 
-namespace Login.Web.Controllers
+namespace Login.Web.Features.Api
 {
     /// <summary>
     /// main controller of application
     /// </summary>
     [Authorize]
-    public class HomeController : Controller
+    public class UserController : Controller
     {
         private static readonly string AssemblyVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
-        private readonly IHtmlLocalizer<HomeController> localizer;
+        private readonly IHtmlLocalizer<UserController> localizer;
         private readonly ILogger logger;
         private readonly IOptions<ApplicationConfiguration> appConfig;
         private IFlashService flash;
@@ -44,7 +44,7 @@ namespace Login.Web.Controllers
         /// <param name="messageIntegrity"></param>
         /// <param name="loginService"></param>
         /// <param name="appConfig"></param>
-        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger,
+        public UserController(IHtmlLocalizer<UserController> localizer, ILogger<UserController> logger,
             IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService,
             IOptions<ApplicationConfiguration> appConfig)
         {

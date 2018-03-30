@@ -20,7 +20,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace Login.Web
+namespace Login.Web.Infrastructure
 {
     public partial class Startup
     {
@@ -131,6 +131,8 @@ namespace Login.Web
                 app.UseHsts();
                 app.UseErrorHandling();
             }
+
+            app.UseSecurityHeaders();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {

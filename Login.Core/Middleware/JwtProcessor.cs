@@ -91,12 +91,12 @@ namespace Login.Core.Middleware
                             };
                             var token = JWT.Encode(payload, tokenSecretKey, JwsAlgorithm.HS256);
 
-                            var type = Enums.LoginType.DIRECT;
+                            var type = LoginType.DIRECT;
                             if(context.Request.Path.HasValue)
                             {
                                 if(context.Request.Path.Value.IndexOf("auth/flow") > -1)
                                 {
-                                    type = Enums.LoginType.FORWARD;
+                                    type = LoginType.FORWARD;
                                 }
                             }
 

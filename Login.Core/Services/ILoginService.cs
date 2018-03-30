@@ -12,7 +12,7 @@ namespace Login.Core.Services
 
         Task<UserSite> GetSiteByName(string siteName, bool noCache = false);
 
-        Task SaveLoginSession(string username, string displayname, Enums.LoginType loginType);
+        Task SaveLoginSession(string username, string displayname, LoginType loginType);
 
         bool IsValidRedirectUrl(User user, String siteName, String redirectUrl);
     }

@@ -4,7 +4,7 @@ using Login.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace Login.Tests.Repository
+namespace Login.XTests.Repository
 {
     public class RepositoryTests
     {
@@ -37,7 +37,7 @@ namespace Login.Tests.Repository
             get
             {
                 var context = new LoginContext(options);
-                Login.Tests.Data.ContextInitializer.Initialize(context, true);
+                Data.ContextInitializer.Initialize(context, true);
                 ILoginService repo = new LoginService(context, null /*Logger*/, null /*Cache*/);
                 return repo;
             }

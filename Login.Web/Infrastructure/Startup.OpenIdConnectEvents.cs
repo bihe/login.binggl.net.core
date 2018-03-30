@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Login.Web
+namespace Login.Web.Infrastructure
 {
     /// <summary>
     /// use a partial class to somehow organize the startup file

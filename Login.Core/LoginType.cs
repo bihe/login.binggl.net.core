@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Core.Enums
+namespace Login.Core
 {
     public enum LoginType
     {

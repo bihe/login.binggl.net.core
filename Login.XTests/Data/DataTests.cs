@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Login.Tests.Data
+namespace Login.XTests.Data
 {
     public class DataTests
     {
@@ -19,7 +19,7 @@ namespace Login.Tests.Data
 
             using (var context = new LoginContext(options))
             {
-                context.Logins.Add(new Core.Models.Login { Type = Core.Enums.LoginType.DIRECT, UserName = "abc", UserDisplayName = "Hugo" });
+                context.Logins.Add(new Core.Models.Login { Type = Core.LoginType.DIRECT, UserName = "abc", UserDisplayName = "Hugo" });
                 context.SaveChanges();
 
                 var allEntires = await context.Logins.ToListAsync();

@@ -30,7 +30,7 @@ namespace Login.Core.Services
         {
             var query = from u in context.Users.Include(s => s.Sites) /* eager load the dependant entities */
                         where email.ToLower() == u.Email.ToLower() select u;
-            
+
             if (_cache == null || noCache)
             {
                 return await query.FirstOrDefaultAsync();
@@ -61,7 +61,7 @@ namespace Login.Core.Services
             return site;
         }
 
-        public async Task SaveLoginSession(string username, string displayname, Enums.LoginType loginType)
+        public async Task SaveLoginSession(string username, string displayname, LoginType loginType)
         {
             using(var tx = context.Database.BeginTransaction())
             {

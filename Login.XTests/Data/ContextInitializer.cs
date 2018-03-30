@@ -1,6 +1,6 @@
 ﻿using Login.Core.Data;
 
-namespace Login.Tests.Data
+namespace Login.XTests.Data
 {
     public static class ContextInitializer
     {
@@ -14,8 +14,8 @@ namespace Login.Tests.Data
                 context.Database.EnsureCreated();
             }
 
-            context.Logins.Add(new Core.Models.Login { Type = Core.Enums.LoginType.DIRECT, UserName = "User1", UserDisplayName = "User 1" });
-            context.Logins.Add(new Core.Models.Login { Type = Core.Enums.LoginType.FORWARD, UserName = "User2", UserDisplayName = "User 2" });
+            context.Logins.Add(new Core.Models.Login { Type = Core.LoginType.DIRECT, UserName = "User1", UserDisplayName = "User 1" });
+            context.Logins.Add(new Core.Models.Login { Type = Core.LoginType.FORWARD, UserName = "User2", UserDisplayName = "User 2" });
 
             context.SaveChanges();
 
