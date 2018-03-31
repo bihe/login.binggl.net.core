@@ -1,0 +1,12 @@
+footer {
+  font-family: monospace;
+}
+
+.small {
+  font-size: 85%;
+}
+
+.text-muted {
+  color:#777;
+}
+

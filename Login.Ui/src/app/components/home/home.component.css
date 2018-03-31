@@ -22,9 +22,16 @@
 
 .card-container {
   display: grid;
-  padding: 1rem;
+  padding: 0rem;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 1rem;
+}
+
+
+@media (min-width: 670px) {
+  .card-container {
+    padding: 1rem;
+  }
 }
 
 img {

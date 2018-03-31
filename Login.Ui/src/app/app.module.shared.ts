@@ -9,6 +9,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { ApiVersionService } from './components/footer/api.version.service';
 
 @NgModule({
   // imports: [ MatInputModule, MatSnackBarModule, MatDialogModule, MatNativeDateModule, MatProgressSpinnerModule,
@@ -22,11 +26,14 @@ export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        FooterComponent,
+        HeaderComponent,
+        NavigationComponent
     ],
     imports: [
         AppMaterialModule
     ],
-    providers: [],
+    providers: [ ApiVersionService ],
     entryComponents: []
 };
