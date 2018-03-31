@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -104,6 +105,10 @@ namespace Login.Web.Infrastructure
                 };
             });
 
+            services.Configure<RazorViewEngineOptions>(options => {
+                options.ViewLocationExpanders.Add(new FeaturesViewLocationExpander());
+            });
+
             // Add framework services.
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddViewLocalization()
@@ -132,7 +137,9 @@ namespace Login.Web.Infrastructure
                 app.UseErrorHandling();
             }
 
-            app.UseSecurityHeaders();
+            app.UseSecurityHeaders(options => {
+                options.ApplicationBaseUrl = appConfig.Value.BaseUrl;
+            });
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {

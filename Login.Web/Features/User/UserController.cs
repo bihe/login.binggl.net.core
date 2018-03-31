@@ -16,9 +16,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Login.Web.Features.Api.ViewModels;
+using Login.Web.Features.Shared.ViewModels;
 
-namespace Login.Web.Features.Api
+namespace Login.Web.Features.User
 {
     /// <summary>
     /// main controller of application
@@ -243,6 +243,7 @@ namespace Login.Web.Features.Api
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("/")]
         public async Task<IActionResult> Index()
         {
             this.CommonViewData();
@@ -263,7 +264,6 @@ namespace Login.Web.Features.Api
 
             return View(userInfo);
         }
-
 
         void CommonViewData()
         {

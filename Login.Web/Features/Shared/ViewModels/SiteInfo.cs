@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Login.Web.Features.Api.ViewModels
+namespace Login.Web.Features.Shared.ViewModels
 {
     public class SiteInfo
     {

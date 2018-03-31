@@ -61,7 +61,7 @@ namespace Login.Web.Infrastructure
 
             // a valid user has the role USER
             // if there is a permission for the `this` site - assign the ADMIN Role
-            var appSiteUrl = this.Configuration["Application:Url"];
+            var appSiteUrl = this.Configuration["Application:BaseUrl"];
             var appSiteName = this.Configuration["Application:Name"];
             var userPermissionRole = Constants.ROLE_USER;
             var siteQuery = from s in lookupUser.Sites where s.Url == appSiteUrl &&

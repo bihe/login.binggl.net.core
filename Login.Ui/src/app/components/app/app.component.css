@@ -1,0 +1,38 @@
+header {
+  grid-column: span 3;
+  padding: 30px;
+  text-align: center;
+  font-size: 1.4em;
+  background-color: #369;
+  color: white;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+nav {
+  background-color: #f90;
+  padding: 20px;
+}
+
+aside {
+  padding: 20px;
+  background-color: #936;
+}
+
+footer {
+  grid-column: span 3;
+  padding: 30px;
+  text-align: center;
+  font-size: 1.4em;
+  background-color: #690;
+  color: white;
+}
+
+h1 {
+  margin-bottom: 1em;
+  font-size: 1.3em;
+  font-weight: bold;
+}
