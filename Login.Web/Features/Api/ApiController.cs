@@ -17,7 +17,7 @@ namespace Login.Web.Features.Api
     [Authorize]
     [Route("api/v1/users")]
     [ApiController]
-    public class ApiController : ControllerBase
+    public class ApiController : AbstractApiController
     {
         private readonly ILogger _logger;
         private readonly ILoginService _loginService;
@@ -51,21 +51,6 @@ namespace Login.Web.Features.Api
             return userInfo;
         }
 
-        string AuthenticatedUserEmail
-        {
-            get
-            {
-                return this.User.Identity.IsAuthenticated ? this.User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()?.Value : "";
-            }
-        }
 
-        string Hash(string value)
-        {
-            using (var algorithm = SHA256.Create())
-            {
-                var hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
-                return BitConverter.ToString(hash).Replace("-", "").ToLower();
-            }
-        }
     }
 }
