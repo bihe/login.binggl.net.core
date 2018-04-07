@@ -111,33 +111,6 @@ namespace Login.Web.Features.User
         }
 
         /// <summary>
-        /// retrieve the current user
-        /// </summary>
-        /// <param name="nocache"></param>
-        /// <returns></returns>
-        [Route("api/v1/user/{nocache?}")]
-        [HttpGet]
-        public async Task<IActionResult> CurrentUser(bool nocache)
-        {
-            var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail, nocache);
-            if(user == null)
-            {
-                throw new Core.Exceptions.ApplicationException("No user is available!");
-            }
-
-            var sitePermissions = from u in user.Sites select new SiteInfo() { Name = u.Name, Url = u.Url, Permissions = u.Permissions };
-
-            return Json(new UserInfo
-            {
-                DisplayName = user.DisplayName,
-                Email = user.Email,
-                Id = Hash(user.Email),
-                UserName = user.Name,
-                SitePermissions = new System.Collections.Generic.List<SiteInfo>(sitePermissions)
-            });
-        }
-
-        /// <summary>
         /// start the authtentication flow
         /// </summary>
         /// <param name="site"></param>

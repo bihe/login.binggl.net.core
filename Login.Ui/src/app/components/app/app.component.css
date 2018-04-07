@@ -8,14 +8,10 @@ app-header {
 }
 
 main {
-  grid-column: span 2;
+  grid-column: span 3;
   flex: 1;
   padding: 0px;
-}
-
-app-navigation {
-  background-color: #f90;
-  padding: 20px;
+  background-color: #e5e7e9;
 }
 
 aside {

@@ -1,40 +1,17 @@
 <section class="card-container">
-  <article class="card">
+
+  <article class="card" *ngFor="let item of userInfo?.sitePermissions">
       <header class="card__title">
-          <h3>Hello World</h3>
+          <h3><i class="fa fa-external-link" aria-hidden="true"></i> {{ item.name }}</h3>
       </header>
-      <figure class="card__thumbnail">
-          <img src="http://placekitten.com/700/287">
-      </figure>
       <main class="card__description">
-          Lorem Ipsum dolor amet sun Lorem Ipsum dolor amet sun Lorem Ipsum dolor amet sun
+          <a href="{{ item.url }}">{{ item.url }}</a>
       </main>
-      <a href="#" class="button">Call to Action</a>
+      <footer>
+        <span *ngFor="let perm of item?.permissions" class="permission">
+            <i class="fa fa-hashtag" aria-hidden="true"></i>{{ perm }}
+        </span>
+      </footer>
   </article>
 
-  <article class="card">
-    <header class="card__title">
-        <h3>Hello World</h3>
-    </header>
-    <figure class="card__thumbnail">
-        <img src="http://placekitten.com/700/287">
-    </figure>
-    <main class="card__description">
-        Lorem Ipsum dolor amet sun Lorem Ipsum dolor amet sun Lorem Ipsum dolor amet sun
-    </main>
-    <a href="#" class="button">Call to Action</a>
-  </article>
-
-  <article class="card">
-    <header class="card__title">
-        <h3>Hello World</h3>
-    </header>
-    <figure class="card__thumbnail">
-        <img src="http://placekitten.com/700/287">
-    </figure>
-    <main class="card__description">
-        Lorem Ipsum dolor amet sun Lorem Ipsum dolor amet sun Lorem Ipsum dolor amet sun
-    </main>
-    <a href="#" class="button">Call to Action</a>
-  </article>
 </section>

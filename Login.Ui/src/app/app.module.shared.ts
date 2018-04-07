@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-// import { MatInputModule, MatSnackBarModule, MatDialogModule, MatNativeDateModule, MatProgressSpinnerModule,
-//     MatTooltipModule } from '@angular/material';
+import { MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule } from '@angular/material';
 // import { MatChipsModule } from '@angular/material/chips';
 // import { MatCardModule } from '@angular/material/card';
 // import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -13,12 +12,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ApiVersionService } from './components/footer/api.version.service';
+import { ApiUserService } from './components/home/api.users.service';
+import { ApplicationState } from './shared/service/application.state';
 
 @NgModule({
-  // imports: [ MatInputModule, MatSnackBarModule, MatDialogModule, MatNativeDateModule, MatProgressSpinnerModule,
-  //   MatTooltipModule, MatChipsModule, MatCardModule, MatSlideToggleModule, MatButtonModule ],
-  // exports: [ MatInputModule, MatSnackBarModule, MatDialogModule, MatNativeDateModule, MatProgressSpinnerModule,
-  //   MatTooltipModule, MatChipsModule, MatCardModule, MatSlideToggleModule, MatButtonModule ],
+  imports: [ MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule ],
+  exports: [ MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule ],
 })
 export class AppMaterialModule { }
 
@@ -34,6 +33,6 @@ export const sharedConfig: NgModule = {
     imports: [
         AppMaterialModule
     ],
-    providers: [ ApiVersionService ],
+    providers: [ ApplicationState, ApiVersionService, ApiUserService ],
     entryComponents: []
 };
