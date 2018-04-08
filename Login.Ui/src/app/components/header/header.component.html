@@ -25,10 +25,7 @@
 
         <!-- ACTIONS -->
         <div class="navactions">
-            <!-- USER -->
-            <span *ngIf="userInfo" title="{{ userInfo?.userName }}" class="hidden-xs">
-             <i class="fa fa-sign-out" aria-hidden="true"></i> <a class="link" href="/logout" matTooltip="{{ userInfo?.userName }} ({{ userInfo?.email }})">Logout: {{ userInfo?.displayName }}</a>
-            </span>
+
 
         </div>
     </div>
@@ -39,7 +36,7 @@
   [style.transform]="menuTransform()">
   <div class="menu__header">
     <div class="user_info">
-      <i class="fa fa-user-o fa-2x" aria-hidden="true"></i> {{ userInfo?.displayName }}
+      <i class="fa fa-sign-out" aria-hidden="true"></i> <a class="link" href="/logout" matTooltip="{{ userInfo?.userName }} ({{ userInfo?.email }})">Logout: {{ userInfo?.displayName }}</a>
     </div>
   </div>
   <ul class="menu__list">

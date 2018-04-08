@@ -10,7 +10,6 @@ import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { ApiVersionService } from './components/footer/api.version.service';
 import { ApiUserService } from './components/home/api.users.service';
 import { ApplicationState } from './shared/service/application.state';
@@ -27,8 +26,7 @@ export const sharedConfig: NgModule = {
         AppComponent,
         HomeComponent,
         FooterComponent,
-        HeaderComponent,
-        NavigationComponent
+        HeaderComponent
     ],
     imports: [
         AppMaterialModule
