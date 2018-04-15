@@ -21,6 +21,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 
+
 namespace Login.Web.Infrastructure
 {
     public partial class Startup
@@ -81,13 +82,14 @@ namespace Login.Web.Infrastructure
             services.AddAuthentication(options => {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+
             })
             .AddCookie(options => {
                 options.Cookie.SecurePolicy = CurrentEnvironment.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always;
                 options.Cookie.Name = Configuration["Application:Authentication:CookieName"];
+                options.Cookie.MaxAge = TimeSpan.FromDays(double.Parse(Configuration["Application:Authentication:CookieExpiryDays"]));
                 options.SlidingExpiration = true;
                 options.ReturnUrlParameter = "";
-                options.ExpireTimeSpan = TimeSpan.FromDays(double.Parse(Configuration["Application:Authentication:CookieExpiryDays"]));
             })
             .AddOpenIdConnect(options => {
                 options.Authority = "https://accounts.google.com";
@@ -155,6 +157,8 @@ namespace Login.Web.Infrastructure
                 // UI strings that we have localized.
                 SupportedUICultures = cultures
             });
+
+            // retstore authentication if only login_token is available
 
             // enable authentication; state kept in cookies; using OpenIdConnect - with AAD
             app.UseAuthentication();

@@ -58,7 +58,6 @@ namespace Login.Web.Infrastructure
                 return Task.FromException(new SecurityTokenValidationException("Supplied user is not allowed to access the system!"));
             }
 
-
             // a valid user has the role USER
             // if there is a permission for the `this` site - assign the ADMIN Role
             var appSiteUrl = this.Configuration["Application:BaseUrl"];
@@ -105,3 +104,4 @@ namespace Login.Web.Infrastructure
 
     }
 }
+
