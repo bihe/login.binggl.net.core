@@ -1,3 +1,7 @@
+.heading {
+  display: none;
+}
+
 .card {
   background: #fff;
   border-radius: 2px;
@@ -28,6 +32,18 @@
 }
 
 @media (min-width: 400px) {
+
+  .heading {
+    display: block;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .heading p {
+    font-size: 1.6em;
+  }
+
   .card {
     margin: 1rem;
   }
