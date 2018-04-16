@@ -293,3 +293,4 @@ Dist/
 Login.Web/_db/
 Login.Web/_logs/
 Login.XTests/.lcov.info
+Login.Web/wwwroot/ui/
