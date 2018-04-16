@@ -4,17 +4,14 @@ echo "Build the login.binggl.net.core Application"
 dotnet clean -c Debug
 dotnet clean -c Release
 
-$ts = Get-Date -format "yyyyMMdd"
-echo $ts
-
-dotnet build --version-suffix $ts -c Release 
+dotnet build -c Release
 
 ## cleanup the whole deployment directory
 Get-ChildItem -Path  '..\deployment' -Recurse |
 	Select -ExpandProperty FullName |
 	Where {$_ -notlike '.git*'} |
 	sort length -Descending |
-	Remove-Item -force 
+	Remove-Item -force
 
 dotnet publish .\Login.Web\Login.Web.csproj -c Release -v m -o "$pwd\..\deployment"
 
