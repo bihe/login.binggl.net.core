@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using Login.Core.Configuration;
 using Login.Core.Data;
-using Login.Core.Middleware;
 using Login.Core.Services;
+using Login.Web.Infrastructure.Middleware;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -158,17 +158,12 @@ namespace Login.Web.Infrastructure
                 SupportedUICultures = cultures
             });
 
-            // retstore authentication if only login_token is available
 
             // enable authentication; state kept in cookies; using OpenIdConnect - with AAD
             app.UseAuthentication();
-
             app.UseJwtProcessor();
-
             app.UseHttpsRedirection();
-
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

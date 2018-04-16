@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Login.Core.Middleware
+namespace Login.Web.Infrastructure.Middleware
 {
     public class SecurityHeaders
     {

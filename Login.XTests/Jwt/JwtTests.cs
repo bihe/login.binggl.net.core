@@ -2,7 +2,6 @@
 using System.Text;
 using System.Threading.Tasks;
 using Jose;
-using Login.Core.Middleware;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -74,7 +73,7 @@ namespace Login.XTests.Jwt
         //    var mockHttpContext = new Mock<DefaultHttpContext>();
 
         //    var mockLogger = new Mock<ILogger<JwtProcessor>>();
-            
+
         //    var mockLoginService = new Mock<ILoginService>();
         //    mockLoginService
         //        .Setup(x => x.GetUserByEmail(email, true))

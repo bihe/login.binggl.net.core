@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Jose;
+using Login.Core;
 using Login.Core.Configuration;
 using Login.Core.Models;
 using Login.Core.Services;
@@ -13,7 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Login.Core.Middleware
+namespace Login.Web.Infrastructure.Middleware
 {
     public class JwtProcessor
     {

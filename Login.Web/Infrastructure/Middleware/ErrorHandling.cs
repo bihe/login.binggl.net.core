@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Login.Core.Middleware
+namespace Login.Web.Infrastructure.Middleware
 {
     public class ErrorHandling
     {
@@ -13,7 +13,7 @@ namespace Login.Core.Middleware
         private readonly ILogger logger;
         private IFlashService flash;
         private IMessageIntegrity messageIntegrity;
-        
+
 
         public ErrorHandling(RequestDelegate next, IFlashService flash, IMessageIntegrity messageIntegrity, ILogger<ErrorHandling> logger)
         {
