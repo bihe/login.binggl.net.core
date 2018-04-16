@@ -81,8 +81,6 @@ namespace Login.Web.Infrastructure
             // enable authentication; state kept in cookies; using OpenIdConnect - with Google
             services.AddAuthentication(options => {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-
             })
             .AddCookie(options => {
                 options.Cookie.SecurePolicy = CurrentEnvironment.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always;
@@ -90,6 +88,9 @@ namespace Login.Web.Infrastructure
                 options.Cookie.MaxAge = TimeSpan.FromDays(double.Parse(Configuration["Application:Authentication:CookieExpiryDays"]));
                 options.SlidingExpiration = true;
                 options.ReturnUrlParameter = "";
+                options.AccessDeniedPath = "/error";
+                options.LoginPath = "/error";
+                options.LogoutPath = "/logout";
             })
             .AddOpenIdConnect(options => {
                 options.Authority = "https://accounts.google.com";

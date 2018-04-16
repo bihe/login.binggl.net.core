@@ -211,13 +211,17 @@ namespace Login.Web.Features.User
             }
         }
 
-        /// <summary>
-        /// Display the start screen
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         [Route("/")]
-        public async Task<IActionResult> Index()
+        [Route("/ui/{path?}/{subpath?}")]
+        public IActionResult Index()
+        {
+            return Redirect("/ui/index.html");
+        }
+
+        [HttpGet]
+        [Route("/index")]
+        public async Task<IActionResult> IndexViewOld()
         {
             this.CommonViewData();
 
