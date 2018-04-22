@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Login.Core.Configuration;
 using Login.Core.Data;
 using Login.Core.Services;
 using Login.Web.Infrastructure.Middleware;
+using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -20,7 +21,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
-
+using System.Net.Mime;
+using Microsoft.AspNetCore.Blazor.Server;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.Linq;
 
 namespace Login.Web.Infrastructure
 {
@@ -112,10 +116,19 @@ namespace Login.Web.Infrastructure
                 options.ViewLocationExpanders.Add(new FeaturesViewLocationExpander());
             });
 
-            // Add framework services.
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();
+
+            services.AddResponseCompression(options => {
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                {
+                    MediaTypeNames.Application.Octet,
+                    WasmMediaTypeNames.Application.Wasm,
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -179,7 +192,9 @@ namespace Login.Web.Infrastructure
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", ApplicationDescription);
             });
-
+#if BLAZOR
+            app.UseBlazor<Blazor.Program>();
+#endif
             if (env.IsDevelopment())
             {
                 ContextInitializer.InitialData(context);

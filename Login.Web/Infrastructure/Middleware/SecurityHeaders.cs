@@ -19,7 +19,11 @@ namespace Login.Web.Infrastructure.Middleware
             { "Access-Control-Allow-Origin", "APP_BASE_URL"},
             { "Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload"},
             { "Referrer-Policy", "same-origin"},
+#if DEBUG
+            { "Content-Security-Policy", "default-src APP_BASE_URL; script-src APP_BASE_URL 'unsafe-inline' 'unsafe-eval'; style-src APP_BASE_URL 'unsafe-inline'; img-src APP_BASE_URL 'self' data:"},
+#else
             { "Content-Security-Policy", "default-src APP_BASE_URL; script-src APP_BASE_URL 'unsafe-inline'; style-src APP_BASE_URL 'unsafe-inline'; img-src APP_BASE_URL 'self' data:"},
+#endif
         };
 
         public SecurityHeaders(RequestDelegate next, SecurityHeaderOptions options)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -211,6 +211,7 @@ namespace Login.Web.Features.User
             }
         }
 
+#if !BLAZOR
         [HttpGet]
         [Route("/")]
         [Route("/ui/{path?}/{subpath?}")]
@@ -218,7 +219,7 @@ namespace Login.Web.Features.User
         {
             return Redirect("/ui/index.html");
         }
-
+#endif
         [HttpGet]
         [Route("/index")]
         public async Task<IActionResult> IndexViewOld()
@@ -239,7 +240,7 @@ namespace Login.Web.Features.User
                 SitePermissions = new System.Collections.Generic.List<SiteInfo>(sitePermissions)
             };
 
-            return View(userInfo);
+            return View("Index", userInfo);
         }
 
         void CommonViewData()
