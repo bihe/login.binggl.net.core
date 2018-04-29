@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { VERSION } from '@angular/core';
 import { ApiVersionService } from './api.version.service';
 import { VersionInfo } from './version.info.model';
+import { MessageUtils } from '../../shared/utils/message.utils';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +17,8 @@ export class FooterComponent implements OnInit {
   year: number = new Date().getFullYear();
 
   constructor(
-    private versionService: ApiVersionService
+    private versionService: ApiVersionService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -24,11 +27,10 @@ export class FooterComponent implements OnInit {
         data => {
           this.appData = data;
           this.appData.uiRuntime = 'angular=' + VERSION.full;
-          // this.state.setAppData(this.A);
         },
         error => {
           console.log('Error: ' + error);
-          // new MessageUtils().showError(this.snackBar, error);
+          new MessageUtils().showError(this.snackBar, error);
         }
       );
   }

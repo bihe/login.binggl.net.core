@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { ApplicationState } from '../../shared/service/application.state';
 import { MessageUtils } from '../../shared/utils/message.utils';
-import { UserInfo } from '../home/user.info.model';
+import { UserInfo } from '../../shared/models/user.info.model';
 
 @Component({
   selector: 'app-header',

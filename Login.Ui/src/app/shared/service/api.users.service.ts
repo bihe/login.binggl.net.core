@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/throw';
 
 import { ApiBaseService } from '../../shared/service/api.base.service';
-import { UserInfo } from './user.info.model';
+import { UserInfo } from '../models/user.info.model';
 
 @Injectable()
 export class ApiUserService extends ApiBaseService {

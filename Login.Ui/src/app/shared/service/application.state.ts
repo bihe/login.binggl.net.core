@@ -1,5 +1,5 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { UserInfo } from '../../components/home/user.info.model';
+import { UserInfo } from '../models/user.info.model';
 
 export class ApplicationState {
     private progress: ReplaySubject<boolean> = new ReplaySubject();

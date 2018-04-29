@@ -43,7 +43,6 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Login.Blazor\Login.Blazor.csproj" />
     <ProjectReference Include="..\Login.Core\Login.Core.csproj" />
   </ItemGroup>
   <ItemGroup>

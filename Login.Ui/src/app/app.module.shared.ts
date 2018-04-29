@@ -4,19 +4,20 @@ import { MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule } from '@
 // import { MatChipsModule } from '@angular/material/chips';
 // import { MatCardModule } from '@angular/material/card';
 // import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-// import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ApiVersionService } from './components/footer/api.version.service';
-import { ApiUserService } from './components/home/api.users.service';
 import { ApplicationState } from './shared/service/application.state';
+import { ApiUserService } from './shared/service/api.users.service';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
-  imports: [ MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule ],
-  exports: [ MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule ],
+  imports: [ MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule, MatButtonModule ],
+  exports: [ MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule, MatButtonModule ],
 })
 export class AppMaterialModule { }
 
@@ -25,6 +26,7 @@ export const sharedConfig: NgModule = {
     declarations: [
         AppComponent,
         HomeComponent,
+        EditComponent,
         FooterComponent,
         HeaderComponent
     ],

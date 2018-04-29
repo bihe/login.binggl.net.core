@@ -4,9 +4,9 @@
 
 <section class="card-container">
 
-  <article class="card" *ngFor="let item of userInfo?.sitePermissions">
+  <article class="card" *ngFor="let item of userInfo?.sitePermissions" id="{{ item.name }}">
       <header class="card__title">
-          <h3><i class="fa fa-external-link" aria-hidden="true"></i> {{ item.name }}</h3>
+          <h3><i class="fa fa-external-link" aria-hidden="true"></i> <a href="{{ item.url }}">{{ item.name }}</a></h3>
       </header>
       <main class="card__description">
           <a href="{{ item.url }}">{{ item.url }}</a>
@@ -19,3 +19,6 @@
   </article>
 
 </section>
+
+
+<button *ngIf="userInfo?.editable" mat-fab color="accent" class="edit" (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="heading">
+    <p>Edit the permissions.</p>
+  </div>
+  <div class="content">
+      <textarea class="editjson" [(ngModel)]="jsonPayload" >{{ jsonPayload }}</textarea>
+  </div>
+</div>
+
+
+<button *ngIf="isEditable" mat-fab color="accent" class="save" (click)="save()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>

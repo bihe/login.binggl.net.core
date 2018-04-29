@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiUserService } from './api.users.service';
-import { UserInfo } from './user.info.model';
 import { ApplicationState } from '../../shared/service/application.state';
+import { MessageUtils } from '../../shared/utils/message.utils';
+import { MatSnackBar } from '@angular/material';
+import { UserInfo } from '../../shared/models/user.info.model';
+import { ApiUserService } from '../../shared/service/api.users.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,10 @@ export class HomeComponent implements OnInit {
 
   userInfo: UserInfo;
 
-  constructor(private userService: ApiUserService, private state: ApplicationState
+  constructor(private userService: ApiUserService,
+    private state: ApplicationState,
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -25,9 +30,14 @@ export class HomeComponent implements OnInit {
         },
         error => {
           console.log('Error: ' + error);
-          // new MessageUtils().showError(this.snackBar, error);
+          new MessageUtils().showError(this.snackBar, error);
         }
       );
   }
 
+
+  edit() {
+    this.router.navigateByUrl('/edit');
+    return;
+  }
 }

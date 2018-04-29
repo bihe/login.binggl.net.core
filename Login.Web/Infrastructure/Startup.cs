@@ -116,6 +116,7 @@ namespace Login.Web.Infrastructure
                 options.ViewLocationExpanders.Add(new FeaturesViewLocationExpander());
             });
 
+#if BLAZOR
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
@@ -129,6 +130,12 @@ namespace Login.Web.Infrastructure
                     WasmMediaTypeNames.Application.Wasm,
                 });
             });
+#else
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
+#endif
 
             services.AddSwaggerGen(c =>
             {
