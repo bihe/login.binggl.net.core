@@ -10,7 +10,7 @@ dotnet build -c Release
 ## cleanup the whole deployment directory
 rm -rf $PWD/../deployment/*
 
-dotnet publish ./Login.Web/Login.Web.csproj -c Release -v m -o $PWD/../deployment
+dotnet publish ./Login.Api/Login.Api.csproj -c Release -v m -o $PWD/../deployment
 
 # cleanup/prepare for deployment
 rm -f $PWD/../deployment/appsettings.Development.json

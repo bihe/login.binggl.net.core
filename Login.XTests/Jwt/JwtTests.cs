@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Jose;
@@ -9,8 +9,6 @@ using Moq;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Login.Core.Services;
-using Login.Core.Models;
 using System;
 
 namespace Login.XTests.Jwt

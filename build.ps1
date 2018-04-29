@@ -13,7 +13,7 @@ Get-ChildItem -Path  '..\deployment' -Recurse |
 	sort length -Descending |
 	Remove-Item -force
 
-dotnet publish .\Login.Web\Login.Web.csproj -c Release -v m -o "$pwd\..\deployment"
+dotnet publish .\Login.Api\Login.Api.csproj -c Release -v m -o "$pwd\..\deployment"
 
 # cleanup/prepare for deployment
 Remove-Item -Force ..\deployment\appsettings.Development.json

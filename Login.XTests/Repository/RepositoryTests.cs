@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Login.Core.Data;
-using Login.Core.Services;
+using System.Threading.Tasks;
+using Login.Web.Features.Shared.Persistence;
+using Login.Web.Features.User;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

@@ -1,0 +1,86 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "login.binggl.net :: Overview";
+}
+@model Login.Web.Features.Shared.ViewModels.UserInfo
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><i class="fa fa-lock"></i> login.binggl.net</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout"><i class="fa fa-share"></i> Logout <strong>@User.Identity.Name</strong></a></li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron hidden-md hidden-xs heading">
+    <div class="container heading">
+        <p>Central login for all binggl.net applications. <strong>"One login to rule them all"</strong>.</p>
+    </div>
+</div>
+
+
+
+<div class="container">
+
+    <div>
+
+
+        <h2><i class="fa fa-user"></i> Permission Dashboard <small class="hidden-md hidden-xs"> @User.Identity.Name,  @Model.Email</small></h2>
+
+        @if (Model.SitePermissions != null && Model.SitePermissions.Count > 0)
+        {
+            <p class="hidden-md hidden-xs">Permissions are available for the following sites!</p>
+        }
+
+        <div class="row cardsection">
+
+            @foreach (var site in Model.SitePermissions)
+            {
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+
+                        <div class="caption text-center">
+                            <p>
+                                @if (Model.Editable && site.Name != Model.ThisSite)
+                                {
+                                  <strong>Edit</strong>
+                                }
+                                <h3><i class="fa fa-external-link"></i> @site.Name</h3>
+                                <br />
+                                <a href="@site.Url" title="@site.Name">@site.Url</a>.
+                            </p>
+                            <p>
+                                @foreach (var perm in site.Permissions)
+                                {
+                                    <span>
+                                        <span class="label label-primary">@perm</span>
+                                    </span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+
