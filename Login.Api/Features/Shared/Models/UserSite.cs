@@ -13,7 +13,7 @@ namespace Login.Api.Features.Shared.Models
             this.Permissions = new List<string>();
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public List<string> Permissions

@@ -101,7 +101,7 @@ namespace Login.Api.Infrastructure.Middleware
                             }
 
                             // save the login process
-                            await loginService.SaveLoginSession(user.Name, user.DisplayName, type);
+                            loginService.SaveLoginSession(user.Name, user.DisplayName, type);
 
                             context.Response.Cookies.Append(this.jwtCookieName, token, new CookieOptions
                             {

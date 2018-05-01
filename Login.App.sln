@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Login.Api", "Login.Api\Logi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Login.XTests", "Login.XTests\Login.XTests.csproj", "{27A013F9-2309-48B3-BEFC-ACD5A8C8DE8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login.Blazor", "Login.Blazor\Login.Blazor.csproj", "{3F5E447E-905C-4CEB-A10F-E6AAF1ED1773}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -10,10 +10,12 @@ namespace Login.Api.Features.User
     {
         Task<Models.User> GetUserByEmail(string email, bool noCache=false);
 
-        Task<Models.UserSite> GetSiteByName(string siteName, bool noCache = false);
+        Task<Models.UserSite> GetSiteById(string id, bool noCache = false);
 
-        Task SaveLoginSession(string username, string displayname, Models.LoginType loginType);
+        void SaveLoginSession(string username, string displayname, Models.LoginType loginType);
 
         bool IsValidRedirectUrl(Models.User user, String siteName, String redirectUrl);
+
+        bool SaveSiteList(List<Models.UserSite> sitesToSave, List<Models.UserSite> sitesToDelete);
     }
 }

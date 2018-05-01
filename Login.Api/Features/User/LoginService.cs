@@ -6,26 +6,28 @@ using Login.Api.Features.Shared.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace Login.Api.Features.User
 {
     public class LoginService : ILoginService
     {
-        private LoginContext context;
+        private LoginContext _context;
         private IMemoryCache _cache;
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
         const int CacheTime = 60;
+        private static readonly object _lock = new object();
 
         public LoginService(LoginContext context, IMemoryCache cache, ILogger<LoginService> logger)
         {
-            this.context = context;
-            _cache = cache;
-            this.logger = logger;
+            this._context = context;
+            this._cache = cache;
+            this._logger = logger;
         }
 
         public async Task<Models.User> GetUserByEmail(string email, bool noCache)
         {
-            var query = from u in context.Users.Include(s => s.Sites) /* eager load the dependant entities */
+            var query = from u in _context.Users.Include(s => s.Sites) /* eager load the dependant entities */
                         where email.ToLower() == u.Email.ToLower() select u;
 
             if (_cache == null || noCache)
@@ -41,16 +43,16 @@ namespace Login.Api.Features.User
             return user;
         }
 
-        public async Task<Models.UserSite> GetSiteByName(string siteName, bool noCache)
+        public async Task<Models.UserSite> GetSiteById(string id, bool noCache)
         {
-            var query = from s in context.UserSites where siteName.ToLower() == s.Name.ToLower() select s;
+            var query = from s in _context.UserSites where s.Id == id select s;
 
             if (_cache == null || noCache)
             {
                 return await query.FirstOrDefaultAsync();
             }
 
-            var site = await _cache.GetOrCreateAsync<Models.UserSite>(siteName, entry =>
+            var site = await _cache.GetOrCreateAsync<Models.UserSite>(id, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromSeconds(CacheTime);
                 return query.FirstOrDefaultAsync();
@@ -58,40 +60,95 @@ namespace Login.Api.Features.User
             return site;
         }
 
-        public async Task SaveLoginSession(string username, string displayname, Models.LoginType loginType)
+        public void SaveLoginSession(string username, string displayname, Models.LoginType loginType)
         {
-            using(var tx = context.Database.BeginTransaction())
+            lock(_lock)
             {
-                try
+                // sqlite is not that happy with concurrent processes
+                using(var tx = _context.Database.BeginTransaction())
                 {
-                    context.Logins.Add(new Models.Login
+                    try
                     {
-                        Created = DateTime.Now,
-                        Modified = DateTime.Now,
-                        UserDisplayName = displayname,
-                        UserName = username,
-                        Type = loginType
-                    });
+                        _context.Logins.Add(new Models.Login
+                        {
+                            Created = DateTime.Now,
+                            Modified = DateTime.Now,
+                            UserDisplayName = displayname,
+                            UserName = username,
+                            Type = loginType
+                        });
 
-                    await context.SaveChangesAsync();
+                        var awaiter = _context.SaveChangesAsync();
+                        awaiter.Wait();
+                        tx.Commit();
+                    }
+                    catch(Exception EX)
+                    {
+                        _logger.LogError($"Could not save the login operation {EX}!");
+                        tx.Rollback();
 
-                    tx.Commit();
-                }
-                catch(Exception EX)
-                {
-                    logger.LogError($"Could not save the login operation {EX}!");
-                    tx.Rollback();
-
-                    throw new Shared.Exceptions.ApplicationException("Could not save the login.", EX);
+                        throw new Shared.Exceptions.ApplicationException("Could not save the login.", EX);
+                    }
                 }
             }
+
+        }
+
+        public bool SaveSiteList(List<Models.UserSite> sitesToSave, List<Models.UserSite> sitesToDelete)
+        {
+            bool result = false;
+            lock(_lock)
+            {
+                // sqlite is not that happy with concurrent processes
+                using (var tx = _context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var site in sitesToSave)
+                        {
+                            if (string.IsNullOrEmpty(site.Id))
+                            {
+                                _context.UserSites.Add(site);
+                            }
+                        }
+
+                        if (sitesToDelete != null)
+                        {
+                            foreach (var site in sitesToDelete)
+                            {
+                                _context.UserSites.RemoveRange(sitesToDelete);
+                            }
+                        }
+                        var awaiter = _context.SaveChangesAsync();
+                        awaiter.Wait();
+                        tx.Commit();
+
+                        // clear the cache for sites
+                        if (this._cache != null)
+                        {
+                            sitesToSave.ForEach(s => this._cache.Remove(s.Id));
+                            this._cache.Remove(sitesToSave[0].User.Email);
+                        }
+                        result = true;
+                    }
+                    catch (Exception EX)
+                    {
+                        _logger.LogError($"Could not save the site-list {EX}!");
+                        tx.Rollback();
+
+                        throw new Shared.Exceptions.ApplicationException("Could not save the site-list.", EX);
+                    }
+                }
+            }
+
+            return result;
         }
 
         public bool IsValidRedirectUrl(Models.User user, String siteName, String redirectUrl)
         {
             bool result = false;
 
-            logger.LogDebug($"Find the site {siteName} and check the redirect-url {redirectUrl}");
+            _logger.LogDebug($"Find the site {siteName} and check the redirect-url {redirectUrl}");
 
             // find the permissions of the given user
             var query = from s in user.Sites where s.Name.ToLower() == siteName.ToLower() select s;
@@ -109,7 +166,7 @@ namespace Login.Api.Features.User
                         && site.Port == redirect.Port)
                 {
 
-                    logger.LogDebug($"Matching of url succeeded for protocol/host/port site: {site}, redirect: {redirect}");
+                    _logger.LogDebug($"Matching of url succeeded for protocol/host/port site: {site}, redirect: {redirect}");
 
                     // specifically check the path
                     string sitePath = site.AbsolutePath;
@@ -121,13 +178,13 @@ namespace Login.Api.Features.User
 
                     if (redirectPath.StartsWith(sitePath))
                     {
-                        logger.LogDebug($"The redirect url starts with the same path as the site-url. site: {sitePath}, redirect: {redirectPath}");
+                        _logger.LogDebug($"The redirect url starts with the same path as the site-url. site: {sitePath}, redirect: {redirectPath}");
                         return true;
                     }
                 }
             }
 
-            logger.LogDebug("Could not find a site with the given name or the redirect url did not match!");
+            _logger.LogDebug("Could not find a site with the given name or the redirect url did not match!");
 
             return result;
         }

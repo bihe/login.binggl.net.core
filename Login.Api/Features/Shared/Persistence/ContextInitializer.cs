@@ -20,7 +20,7 @@ namespace Login.Api.Features.Shared.Persistence
 
             context.SaveChanges();
 
-            var site1 = context.UserSites.Add(new Models.UserSite { Id = 1, Name = "Site1", Url = "http://www.site1.com", PermissionList = "Permission1;Permission2", User = user1.Entity });
+            var site1 = context.UserSites.Add(new Models.UserSite { Id = Guid.NewGuid().ToString("N"), Name = "Site1", Url = "http://www.site1.com", PermissionList = "Permission1;Permission2", User = user1.Entity });
 
             context.SaveChanges();
         }

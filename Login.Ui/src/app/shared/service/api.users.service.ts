@@ -28,4 +28,13 @@ export class ApiUserService extends ApiBaseService {
       })
       .catch(this.handleError);
   }
+
+  saveUserInfo(payload: UserInfo): Observable<UserInfo> {
+    return this.http.post(this.APP_INFO_URL, JSON.stringify(payload), this.getRequestOptions())
+      .timeoutWith(this.RequestTimeOutDefault, Observable.throw(new Error('Timeout exceeded!')))
+      .map(res => {
+        return this.extractData<UserInfo>(res);
+      })
+      .catch(this.handleError);
+  }
 }

@@ -25,8 +25,8 @@ namespace Login.XTests.Data
 
             context.SaveChanges();
 
-            var site1 = context.UserSites.Add(new Model.UserSite { Name = "Site1", Url = "http://www.site1.com", PermissionList = "Permission1;Permission2", User = user1.Entity });
-            var site2 = context.UserSites.Add(new Model.UserSite { Name = "Site2", Url = "http://www.site2.com", PermissionList = "Permission2", User = user2.Entity });
+            var site1 = context.UserSites.Add(new Model.UserSite { Id = "site1", Name = "Site1", Url = "http://www.site1.com", PermissionList = "Permission1;Permission2", User = user1.Entity });
+            var site2 = context.UserSites.Add(new Model.UserSite { Id = "site2", Name = "Site2", Url = "http://www.site2.com", PermissionList = "Permission2", User = user2.Entity });
 
             context.SaveChanges();
 

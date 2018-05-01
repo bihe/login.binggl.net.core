@@ -7,7 +7,7 @@ body,
 
 .heading {
   flex: 0 0 auto;
-  background-color: #7D3C98;
+  background-color: #CD6155;
   padding: 10px;
 
 }
@@ -38,6 +38,14 @@ body,
   position: absolute;
   right: 30px;
   bottom: 70px;
+  color: black;
+  font-size: 1.3em;
+}
+
+.home {
+  position: absolute;
+  right: 30px;
+  bottom: 170px;
   color: black;
   font-size: 1.3em;
 }

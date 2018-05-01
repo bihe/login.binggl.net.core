@@ -4,6 +4,7 @@ import { ApplicationState } from '../../shared/service/application.state';
 import { MessageUtils } from '../../shared/utils/message.utils';
 import { MatSnackBar } from '@angular/material';
 import { ApiUserService } from '../../shared/service/api.users.service';
+import { UserInfo } from '../../shared/models/user.info.model';
 
 @Component({
   selector: 'app-edit',
@@ -32,7 +33,7 @@ export class EditComponent implements OnInit {
             return;
           }
 
-          this.jsonPayload = JSON.stringify(data, null, 4);
+          this.jsonPayload = this.jsonify(data);
         },
         error => {
           console.log('Error: ' + error);
@@ -43,6 +44,27 @@ export class EditComponent implements OnInit {
 
   public save() {
     console.log('Save the JSON payload!');
+
+    this.state.setProgress(true);
+
+    let user: UserInfo;
+    user = JSON.parse(this.jsonPayload);
+    this.userService.saveUserInfo(user)
+      .subscribe(
+        data => {
+          console.log('saved!');
+          this.jsonPayload = this.jsonify(data);
+          this.state.setProgress(false);
+        },
+        error => {
+          this.state.setProgress(false);
+          console.log('Error: ' + error);
+          new MessageUtils().showError(this.snackBar, error);
+        }
+      );
   }
 
+  private jsonify(data: UserInfo) {
+    return JSON.stringify(data, null, 4);
+  }
 }

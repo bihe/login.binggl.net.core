@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ namespace Login.Api.Features.Shared.ViewModels
             this.Permissions = new List<string>();
         }
 
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public List<string> Permissions { get; set; }

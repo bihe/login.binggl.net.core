@@ -61,6 +61,8 @@ namespace Login.Api.Features.Shared.Persistence
             {
                 e.ToTable("usersite");
                 e.HasKey(b => b.Id);
+
+                e.Property(b => b.Id).IsRequired();
                 e.Property(b => b.Name).IsRequired().HasMaxLength(128);
                 e.Property(b => b.Url).IsRequired().HasMaxLength(255);
                 e.Property(b => b.PermissionList).IsRequired();
@@ -79,6 +81,16 @@ namespace Login.Api.Features.Shared.Persistence
                 e.Property(b => b.DisplayName).IsRequired().HasMaxLength(255);
                 e.Property(b => b.Timestamp).ValueGeneratedOnAddOrUpdate().IsConcurrencyToken();
             });
+        }
+
+        private void SetUserSiteId()
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is Models.UserSite && x.State == EntityState.Added);
+
+            foreach (var entity in entities)
+            {
+                ((Models.UserSite)entity.Entity).Id = Guid.NewGuid().ToString("N");
+            }
         }
 
         private void AddTimestamps()
