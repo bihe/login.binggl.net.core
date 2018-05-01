@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Models = Login.Web.Features.Shared.Models;
-using Login.Web.Features.Shared.Persistence;
+using Models = Login.Api.Features.Shared.Models;
+using Login.Api.Features.Shared.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
-namespace Login.Web.Features.User
+namespace Login.Api.Features.User
 {
     public class LoginService : ILoginService
     {

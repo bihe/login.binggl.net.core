@@ -1,5 +1,5 @@
-using Model = Login.Web.Features.Shared.Models;
-using Login.Web.Features.Shared.Persistence;
+using Model = Login.Api.Features.Shared.Models;
+using Login.Api.Features.Shared.Persistence;
 
 namespace Login.XTests.Data
 {

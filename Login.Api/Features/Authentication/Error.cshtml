@@ -5,7 +5,7 @@
     Layout = "_Layout";
     ViewData["Title"] = "login.binggl.net";
 }
-@model Login.Web.Features.Shared.ViewModels.LoginInfo
+@model Login.Api.Features.Shared.ViewModels.LoginInfo
 
 <div class="container">
 
@@ -15,7 +15,7 @@
             <h1>@Localizer["Login with Google Account"]</h1>
 
 
-            @if (Model.State == Login.Web.Features.Shared.ViewModels.LoginState.Error)
+            @if (Model.State == Login.Api.Features.Shared.ViewModels.LoginState.Error)
             {
                 <div class="alert alert-danger" role="alert">
                     <i class="fa fa-times-circle">&nbsp;</i>
@@ -24,7 +24,7 @@
                 </div>
             }
 
-            @if (Model.State == Login.Web.Features.Shared.ViewModels.LoginState.Success)
+            @if (Model.State == Login.Api.Features.Shared.ViewModels.LoginState.Success)
             {
                 <div class="alert alert-info" role="alert">
                     <i class="fa fa-info">&nbsp;</i>

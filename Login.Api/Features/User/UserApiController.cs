@@ -4,15 +4,15 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Login.Web.Features.Shared.Api;
-using Login.Web.Features.Shared.ViewModels;
-using Login.Web.Infrastructure.Configuration;
+using Login.Api.Features.Shared.Api;
+using Login.Api.Features.Shared.ViewModels;
+using Login.Api.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Login.Web.Features.User
+namespace Login.Api.Features.User
 {
     [Authorize]
     [Route("api/v1/users")]

@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Login.Web.Infrastructure.Configuration;
+using Login.Api.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace Login.Web.Infrastructure.Messages
+namespace Login.Api.Infrastructure.Messages
 {
     public class HashedMessageIntegrity : IMessageIntegrity
     {

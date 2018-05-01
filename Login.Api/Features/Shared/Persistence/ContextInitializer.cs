@@ -3,7 +3,7 @@ using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Login.Web.Features.Shared.Persistence
+namespace Login.Api.Features.Shared.Persistence
 {
     public static class ContextInitializer
     {

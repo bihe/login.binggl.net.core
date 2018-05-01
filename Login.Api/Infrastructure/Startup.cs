@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Login.Web.Infrastructure.Middleware;
+using Login.Api.Infrastructure.Middleware;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -22,13 +22,13 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Blazor.Server;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.Linq;
-using Login.Web.Infrastructure.Configuration;
-using Login.Web.Features.Shared.Persistence;
-using Login.Web.Features.User;
-using Login.Web.Infrastructure.FlashScope;
-using Login.Web.Infrastructure.Messages;
+using Login.Api.Infrastructure.Configuration;
+using Login.Api.Features.Shared.Persistence;
+using Login.Api.Features.User;
+using Login.Api.Infrastructure.FlashScope;
+using Login.Api.Infrastructure.Messages;
 
-namespace Login.Web.Infrastructure
+namespace Login.Api.Infrastructure
 {
     public partial class Startup
     {
@@ -57,12 +57,9 @@ namespace Login.Web.Infrastructure
             _serviceColletion = services;
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-
             services.Configure<ApplicationConfiguration>(Configuration.GetSection("Application"));
-
             services.AddMemoryCache();
-
-            services.AddDbContextPool<LoginContext>(options => {
+                        services.AddDbContextPool<LoginContext>(options => {
                 options.UseSqlite(Configuration.GetConnectionString("LoginConnection"));
             });
 
@@ -142,7 +139,7 @@ namespace Login.Web.Infrastructure
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = ApplicationDescription, Version = "v1" });
-                var filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "Login.Web.xml");
+                var filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "Login.Api.xml");
                 c.IncludeXmlComments(filePath);
             });
         }

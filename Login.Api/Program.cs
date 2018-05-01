@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.IO;
-using Login.Web.Infrastructure;
+using Login.Api.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 
-namespace Login.Web
+namespace Login.Api
 {
     public class Program
     {

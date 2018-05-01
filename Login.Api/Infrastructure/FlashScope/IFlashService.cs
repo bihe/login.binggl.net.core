@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Web.Infrastructure.FlashScope
+namespace Login.Api.Infrastructure.FlashScope
 {
     public interface IFlashService
     {

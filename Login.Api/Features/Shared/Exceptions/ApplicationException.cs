@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Web.Features.Shared.Exceptions
+namespace Login.Api.Features.Shared.Exceptions
 {
     public class ApplicationException : Exception
     {

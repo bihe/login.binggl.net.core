@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 
-namespace Login.Web.Infrastructure.FlashScope
+namespace Login.Api.Infrastructure.FlashScope
 {
     public class MemoryFlashService : IFlashService
     {

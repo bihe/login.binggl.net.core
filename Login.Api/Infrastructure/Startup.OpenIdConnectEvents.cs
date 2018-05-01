@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Login.Web.Features.Shared.Models;
-using Login.Web.Features.User;
-using Login.Web.Infrastructure.Configuration;
+using Login.Api.Features.Shared.Models;
+using Login.Api.Features.User;
+using Login.Api.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Login.Web.Infrastructure
+namespace Login.Api.Infrastructure
 {
     /// <summary>
     /// use a partial class to somehow organize the startup file

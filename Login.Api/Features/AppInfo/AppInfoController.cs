@@ -5,15 +5,15 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Login.Web.Features.Shared.Api;
-using Login.Web.Infrastructure.Configuration;
+using Login.Api.Features.Shared.Api;
+using Login.Api.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace Login.Web.Features.AppInfo
+namespace Login.Api.Features.AppInfo
 {
     [Authorize]
     [Route("api/v1/appinfo")]

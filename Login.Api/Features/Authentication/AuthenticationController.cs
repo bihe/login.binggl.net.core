@@ -14,13 +14,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Login.Web.Features.Shared.ViewModels;
-using Login.Web.Infrastructure.Configuration;
-using Login.Web.Infrastructure.FlashScope;
-using Login.Web.Infrastructure.Messages;
-using Login.Web.Features.User;
+using Login.Api.Features.Shared.ViewModels;
+using Login.Api.Infrastructure.Configuration;
+using Login.Api.Infrastructure.FlashScope;
+using Login.Api.Infrastructure.Messages;
+using Login.Api.Features.User;
 
-namespace Login.Web.Features.Authentication
+namespace Login.Api.Features.Authentication
 {
     /// <summary>
     /// main controller of application

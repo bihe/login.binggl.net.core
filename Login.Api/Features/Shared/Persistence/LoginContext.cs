@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Login.Web.Features.Shared.Persistence
+namespace Login.Api.Features.Shared.Persistence
 {
     public class LoginContext : DbContext
     {

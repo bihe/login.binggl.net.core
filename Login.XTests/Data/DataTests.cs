@@ -4,8 +4,8 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Xunit;
-using Login.Web.Features.Shared.Persistence;
-using Models = Login.Web.Features.Shared.Models;
+using Login.Api.Features.Shared.Persistence;
+using Models = Login.Api.Features.Shared.Models;
 
 namespace Login.XTests.Data
 {

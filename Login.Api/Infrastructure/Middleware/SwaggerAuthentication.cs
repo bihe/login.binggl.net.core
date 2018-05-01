@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using Login.Web.Features.Shared.Exceptions;
+using Login.Api.Features.Shared.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Login.Web.Infrastructure.Middleware
+namespace Login.Api.Infrastructure.Middleware
 {
     public class SwaggerAuthentication
     {

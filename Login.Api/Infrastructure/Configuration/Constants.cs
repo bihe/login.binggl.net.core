@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Web.Infrastructure.Configuration
+namespace Login.Api.Infrastructure.Configuration
 {
     public static class Constants
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace Login.Web.Infrastructure
+namespace Login.Api.Infrastructure
 {
 
     public class FeaturesViewLocationExpander : IViewLocationExpander

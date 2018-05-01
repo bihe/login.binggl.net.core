@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Web.Features.Shared.Models
+namespace Login.Api.Features.Shared.Models
 {
     public class Login : BaseModel
     {

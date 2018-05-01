@@ -1,4 +1,4 @@
-namespace Login.Web.Infrastructure.Configuration
+namespace Login.Api.Infrastructure.Configuration
 {
     public class ApplicationConfiguration
     {

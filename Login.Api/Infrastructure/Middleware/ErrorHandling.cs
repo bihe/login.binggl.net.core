@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using Login.Web.Infrastructure.FlashScope;
-using Login.Web.Infrastructure.Messages;
+using Login.Api.Infrastructure.FlashScope;
+using Login.Api.Infrastructure.Messages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Login.Web.Infrastructure.Middleware
+namespace Login.Api.Infrastructure.Middleware
 {
     public class ErrorHandling
     {

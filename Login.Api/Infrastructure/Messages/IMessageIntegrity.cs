@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login.Web.Infrastructure.Messages
+namespace Login.Api.Infrastructure.Messages
 {
     public interface IMessageIntegrity
     {

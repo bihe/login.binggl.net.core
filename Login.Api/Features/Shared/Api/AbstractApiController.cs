@@ -4,13 +4,13 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Login.Web.Features.Shared.ViewModels;
+using Login.Api.Features.Shared.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Login.Web.Features.Shared.Api
+namespace Login.Api.Features.Shared.Api
 {
     public abstract class AbstractApiController : ControllerBase
     {

@@ -5,15 +5,15 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Jose;
-using Login.Web.Features.Shared.Models;
-using Login.Web.Features.User;
-using Login.Web.Infrastructure.Configuration;
+using Login.Api.Features.Shared.Models;
+using Login.Api.Features.User;
+using Login.Api.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Login.Web.Infrastructure.Middleware
+namespace Login.Api.Infrastructure.Middleware
 {
     public class JwtProcessor
     {
