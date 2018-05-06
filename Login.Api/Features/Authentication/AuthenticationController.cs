@@ -222,28 +222,6 @@ namespace Login.Api.Features.Authentication
             return Redirect("/ui/index.html");
         }
 #endif
-        [HttpGet]
-        [Route("/index")]
-        public async Task<IActionResult> IndexViewOld()
-        {
-            this.CommonViewData();
-
-            logger.LogDebug($"The current user is `{this.User.Identity.Name}`; User has Admin-Role? `{this.User.IsInRole(Constants.ROLE_ADMIN)}`");
-            var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
-            var sitePermissions = from u in user.Sites select new SiteInfo() { Name = u.Name, Url = u.Url, Permissions = u.Permissions };
-            var userInfo = new UserInfo
-            {
-                ThisSite = this.appConfig.Value.Name,
-                Editable = this.User.IsInRole(Constants.ROLE_ADMIN) ? true: false,
-                DisplayName = user.DisplayName,
-                Email = user.Email,
-                Id = Hash(user.Email),
-                UserName = user.Name,
-                SitePermissions = new System.Collections.Generic.List<SiteInfo>(sitePermissions)
-            };
-
-            return View("Index", userInfo);
-        }
 
         void CommonViewData()
         {

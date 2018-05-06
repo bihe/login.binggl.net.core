@@ -182,7 +182,8 @@ namespace Login.Api.Infrastructure
             // enable authentication; state kept in cookies; using OpenIdConnect - with AAD
             app.UseAuthentication();
             app.UseJwtProcessor();
-            app.UseHttpsRedirection();
+            // not used within docker
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
