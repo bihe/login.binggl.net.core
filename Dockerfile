@@ -3,7 +3,7 @@ LABEL author="henrik@binggl.net"
 
 WORKDIR /opt/login.binggl.net
 
-RUN mkdir -p /opt/login.binggl.net/_logs && mkdir -p /opt/login.binggl.net/_db && mkdir -p /opt/login.binggl.net/_config/Production
+RUN mkdir -p /opt/login.binggl.net/_logs && mkdir -p /opt/login.binggl.net/_db && mkdir -p /opt/login.binggl.net/_config
 COPY ./dist/ /opt/login.binggl.net/
 RUN ls -la /opt/login.binggl.net/
 

@@ -107,16 +107,17 @@
 
 .permission {
   padding: 6px;
-  border-radius: 10px;
-  background-color: #212F3C;
+  border-radius: 3px;
+  background-color: darkslategray;
   color: whitesmoke;
   font-family: monospace;
-  margin: 3px;
+  font-size: 0.9em;
+  margin: 2px;
 }
 
 .card footer {
-  display: block;
-  height: 40px;
+  display: grid;
+  grid-template-columns: 110px 110px 110px;
   padding: 8px;
 }
 

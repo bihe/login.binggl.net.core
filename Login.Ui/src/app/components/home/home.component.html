@@ -12,9 +12,7 @@
           <a href="{{ item.url }}">{{ item.url }}</a>
       </main>
       <footer>
-        <span *ngFor="let perm of item?.permissions" class="permission">
-            <i class="fa fa-hashtag" aria-hidden="true"></i>{{ perm }}
-        </span>
+        <span *ngFor="let perm of item?.permissions" class="permission"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;{{ perm | ellipsis:9 }}</span>
       </footer>
   </article>
 
