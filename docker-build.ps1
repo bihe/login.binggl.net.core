@@ -1,2 +1,2 @@
-docker pull microsoft/dotnet:2.1-aspnetcore-runtime-bionic
+docker pull microsoft/dotnet:2.1-aspnetcore-runtime-alpine
 docker build -t login.binggl.net .

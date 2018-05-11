@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime-bionic
+FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine
 LABEL author="henrik@binggl.net"
 
 WORKDIR /opt/login.binggl.net

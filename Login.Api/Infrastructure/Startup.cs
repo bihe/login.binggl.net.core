@@ -18,10 +18,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
-using System.Net.Mime;
-using Microsoft.AspNetCore.Blazor.Server;
-using Microsoft.AspNetCore.ResponseCompression;
-using System.Linq;
 using Login.Api.Infrastructure.Configuration;
 using Login.Api.Features.Shared.Persistence;
 using Login.Api.Features.User;
@@ -59,7 +55,7 @@ namespace Login.Api.Infrastructure
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.Configure<ApplicationConfiguration>(Configuration.GetSection("Application"));
             services.AddMemoryCache();
-                        services.AddDbContextPool<LoginContext>(options => {
+            services.AddDbContextPool<LoginContext>(options => {
                 options.UseSqlite(Configuration.GetConnectionString("LoginConnection"));
             });
 

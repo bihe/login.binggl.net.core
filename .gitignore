@@ -287,10 +287,11 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+dist/
 
-Dist/
-
-Login.Web/_db/
-Login.Web/_logs/
+Login.Api/_db/
+Login.Api/_logs/
 Login.XTests/.lcov.info
-Login.Web/wwwroot/ui/
+Login.Api/wwwroot/ui/
+
+_environment.ps1
