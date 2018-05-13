@@ -14,4 +14,4 @@ docker run -d -p 3000:3000 --name login `
   -e Application:Authentication:GoogleClientSecret `
   -e Application:ApplicationSalt `
   -e Application:Jwt.TokenSecret `
-login.binggl.net
+login

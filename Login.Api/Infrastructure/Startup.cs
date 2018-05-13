@@ -23,6 +23,7 @@ using Login.Api.Features.Shared.Persistence;
 using Login.Api.Features.User;
 using Login.Api.Infrastructure.FlashScope;
 using Login.Api.Infrastructure.Messages;
+using Microsoft.Extensions.Primitives;
 
 namespace Login.Api.Infrastructure
 {
@@ -155,13 +156,11 @@ namespace Login.Api.Infrastructure
                 app.UseErrorHandling();
             }
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions() {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseSecurityHeaders(options => {
                 options.ApplicationBaseUrl = appConfig.Value.BaseUrl;
-            });
-
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
             var cultures = new List<CultureInfo> { new CultureInfo("en-US"), new CultureInfo("en"), new CultureInfo("de-DE"), new CultureInfo("de") };
@@ -174,12 +173,24 @@ namespace Login.Api.Infrastructure
                 SupportedUICultures = cultures
             });
 
+            // the ForwardedHeaders do not work completely for me
+            // found similar issues here: https://github.com/aspnet/Docs/issues/2384
+            // this approach below works for me
+            app.Use((ctx, next) =>
+            {
+                if (ctx.Request.Headers.TryGetValue("X-Forwarded-Proto", out StringValues scheme))
+                {
+                    logger.LogInformation($"Protocol/scheme forwarded by upstream-proxy: {scheme}");
+                    ctx.Request.Scheme = scheme;
+                }
+
+                return next();
+            });
 
             // enable authentication; state kept in cookies; using OpenIdConnect - with AAD
             app.UseAuthentication();
             app.UseJwtProcessor();
-            // not used within docker
-            // app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
