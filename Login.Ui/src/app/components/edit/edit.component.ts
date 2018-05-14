@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { UserInfo } from '../../shared/models/user.info.model';
+import { ApiUserService } from '../../shared/service/api.users.service';
 import { ApplicationState } from '../../shared/service/application.state';
 import { MessageUtils } from '../../shared/utils/message.utils';
-import { MatSnackBar } from '@angular/material';
-import { ApiUserService } from '../../shared/service/api.users.service';
-import { UserInfo } from '../../shared/models/user.info.model';
 
 @Component({
   selector: 'app-edit',
@@ -23,6 +23,7 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.userService.getUserInfo()
       .subscribe(
         data => {

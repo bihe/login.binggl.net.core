@@ -155,7 +155,6 @@ namespace Login.Api.Infrastructure
                 app.UseHsts();
                 app.UseErrorHandling();
             }
-
             app.UseForwardedHeaders(new ForwardedHeadersOptions() {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
