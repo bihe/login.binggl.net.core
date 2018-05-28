@@ -180,7 +180,6 @@ namespace Login.Api.Features.Authentication
                 if (this.messageIntegrity.Verify(key))
                 {
                     message = this.flash.Get(key);
-                    //message = System.Net.WebUtility.HtmlEncode(message);
                 }
             }
 
@@ -212,6 +211,42 @@ namespace Login.Api.Features.Authentication
                 await HttpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, props);
             }
         }
+
+        [HttpGet]
+        [Route("relogin")]
+        public async Task ReLogin()
+        {
+            if (HttpContext.User != null && HttpContext.User.Identity.IsAuthenticated)
+            {
+                // logoff first, clear authentication holders
+                var cookies = HttpContext.Request.Cookies.Keys;
+                foreach (var cookie in cookies)
+                {
+                    HttpContext.Response.Cookies.Delete(cookie, new CookieOptions
+                    {
+                        Domain = appConfig.Value.Jwt.CookieDomain
+                    });
+                }
+
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+                    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                }
+
+                var props = new AuthenticationProperties
+                {
+                    RedirectUri = "/"
+                };
+
+                await HttpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme, props);
+            }
+            else
+            {
+                HttpContext.Response.Redirect("/Error");
+            }
+        }
+
 
 #if !BLAZOR
         [HttpGet]

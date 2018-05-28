@@ -45,9 +45,7 @@ namespace Login.Api.Infrastructure
             this.UseService((provider) =>
             {
                 var loginService = provider.GetRequiredService<ILoginService>();
-                var awaiter = loginService.GetUserByEmail(externalLookupEmail);
-                awaiter.Wait();
-                lookupUser = awaiter.Result;
+                lookupUser = loginService.GetUserByEmail(externalLookupEmail).Result;
             });
 
             logger.LogDebug("User from lookup: {0}", lookupUser);

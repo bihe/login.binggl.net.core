@@ -53,6 +53,14 @@ export class EditComponent implements OnInit {
     this.userService.saveUserInfo(user)
       .subscribe(
         data => {
+          // stupid hack, to enforce a redirect to re-challenge authentication
+          // the better approach would be to handle 302 or 403 and act accordingly
+          if (data.userName === '__RELOGIN__') {
+            console.log('No result received from backend - re-trigger authentication process!');
+            window.location.href = '/relogin';
+            return;
+          }
+
           console.log('saved!');
           this.jsonPayload = this.jsonify(data);
           this.state.setProgress(false);

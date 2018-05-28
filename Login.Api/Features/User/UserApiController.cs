@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
 namespace Login.Api.Features.User
 {
     [Authorize]
@@ -44,6 +47,11 @@ namespace Login.Api.Features.User
         public async Task<ActionResult<UserInfo>> Save([FromBody] UserInfo payload)
         {
             _logger.LogDebug($"The current user is `{this.User.Identity.Name}`; User has Admin-Role? `{this.User.IsInRole(Constants.ROLE_ADMIN)}`");
+
+            if (!this.User.IsInRole(Constants.ROLE_ADMIN))
+            {
+                return BadRequest("Insufficient permissions to perform the action!");
+            }
 
             var user = await this._loginService.GetUserByEmail(email: this.AuthenticatedUserEmail, noCache: true);
             if (user is null)
@@ -93,9 +101,24 @@ namespace Login.Api.Features.User
 
                 var result = this._loginService.SaveSiteList(sites, sitesToDelete);
                 user = await this._loginService.GetUserByEmail(email: this.AuthenticatedUserEmail, noCache: true);
+
+                // check if after the save-operation the permissions for this site/application have changed!
+                var appSiteUrl = _appConfig.BaseUrl;
+                var appSiteName = _appConfig.Name;
+                var siteQuery = from s in user.Sites where s.Url == appSiteUrl &&
+                    s.Name == appSiteName && s.Permissions.IndexOf(Constants.ROLE_ADMIN) > -1 select s;
+                if (!siteQuery.Any())
+                {
+                    _logger.LogInformation("After the save-operation the user-permissions changed. Missing ADMIN Role - trigger auth challenge!");
+                    // the ADMIN permission for this site/application was not found - re-trigger authentication process!
+                    // set the name to a stupd constant to enforce a /relogin
+                    // the real way would be to send a HTTP 302 redirect instead of a 200 and then act on the frontend-code!
+                    // TODO: next-iteration; enhance here!
+                    user.Name = "__RELOGIN__";
+                }
             }
 
-            return GetUserInfo(user);;
+            return GetUserInfo(user);
         }
 
         UserInfo GetUserInfo(Shared.Models.User user)

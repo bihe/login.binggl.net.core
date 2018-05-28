@@ -97,9 +97,9 @@ namespace Login.Api.Features.User
         public bool SaveSiteList(List<Models.UserSite> sitesToSave, List<Models.UserSite> sitesToDelete)
         {
             bool result = false;
+            // sqlite is not that happy with concurrent processes
             lock(_lock)
             {
-                // sqlite is not that happy with concurrent processes
                 using (var tx = _context.Database.BeginTransaction())
                 {
                     try
@@ -123,7 +123,6 @@ namespace Login.Api.Features.User
                         awaiter.Wait();
                         tx.Commit();
 
-                        // clear the cache for sites
                         if (this._cache != null)
                         {
                             sitesToSave.ForEach(s => this._cache.Remove(s.Id));
