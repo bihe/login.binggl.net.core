@@ -20,12 +20,12 @@ export class MessageUtils {
             const snackBarRef = snackBar.open(message, closeMessage,
                 {
                     duration: duration,
-                    extraClasses: [type]
+                    panelClass: [type]
                 });
         } else {
             const snackBarRef = snackBar.open(message, closeMessage,
                 {
-                    extraClasses: [type]
+                  panelClass: [type]
                 });
         }
     }

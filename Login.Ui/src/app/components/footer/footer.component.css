@@ -1,13 +1,7 @@
 footer {
-  font-family: 'Ubuntu', sans-serif;
-}
-
-.small {
-  font-size: 0.5em;
-}
-
-.text-muted {
-  color:#777;
+  font-family: monospace;
+  font-size: 1.2em;
+  color: #777;
 }
 
 .footer__details {
