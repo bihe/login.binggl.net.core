@@ -1,4 +1,4 @@
-cls
+clear
 Write-Host "INFO: Build the login.binggl.net.core Application" -ForegroundColor Yellow
 #Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\Dist\
 dotnet clean -c Debug
@@ -18,12 +18,4 @@ remove-item -path .\Login.Api\wwwroot\ui\*
 copy-item -path .\Login.Ui\dist\* -Destination .\Login.Api\wwwroot\ui\
 
 dotnet build -c Release
-
-## cleanup the whole deployment directory
-Get-ChildItem -Path  '.\dist' -Recurse |
-	Select -ExpandProperty FullName |
-	Where {$_ -notlike '.git*'} |
-	sort length -Descending |
-	Remove-Item -force
-
 dotnet publish .\Login.Api\Login.Api.csproj -c Release -v m -o "$pwd\dist"
