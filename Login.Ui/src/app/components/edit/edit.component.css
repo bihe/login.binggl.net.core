@@ -1,0 +1,52 @@
+body,
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.heading {
+  flex: 0 0 auto;
+  background-color: #CD6155;
+  padding: 10px;
+
+}
+.heading p {
+  font-size: 1.2em;
+  color: white;
+  font-family: 'Roboto';
+}
+
+.content {
+  flex: 1;
+  position: relative;/* need this to position inner content */
+  overflow-y: auto;
+}
+
+.editjson {
+  font-size: 0.8em;
+  font-family: 'Ubuntu', Courier New, Courier, monospace;
+  padding: 10px;
+  width: 100%;
+  height: 99%;
+  border:none;
+  background-color: darkslategrey;
+  color: #D7DBDD;
+  min-height: 82vh;
+}
+
+.save {
+  position: absolute;
+  right: 30px;
+  bottom: 70px;
+  color: black;
+  font-size: 1.3em;
+}
+
+.home {
+  position: absolute;
+  right: 30px;
+  bottom: 170px;
+  color: black;
+  font-size: 1.3em;
+}

@@ -1,0 +1,22 @@
+    <div class="heading">
+      <p>Central login for all binggl.net applications.</p>
+    </div>
+
+    <section class="card-container">
+
+      <article class="card" *ngFor="let item of userInfo?.sitePermissions" id="{{ item.name }}">
+          <header class="card__title">
+              <h3><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;<a href="{{ item.url }}">{{ item.name }}</a></h3>
+          </header>
+          <main class="card__description">
+              <a href="{{ item.url }}">{{ item.url }}</a>
+          </main>
+          <footer>
+            <span *ngFor="let perm of item?.permissions" class="permission"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;{{ perm | ellipsis:9 }}</span>
+          </footer>
+      </article>
+
+    </section>
+
+
+    <button *ngIf="userInfo?.editable" mat-fab color="accent" class="edit" (click)="edit()"><i class="fa fa-cogs" aria-hidden="true"></i></button>

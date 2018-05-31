@@ -1,0 +1,35 @@
+app-header {
+  grid-column: span 3;
+  padding: 30px;
+  text-align: center;
+  font-size: 1.4em;
+  background-color: #369;
+  color: white;
+}
+
+main {
+  grid-column: span 3;
+  flex: 1;
+  padding: 0px;
+  background-color: #e5e7e9;
+}
+
+aside {
+  padding: 20px;
+  background-color: #936;
+}
+
+app-footer {
+  grid-column: span 3;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.8em;
+  background-color: #f5f5f5;
+  color:#333;
+}
+
+h1 {
+  margin-bottom: 1em;
+  font-size: 1.3em;
+  font-weight: bold;
+}

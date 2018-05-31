@@ -1,0 +1,69 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "login.binggl.net";
+}
+@model Login.Api.Features.Shared.ViewModels.LoginInfo
+
+<div class="container">
+
+    <div class="row" style="padding-bottom: 40px; text-align:center;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>@Localizer["Login with Google Account"]</h1>
+
+
+            @if (Model.State == Login.Api.Features.Shared.ViewModels.LoginState.Error)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <i class="fa fa-times-circle">&nbsp;</i>
+                    <strong>@Localizer["Error"]:&nbsp;</strong>
+                    <span>@Model.Error</span>
+                </div>
+            }
+
+            @if (Model.State == Login.Api.Features.Shared.ViewModels.LoginState.Success)
+            {
+                <div class="alert alert-info" role="alert">
+                    <i class="fa fa-info">&nbsp;</i>
+                    <span>@Model.Success</span>
+                </div>
+            }
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="text-align:center;">
+            <img src="/images/Google_2015_logo.svg" style="width:200px" />
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <blockquote>
+                <p>@Localizer["The authorization is done via Google. Once you click on the login button you are forwarded to a Google login. After the process is finished you are redirected to this application."] </p>
+            </blockquote>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <form class="form-signin">
+                <a href="/login" class="btn btn-lg btn-success btn-block" type="submit"><i class="fa fa-google"></i>: @Localizer["Google Login!"] </a>
+            </form>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div> <!-- /container -->

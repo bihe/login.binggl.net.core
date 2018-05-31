@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Jose;
-using Login.Core.Middleware;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -10,8 +9,6 @@ using Moq;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Login.Core.Services;
-using Login.Core.Models;
 using System;
 
 namespace Login.XTests.Jwt
@@ -74,7 +71,7 @@ namespace Login.XTests.Jwt
         //    var mockHttpContext = new Mock<DefaultHttpContext>();
 
         //    var mockLogger = new Mock<ILogger<JwtProcessor>>();
-            
+
         //    var mockLoginService = new Mock<ILoginService>();
         //    mockLoginService
         //        .Setup(x => x.GetUserByEmail(email, true))

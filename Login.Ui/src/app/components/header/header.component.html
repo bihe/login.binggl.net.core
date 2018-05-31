@@ -1,0 +1,51 @@
+<div class="navmenu">
+    <div class="navcontent">
+        <!-- LOGO -->
+        <div class="navlogo">
+            <mat-progress-spinner
+                *ngIf="showProgress"
+                mode="indeterminate"
+                class="progress"
+                color="accent"
+                [strokeWidth]="7"
+                [diameter]="40">
+            </mat-progress-spinner>
+
+            <span class="header__icon" (click)="toggleMenu(true)">
+                <svg class="" width="24px" height="24px" viewBox="0 0 48 48" fill="#fff">
+                <path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path>
+                </svg>
+            </span>
+        </div>
+
+        <!-- INFO -->
+        <div class="navinfo">
+          <i class="fa fa-lock"></i> login.binggl.net
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="navactions">
+
+
+        </div>
+    </div>
+</div>
+
+<div class="menu"
+  [ngClass]="{'menu--show': menuVisible }"
+  [style.transform]="menuTransform()">
+  <div class="menu__header">
+    <div class="user_info">
+      <i class="fa fa-sign-out" aria-hidden="true"></i> <a class="link" href="/logout" matTooltip="{{ userInfo?.userName }} ({{ userInfo?.email }})">Logout: {{ userInfo?.displayName }}</a>
+    </div>
+  </div>
+  <ul class="menu__list">
+    <li><i class="fa fa-home" aria-hidden="true"></i> <a href="#">Home</a></li>
+  </ul>
+</div>
+
+<div class="menu__overlay"
+  (click)="toggleMenu(false)"
+  [ngClass]="{'menu__overlay--show': menuVisible }"
+
+></div>

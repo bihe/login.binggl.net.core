@@ -1,15 +1,20 @@
-﻿using System.Threading.Tasks;
-using Login.Core.Data;
-using Login.Core.Services;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Login.Api.Features.Shared.Models;
+using Login.Api.Features.Shared.Persistence;
+using Login.Api.Features.User;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace Login.Tests.Repository
+namespace Login.XTests.Repository
 {
     public class RepositoryTests
     {
         static DbContextOptions<LoginContext> options = new DbContextOptionsBuilder<LoginContext>()
                 .UseInMemoryDatabase(databaseName: "Test_Login_Databases_Repository_Tests")
+                // don't raise the error warning us that the in memory db doesn't support transactions
+                .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
         [Fact]
@@ -22,7 +27,7 @@ namespace Login.Tests.Repository
         [Fact]
         public async Task TestSiteAndPermissionRelation()
         {
-            var site = await Repository.GetSiteByName("site1");
+            var site = await Repository.GetSiteById("site1");
             Assert.NotNull(site);
             Assert.Equal("http://www.site1.com", site.Url);
             Assert.Equal("Permission1;Permission2", site.PermissionList);
@@ -32,12 +37,39 @@ namespace Login.Tests.Repository
             Assert.Equal("User1", site.User.Name);
         }
 
+        [Fact]
+        public async Task TestSiteCreation()
+        {
+            var context = Repository;
+
+            var sites = new List<UserSite>();
+
+            var user = await context.GetUserByEmail("user1@site.com");
+            sites.AddRange(user.Sites);
+            sites[0].Name = sites[0].Name + "_CHANGED";
+
+            var newSite = new UserSite();
+            newSite.Name = "NEW SITE NAME";
+            newSite.Url = "NEW SITE URL";
+            newSite.Permissions = new List<string> { "a", "b" };
+            newSite.User = user;
+
+            sites.Add(newSite);
+
+            var result = context.SaveSiteList(sites, null);
+            Assert.True(result);
+
+            var user1 = await context.GetUserByEmail("user1@site.com");
+            Assert.Equal(sites.Count, user1.Sites.Count);
+            Assert.Equal(newSite.Name, sites[sites.Count - 1].Name);
+        }
+
         ILoginService Repository
         {
             get
             {
                 var context = new LoginContext(options);
-                Login.Tests.Data.ContextInitializer.Initialize(context, true);
+                Data.ContextInitializer.Initialize(context, true);
                 ILoginService repo = new LoginService(context, null /*Logger*/, null /*Cache*/);
                 return repo;
             }

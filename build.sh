@@ -5,15 +5,12 @@ echo "Build the login.binggl.net.core Application"
 dotnet clean -c Debug
 dotnet clean -c Release
 
-ts=`date +%Y%m%d`
-echo $ts
-
-dotnet build --version-suffix $ts -c Release 
+dotnet build -c Release
 
 ## cleanup the whole deployment directory
-rm -rf $PWD/../deployment/* 
+rm -rf $PWD/../deployment/*
 
-dotnet publish ./Login.Web/Login.Web.csproj -c Release -v m -o $PWD/../deployment
+dotnet publish ./Login.Api/Login.Api.csproj -c Release -v m -o $PWD/../deployment
 
 # cleanup/prepare for deployment
 rm -f $PWD/../deployment/appsettings.Development.json

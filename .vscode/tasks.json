@@ -5,11 +5,12 @@
     "tasks": [
         {
             "group": "build",
-            "type": "shell",
-            "label": "build",
+            "type": "process",
+            "label": "BUILD: build",
             "command": "dotnet",
             "args": [
-                "build"
+                "build",
+                "--no-restore"
             ],
             //"isShellCommand": true,
             "options": {
@@ -24,12 +25,30 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "group": "build",
+            "type": "shell",
+            "label": "BUILD: RE-build",
+            "command": "dotnet build --no-incremental --verbosity n --force",
+            //"isShellCommand": true,
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "group": "test",
-            "label": "xunit.tests",
+            "type": "process",
+            "label": "TEST: xunit.tests",
             "command": "dotnet",
             "args": [
                 "test",
-                "Login.XTests.csproj"
+                "--no-restore",
             ],
             "options": {
                 "cwd": "${workspaceRoot}/Login.XTests"
@@ -41,12 +60,45 @@
                 "panel": "shared"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "group": "test",
+            "type": "process",
+            "label": "TEST: list tests",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "--no-restore",
+                "-t"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/Login.XTests"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+          "label": "TEST: with coverage",
+          "command": "dotnet",
+          "type": "process",
+          "args": [
+              "test",
+              "/p:CollectCoverage=true",
+              "/p:CoverletOutputFormat=lcov",
+              "/p:CoverletOutput=./lcov.info",
+              "${workspaceFolder}/Login.XTests/Login.XTests.csproj"
+          ],
+          "problemMatcher": "$msCompile",
+          "group": {
+              "kind": "test",
+              "isDefault": true
+          }
+
         }
-        // {
-        //     "taskName": "TestAll",
-        //     "dependsOn": [
-        //         "Unit Tests"
-        //     ]
-        // }
     ]
 }

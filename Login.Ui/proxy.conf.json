@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://devel.binggl.net:3001",
+    "secure": false
+  }
+}
