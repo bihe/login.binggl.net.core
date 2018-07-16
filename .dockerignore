@@ -1,0 +1,7 @@
+.git
+.vs
+.vscode
+Data/
+Login.Ui
+Login.XTests
+Production
