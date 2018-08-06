@@ -19,7 +19,7 @@
             "presentation": {
                 "echo": true,
                 "reveal": "always",
-                "focus": false,
+                "focus": true,
                 "panel": "shared"
             },
             "problemMatcher": "$msCompile"
@@ -36,7 +36,7 @@
             "presentation": {
                 "echo": true,
                 "reveal": "always",
-                "focus": false,
+                "focus": true,
                 "panel": "shared"
             },
             "problemMatcher": "$msCompile"
@@ -56,7 +56,7 @@
             "presentation": {
                 "echo": true,
                 "reveal": "always",
-                "focus": false,
+                "focus": true,
                 "panel": "shared"
             },
             "problemMatcher": "$msCompile"

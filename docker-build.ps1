@@ -1,2 +1,2 @@
-docker pull microsoft/dotnet:2.1-aspnetcore-runtime-alpine
-docker build -t login .
+#docker pull microsoft/dotnet:2.1-aspnetcore-runtime-alpine
+docker build --pull -t login .
