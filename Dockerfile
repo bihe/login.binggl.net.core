@@ -6,6 +6,8 @@ RUN npm install -g @angular/cli@latest && npm install && npm run build -- --prod
 
 ## backend build-phase
 FROM microsoft/dotnet:2.1-sdk AS BACKEND-BUILD
+ARG buildtime_variable_version=2.1.0.0-local
+ENV BUILD_BUILDNUMBER=${buildtime_variable_version}
 WORKDIR /backend-build
 COPY ./Login.Api .
 RUN dotnet build -c Release && dotnet publish Login.Api.csproj -c Release -v m -o output
@@ -15,8 +17,6 @@ FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine
 LABEL author="henrik@binggl.net"
 LABEL description="The central authentication/authorization endpoint for all binggl.net applications"
 LABEL version=2
-ARG buildtime_variable_version=2.1.0.0-local
-ENV BUILD_BUILDNUMBER=${buildtime_variable_version}
 WORKDIR /opt/login.binggl.net
 RUN mkdir -p /opt/login.binggl.net/_logs && mkdir -p /opt/login.binggl.net/_db && mkdir -p /opt/login.binggl.net/_config
 COPY --from=BACKEND-BUILD /backend-build/output /opt/login.binggl.net/
