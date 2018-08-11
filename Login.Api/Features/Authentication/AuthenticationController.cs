@@ -16,9 +16,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Login.Api.Features.Shared.ViewModels;
 using Login.Api.Infrastructure.Configuration;
-using Login.Api.Infrastructure.FlashScope;
-using Login.Api.Infrastructure.Messages;
 using Login.Api.Features.User;
+using Commons.Api.FlashScope;
+using Commons.Api.Messages;
 
 namespace Login.Api.Features.Authentication
 {
@@ -125,7 +125,7 @@ namespace Login.Api.Features.Authentication
         {
             if(string.IsNullOrEmpty(site) || string.IsNullOrEmpty(url))
             {
-                throw new Shared.Exceptions.ApplicationException("Invalid paramters supplied for auth-flow!");
+                throw new Commons.Api.Exceptions.ApplicationException("Invalid paramters supplied for auth-flow!");
             }
 
             // if no authenticated user email is available - challenge the user by an auth request
@@ -144,7 +144,7 @@ namespace Login.Api.Features.Authentication
                 var user = await this.loginService.GetUserByEmail(this.AuthenticatedUserEmail);
                 if (user == null)
                 {
-                    throw new Shared.Exceptions.ApplicationException("No user is available!");
+                    throw new Commons.Api.Exceptions.ApplicationException("No user is available!");
                 }
 
                 if (!this.loginService.IsValidRedirectUrl(user, site, url))

@@ -87,7 +87,7 @@ namespace Login.Api.Features.User
                         _logger.LogError($"Could not save the login operation {EX}!");
                         tx.Rollback();
 
-                        throw new Shared.Exceptions.ApplicationException("Could not save the login.", EX);
+                        throw new Commons.Api.Exceptions.ApplicationException("Could not save the login.", EX);
                     }
                 }
             }
@@ -135,7 +135,7 @@ namespace Login.Api.Features.User
                         _logger.LogError($"Could not save the site-list {EX}!");
                         tx.Rollback();
 
-                        throw new Shared.Exceptions.ApplicationException("Could not save the site-list.", EX);
+                        throw new Commons.Api.Exceptions.ApplicationException("Could not save the site-list.", EX);
                     }
                 }
             }

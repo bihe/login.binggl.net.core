@@ -21,9 +21,11 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Login.Api.Infrastructure.Configuration;
 using Login.Api.Features.Shared.Persistence;
 using Login.Api.Features.User;
-using Login.Api.Infrastructure.FlashScope;
-using Login.Api.Infrastructure.Messages;
 using Microsoft.Extensions.Primitives;
+using Commons.Api.Middleware;
+using Commons.Api.FlashScope;
+using Commons.Api.Messages;
+using Commons.Api.Views;
 
 namespace Login.Api.Infrastructure
 {
@@ -109,7 +111,10 @@ namespace Login.Api.Infrastructure
             });
 
             services.Configure<RazorViewEngineOptions>(options => {
-                options.ViewLocationExpanders.Add(new FeaturesViewLocationExpander());
+                options.ViewLocationExpanders.Add(new FeaturesViewLocationExpander(new[] {
+                "~/Features/{1}/{0}.cshtml",
+                "~/Features/Shared/{0}.cshtml"
+                }));
             });
 
 #if BLAZOR
