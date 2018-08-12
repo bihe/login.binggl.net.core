@@ -5,16 +5,15 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Login.Api.Features.Shared.Api;
 using Login.Api.Features.Shared.ViewModels;
 using Login.Api.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Commons.Api.Controller;
 
 namespace Login.Api.Features.User
 {

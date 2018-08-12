@@ -19,6 +19,7 @@ using Login.Api.Infrastructure.Configuration;
 using Login.Api.Features.User;
 using Commons.Api.FlashScope;
 using Commons.Api.Messages;
+using Commons.Api.Controller;
 
 namespace Login.Api.Features.Authentication
 {
@@ -26,15 +27,13 @@ namespace Login.Api.Features.Authentication
     /// main controller of application
     /// </summary>
     [Authorize]
-    public class AuthenticationController : Controller
+    public class AuthenticationController : AbstractMvcController
     {
         private static readonly string AssemblyVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
         private readonly IHtmlLocalizer<AuthenticationController> localizer;
         private readonly ILogger logger;
         private readonly IOptions<ApplicationConfiguration> appConfig;
-        private IFlashService flash;
-        private IMessageIntegrity messageIntegrity;
         private ILoginService loginService;
 
         /// <summary>
@@ -48,12 +47,10 @@ namespace Login.Api.Features.Authentication
         /// <param name="appConfig"></param>
         public AuthenticationController(IHtmlLocalizer<AuthenticationController> localizer, ILogger<AuthenticationController> logger,
             IFlashService flash, IMessageIntegrity messageIntegrity, ILoginService loginService,
-            IOptions<ApplicationConfiguration> appConfig)
+            IOptions<ApplicationConfiguration> appConfig) : base(logger, flash, messageIntegrity)
         {
             this.localizer = localizer;
             this.logger = logger;
-            this.flash = flash;
-            this.messageIntegrity = messageIntegrity;
             this.loginService = loginService;
             this.appConfig = appConfig;
         }
@@ -160,15 +157,7 @@ namespace Login.Api.Features.Authentication
             }
         }
 
-        /// <summary>
-        /// display error
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("error/{key?}")]
-        [AllowAnonymous]
-        public IActionResult Error(string key)
+        protected override ActionResult PrepareErrorResult(string key)
         {
             this.CommonViewData();
             var message = string.Format(localizer["Failed to login the user!"].Value);
@@ -177,19 +166,17 @@ namespace Login.Api.Features.Authentication
                 message = localizer["No active user token available - login is needed!"].Value;
             else
             {
-                if (this.messageIntegrity.Verify(key))
+                if (_messageIntegrity.Verify(key))
                 {
-                    message = this.flash.Get(key);
+                    message = _flash.Get(key);
                 }
             }
 
-            var loginInfo = new LoginInfo
+            return View(new LoginInfo
             {
                 State = LoginState.Error,
                 Error = message
-            };
-
-            return View(loginInfo);
+            });
         }
 
         /// <summary>

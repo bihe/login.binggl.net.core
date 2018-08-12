@@ -63,8 +63,6 @@ namespace Login.Api.Infrastructure
             });
 
             services.AddScoped<ILoginService, LoginService>();
-            services.AddSingleton<IFlashService, MemoryFlashService>();
-            services.AddSingleton<IMessageIntegrity, HashedMessageIntegrity>();
 
             var googleClientId = "";
             var googleClientSecret = "";
@@ -109,6 +107,8 @@ namespace Login.Api.Infrastructure
                     OnRedirectToIdentityProviderForSignOut = OnRedirectToIdentityProviderForSignOut
                 };
             });
+
+            services.AddErrorHandling(); // services for the ErrorHandling Middleware below
 
             services.Configure<RazorViewEngineOptions>(options => {
                 options.ViewLocationExpanders.Add(new FeaturesViewLocationExpander(new[] {
