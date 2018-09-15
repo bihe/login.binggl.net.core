@@ -1,4 +1,4 @@
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
 import { UserInfo } from '../models/user.info.model';
 
 export class ApplicationState {

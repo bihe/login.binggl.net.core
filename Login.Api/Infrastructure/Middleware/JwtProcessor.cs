@@ -79,8 +79,8 @@ namespace Login.Api.Infrastructure.Middleware
                                 iat = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
                                 iss = "login.binggl.net",
                                 exp = expires.ToUnixTimeSeconds(),
-                                sub = "login.User",
-                                Type = "login.User", // backwards compatibility
+                                sub = user.Email,
+                                Type = "login.User",
                                 Claims = query.ToList(),
                                 DisplayName = user.DisplayName,
                                 Email = user.Email,

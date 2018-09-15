@@ -1,6 +1,5 @@
-import { Response, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Headers, RequestOptions, Response } from '@angular/http';
+import { throwError } from 'rxjs';
 
 export class ApiBaseService {
 
@@ -19,7 +18,7 @@ export class ApiBaseService {
     } else {
       errorRaised = error.message ? error.message : error.toString();
     }
-    return Observable.throw(errorRaised);
+    return throwError(errorRaised);
   }
 
   protected getRequestHeaders() {
@@ -37,7 +36,7 @@ export class ApiBaseService {
 
   protected extractRaw(res: Response) {
     if (res.status < 200 || res.status >= 300) {
-      Observable.throw(new Error('Bad response status: ' + res.status));
+      throwError(new Error('Bad response status: ' + res.status));
     }
     const body = res.text().length > 0 ? res.text() : '';
     return body;
@@ -45,7 +44,7 @@ export class ApiBaseService {
 
   protected extractData<T>(res: Response): T {
     if (res.status < 200 || res.status >= 300) {
-      Observable.throw(new Error('Bad response status: ' + res.status));
+      throwError(new Error('Bad response status: ' + res.status));
     }
     const data: T = res.text().length > 0 ? <T>res.json() as T : null;
     return data;
