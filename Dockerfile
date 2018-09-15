@@ -1,6 +1,6 @@
 ## fronted build-phase
 FROM node:10-alpine AS FRONTED-BUILD
-WORKDIR ./fronted-build
+WORKDIR /fronted-build
 COPY ./Login.Ui .
 RUN npm install -g @angular/cli@latest && npm install && npm run build -- --prod --base-href /ui/
 
