@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Login.Api.Infrastructure.Middleware;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -19,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Login.Api.Infrastructure.Configuration;
+using Login.Api.Infrastructure.Middleware;
 using Login.Api.Features.Shared.Persistence;
 using Login.Api.Features.User;
 using Microsoft.Extensions.Primitives;
