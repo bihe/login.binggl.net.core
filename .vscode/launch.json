@@ -15,7 +15,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "BUILD: build",
-            "program": "${workspaceRoot}/Login.Api/bin/Debug/netcoreapp2.1/Login.Api.dll",
+            "program": "${workspaceRoot}/Login.Api/bin/Debug/netcoreapp2.2/Login.Api.dll",
             "args": [],
             "cwd": "${workspaceRoot}/Login.Api",
             "console": "internalConsole",
