@@ -13,7 +13,7 @@ COPY ./Login.Api .
 RUN dotnet build -c Release && dotnet publish Login.Api.csproj -c Release -v m -o output
 
 ## runtime build
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine
+FROM microsoft/dotnet:2.2-aspnetcore-runtime
 LABEL author="henrik@binggl.net"
 LABEL description="The central authentication/authorization endpoint for all binggl.net applications"
 LABEL version=2
