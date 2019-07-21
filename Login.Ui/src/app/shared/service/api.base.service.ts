@@ -1,16 +1,17 @@
-import { Headers, RequestOptions, Response } from '@angular/http';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
-export class ApiBaseService {
+export class BaseDataService {
 
   protected get RequestTimeOutDefault(): number { return 1000 * 60 * 1; }
   protected get RequestTimeOutLongRunning(): number { return 1000 * 60 * 10; }
 
-  protected handleError (error: Response | any) {
+  protected handleError (error: HttpErrorResponse | any) {
     let errorRaised: any;
-    if (error instanceof Response) {
+    if (error instanceof HttpErrorResponse) {
       try {
-        errorRaised = error.json();
+        errorRaised = {};
+        errorRaised.Message = error.message;
         errorRaised.Status = error.status;
       } catch (exception) {
         errorRaised = error.toString();
@@ -21,32 +22,16 @@ export class ApiBaseService {
     return throwError(errorRaised);
   }
 
-  protected getRequestHeaders() {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
-    return { headers: headers };
-  }
-
-  protected getRequestOptions(): RequestOptions {
-    const options = new RequestOptions(this.getRequestHeaders());
-    return options;
-  }
-
-  protected extractRaw(res: Response) {
-    if (res.status < 200 || res.status >= 300) {
-      throwError(new Error('Bad response status: ' + res.status));
-    }
-    const body = res.text().length > 0 ? res.text() : '';
-    return body;
-  }
-
-  protected extractData<T>(res: Response): T {
-    if (res.status < 200 || res.status >= 300) {
-      throwError(new Error('Bad response status: ' + res.status));
-    }
-    const data: T = res.text().length > 0 ? <T>res.json() as T : null;
-    return data;
+  protected get RequestOptions() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }),
+      withCredentials: true
+    };
+    return httpOptions;
   }
 }

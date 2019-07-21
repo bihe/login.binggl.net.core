@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { VERSION } from '@angular/core';
-import { ApiVersionService } from './api.version.service';
-import { VersionInfo } from './version.info.model';
-import { MessageUtils } from '../../shared/utils/message.utils';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { ApiVersionService } from '../../shared/service/api.version.service';
+import { MessageUtils } from '../../shared/utils/message.utils';
+import { VersionInfo } from './version.info.model';
 
 @Component({
   selector: 'app-footer',

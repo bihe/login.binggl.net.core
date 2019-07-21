@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -16,15 +15,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.PlatformAbstractions;
 using Login.Api.Infrastructure.Configuration;
 using Login.Api.Infrastructure.Middleware;
 using Login.Api.Features.Shared.Persistence;
 using Login.Api.Features.User;
 using Microsoft.Extensions.Primitives;
 using Commons.Api.Middleware;
-using Commons.Api.FlashScope;
-using Commons.Api.Messages;
 using Commons.Api.Views;
 
 namespace Login.Api.Infrastructure
@@ -137,13 +133,6 @@ namespace Login.Api.Infrastructure
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();
 #endif
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = ApplicationDescription, Version = "v1" });
-                var filePath = System.IO.Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "Login.Api.xml");
-                c.IncludeXmlComments(filePath);
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -203,13 +192,6 @@ namespace Login.Api.Infrastructure
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // only allow to view swagger if loged in
-            app.UseSwaggerAuthentication();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", ApplicationDescription);
-            });
 #if BLAZOR
             app.UseBlazor<Blazor.Program>();
 #endif

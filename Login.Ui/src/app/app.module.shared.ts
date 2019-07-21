@@ -6,12 +6,12 @@ import { MatProgressSpinnerModule, MatSnackBarModule, MatTooltipModule } from '@
 import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './components/app/app.component';
 import { EditComponent } from './components/edit/edit.component';
-import { ApiVersionService } from './components/footer/api.version.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { EllipsisPipe } from './shared/pipes/ellipsis';
 import { ApiUserService } from './shared/service/api.users.service';
+import { ApiVersionService } from './shared/service/api.version.service';
 import { ApplicationState } from './shared/service/application.state';
 
 
