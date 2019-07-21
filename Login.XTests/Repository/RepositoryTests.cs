@@ -6,6 +6,8 @@ using Login.Api.Features.User;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Moq;
+using Microsoft.Extensions.Logging;
 
 namespace Login.XTests.Repository
 {
@@ -49,6 +51,7 @@ namespace Login.XTests.Repository
             sites[0].Name = sites[0].Name + "_CHANGED";
 
             var newSite = new UserSite();
+            newSite.Id = System.Guid.NewGuid().ToString("N");
             newSite.Name = "NEW SITE NAME";
             newSite.Url = "NEW SITE URL";
             newSite.Permissions = new List<string> { "a", "b" };
@@ -69,8 +72,9 @@ namespace Login.XTests.Repository
             get
             {
                 var context = new LoginContext(options);
+                var mockLogger = Mock.Of<ILogger<LoginService>>();
                 Data.ContextInitializer.Initialize(context, true);
-                ILoginService repo = new LoginService(context, null /*Logger*/, null /*Cache*/);
+                ILoginService repo = new LoginService(context, null /*Cache*/, mockLogger);
                 return repo;
             }
         }

@@ -20,25 +20,25 @@ namespace Login.Api.Features.Shared.Persistence
 
         public override int SaveChanges()
         {
-            AddTimestamps();
+            PreProcessModelUpdates();
             return base.SaveChanges();
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            AddTimestamps();
+            PreProcessModelUpdates();
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            AddTimestamps();
+            PreProcessModelUpdates();
             return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
         {
-            AddTimestamps();
+            PreProcessModelUpdates();
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
@@ -83,19 +83,16 @@ namespace Login.Api.Features.Shared.Persistence
             });
         }
 
-        private void SetUserSiteId()
+        private void PreProcessModelUpdates()
         {
-            var entities = ChangeTracker.Entries().Where(x => x.Entity is Models.UserSite && x.State == EntityState.Added);
-
-            foreach (var entity in entities)
-            {
-                ((Models.UserSite)entity.Entity).Id = Guid.NewGuid().ToString("N");
-            }
+            AddTimestamps();
         }
 
         private void AddTimestamps()
         {
             var entities = ChangeTracker.Entries().Where(x => x.Entity is Models.BaseModel && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            if (entities == null)
+                return;
 
             foreach (var entity in entities)
             {

@@ -1,4 +1,4 @@
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Program.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Program.cs
 FN:14,System.Void Login.Api.Program::Main(System.String[])
 FNDA:0,System.Void Login.Api.Program::Main(System.String[])
 DA:15,0
@@ -30,8 +30,8 @@ DA:46,0
 DA:47,0
 BRDA:21,12,0,0
 BRDA:21,12,1,0
-BRDA:30,94,0,0
-BRDA:30,94,1,0
+BRDA:30,99,0,0
+BRDA:30,99,1,0
 LF:25
 LH:0
 BRF:4
@@ -39,369 +39,7 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\FeaturesViewLocationExpander.cs
-FN:9,System.Void Login.Api.Infrastructure.FeaturesViewLocationExpander::PopulateValues(Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext)
-FNDA:0,System.Void Login.Api.Infrastructure.FeaturesViewLocationExpander::PopulateValues(Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext)
-DA:10,0
-DA:11,0
-DA:12,0
-FN:16,System.Collections.Generic.IEnumerable`1<System.String> Login.Api.Infrastructure.FeaturesViewLocationExpander::ExpandViewLocations(Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext,System.Collections.Generic.IEnumerable`1<System.String>)
-FNDA:0,System.Collections.Generic.IEnumerable`1<System.String> Login.Api.Infrastructure.FeaturesViewLocationExpander::ExpandViewLocations(Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext,System.Collections.Generic.IEnumerable`1<System.String>)
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-LF:10
-LH:0
-BRF:0
-BRH:0
-FNF:2
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Startup.cs
-FN:45,Microsoft.Extensions.Configuration.IConfiguration Login.Api.Infrastructure.Startup::get_Configuration()
-FNDA:0,Microsoft.Extensions.Configuration.IConfiguration Login.Api.Infrastructure.Startup::get_Configuration()
-DA:46,0
-FN:47,Microsoft.AspNetCore.Hosting.IHostingEnvironment Login.Api.Infrastructure.Startup::get_CurrentEnvironment()
-FNDA:0,Microsoft.AspNetCore.Hosting.IHostingEnvironment Login.Api.Infrastructure.Startup::get_CurrentEnvironment()
-DA:48,0
-FN:52,System.Void Login.Api.Infrastructure.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-FNDA:0,System.Void Login.Api.Infrastructure.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-DA:53,0
-DA:54,0
-DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-DA:60,0
-DA:61,0
-DA:63,0
-DA:64,0
-DA:65,0
-DA:67,0
-DA:68,0
-DA:70,0
-DA:71,0
-DA:72,0
-DA:73,0
-DA:74,0
-DA:76,0
-DA:77,0
-DA:78,0
-DA:79,0
-DA:82,0
-DA:83,0
-DA:84,0
-DA:85,0
-DA:86,0
-DA:87,0
-DA:88,0
-DA:89,0
-DA:90,0
-DA:91,0
-DA:92,0
-DA:93,0
-DA:94,0
-DA:95,0
-DA:96,0
-DA:97,0
-DA:98,0
-DA:99,0
-DA:100,0
-DA:101,0
-DA:102,0
-DA:103,0
-DA:104,0
-DA:105,0
-DA:106,0
-DA:107,0
-DA:108,0
-DA:109,0
-DA:111,0
-DA:112,0
-DA:113,0
-DA:130,0
-DA:131,0
-DA:132,0
-DA:133,0
-DA:136,0
-DA:137,0
-DA:138,0
-DA:139,0
-DA:140,0
-DA:141,0
-DA:142,0
-BRDA:56,28,0,0
-BRDA:56,28,1,0
-BRDA:70,169,0,0
-BRDA:70,169,1,0
-BRDA:82,272,0,0
-BRDA:82,272,1,0
-BRDA:111,344,0,0
-BRDA:111,344,1,0
-BRDA:136,405,0,0
-BRDA:136,405,1,0
-FN:147,System.Void Login.Api.Infrastructure.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>,Login.Api.Features.Shared.Persistence.LoginContext,Microsoft.AspNetCore.Hosting.IApplicationLifetime)
-FNDA:0,System.Void Login.Api.Infrastructure.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>,Login.Api.Features.Shared.Persistence.LoginContext,Microsoft.AspNetCore.Hosting.IApplicationLifetime)
-DA:148,0
-DA:149,0
-DA:150,0
-DA:151,0
-DA:152,0
-DA:154,0
-DA:155,0
-DA:156,0
-DA:157,0
-DA:158,0
-DA:159,0
-DA:160,0
-DA:161,0
-DA:162,0
-DA:163,0
-DA:165,0
-DA:166,0
-DA:167,0
-DA:168,0
-DA:169,0
-DA:170,0
-DA:171,0
-DA:172,0
-DA:173,0
-DA:178,0
-DA:179,0
-DA:180,0
-DA:181,0
-DA:182,0
-DA:183,0
-DA:184,0
-DA:185,0
-DA:186,0
-DA:187,0
-DA:190,0
-DA:191,0
-DA:193,0
-DA:194,0
-DA:195,0
-DA:196,0
-DA:197,0
-DA:198,0
-DA:199,0
-DA:202,0
-DA:203,0
-DA:204,0
-DA:205,0
-DA:206,0
-DA:207,0
-DA:211,0
-DA:212,0
-DA:213,0
-DA:214,0
-DA:215,0
-BRDA:149,30,0,0
-BRDA:149,30,1,0
-BRDA:194,264,0,0
-BRDA:194,264,1,0
-BRDA:204,317,0,0
-BRDA:204,317,1,0
-BRDA:211,356,0,0
-BRDA:211,356,1,0
-FN:36,System.Void Login.Api.Infrastructure.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Startup>)
-FNDA:0,System.Void Login.Api.Infrastructure.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Startup>)
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:43,0
-DA:44,0
-LF:127
-LH:0
-BRF:22
-BRH:0
-FNF:5
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Startup.OpenIdConnectEvents.cs
-FN:22,System.Threading.Tasks.Task Login.Api.Infrastructure.Startup::OnAuthenticationFailed(Microsoft.AspNetCore.Authentication.RemoteFailureContext)
-FNDA:0,System.Threading.Tasks.Task Login.Api.Infrastructure.Startup::OnAuthenticationFailed(Microsoft.AspNetCore.Authentication.RemoteFailureContext)
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
-DA:27,0
-BRDA:25,9,0,0
-BRDA:25,9,1,0
-BRDA:25,21,0,0
-BRDA:25,21,1,0
-BRDA:25,33,0,0
-BRDA:25,33,1,0
-FN:29,System.Threading.Tasks.Task Login.Api.Infrastructure.Startup::OnRedirectToIdentityProviderForSignOut(Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext)
-FNDA:0,System.Threading.Tasks.Task Login.Api.Infrastructure.Startup::OnRedirectToIdentityProviderForSignOut(Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext)
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-DA:34,0
-FN:36,System.Threading.Tasks.Task Login.Api.Infrastructure.Startup::PerformPostTokenValidationAuthorization(Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext)
-FNDA:0,System.Threading.Tasks.Task Login.Api.Infrastructure.Startup::PerformPostTokenValidationAuthorization(Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext)
-DA:37,0
-DA:38,0
-DA:39,0
-DA:41,0
-DA:43,0
-DA:45,0
-DA:46,0
-DA:47,0
-DA:48,0
-DA:49,0
-DA:51,0
-DA:53,0
-DA:54,0
-DA:55,0
-DA:56,0
-DA:61,0
-DA:62,0
-DA:63,0
-DA:64,0
-DA:65,0
-DA:66,0
-DA:67,0
-DA:68,0
-DA:69,0
-DA:71,0
-DA:72,0
-DA:73,0
-DA:74,0
-DA:75,0
-DA:76,0
-DA:77,0
-DA:78,0
-DA:79,0
-DA:81,0
-DA:83,0
-DA:84,0
-DA:85,0
-DA:87,0
-DA:88,0
-BRDA:39,37,0,0
-BRDA:39,37,1,0
-BRDA:53,180,0,0
-BRDA:53,180,1,0
-BRDA:66,326,0,0
-BRDA:66,326,1,0
-BRDA:71,387,0,0
-BRDA:71,387,1,0
-BRDA:71,418,0,0
-BRDA:71,418,1,0
-BRDA:71,430,0,0
-BRDA:71,430,1,0
-BRDA:71,467,0,0
-BRDA:71,467,1,0
-BRDA:71,498,0,0
-BRDA:71,498,1,0
-BRDA:71,510,0,0
-BRDA:71,510,1,0
-BRDA:71,547,0,0
-BRDA:71,547,1,0
-BRDA:71,578,0,0
-BRDA:71,578,1,0
-BRDA:71,590,0,0
-BRDA:71,590,1,0
-BRDA:71,627,0,0
-BRDA:71,627,1,0
-BRDA:71,658,0,0
-BRDA:71,658,1,0
-BRDA:71,670,0,0
-BRDA:71,670,1,0
-BRDA:81,744,0,0
-BRDA:81,744,1,0
-BRDA:81,765,0,0
-BRDA:81,765,1,0
-BRDA:81,799,0,0
-BRDA:81,799,1,0
-FN:90,System.Void Login.Api.Infrastructure.Startup::UseService(System.Action`1<System.IServiceProvider>)
-FNDA:0,System.Void Login.Api.Infrastructure.Startup::UseService(System.Action`1<System.IServiceProvider>)
-DA:91,0
-DA:92,0
-DA:93,0
-DA:94,0
-DA:95,0
-DA:96,0
-DA:97,0
-DA:98,0
-DA:99,0
-DA:100,0
-DA:101,0
-LF:60
-LH:0
-BRF:46
-BRH:0
-FNF:4
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Middleware\ErrorHandling.cs
-FN:40,System.Threading.Tasks.Task Login.Api.Infrastructure.Middleware.ErrorHandling::HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception)
-FNDA:0,System.Threading.Tasks.Task Login.Api.Infrastructure.Middleware.ErrorHandling::HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception)
-DA:41,0
-DA:42,0
-DA:43,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:48,0
-DA:49,0
-DA:50,0
-DA:52,0
-DA:53,0
-BRDA:43,19,0,0
-BRDA:43,19,1,0
-FN:18,System.Void Login.Api.Infrastructure.Middleware.ErrorHandling::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Login.Api.Infrastructure.FlashScope.IFlashService,Login.Api.Infrastructure.Messages.IMessageIntegrity,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.ErrorHandling>)
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.ErrorHandling::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Login.Api.Infrastructure.FlashScope.IFlashService,Login.Api.Infrastructure.Messages.IMessageIntegrity,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.ErrorHandling>)
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-DA:24,0
-DA:25,0
-FN:27,System.Void Login.Api.Infrastructure.Middleware.ErrorHandling/<Invoke>d__5::MoveNext()
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.ErrorHandling/<Invoke>d__5::MoveNext()
-DA:28,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:38,0
-BRDA:28,14,0,0
-BRDA:28,35,0,0
-BRDA:31,77,0,0
-BRDA:28,35,1,0
-BRDA:31,77,1,0
-BRDA:33,185,1,0
-BRDA:36,361,0,0
-BRDA:28,14,1,0
-BRDA:36,361,1,0
-BRDA:33,185,0,0
-FN:58,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.ErrorHandlingMiddlewareExtension::UseErrorHandling(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.ErrorHandlingMiddlewareExtension::UseErrorHandling(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-DA:59,0
-DA:60,0
-DA:61,0
-LF:31
-LH:0
-BRF:12
-BRH:0
-FNF:4
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Middleware\JwtProcessor.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Infrastructure\Middleware\JwtProcessor.cs
 FN:27,System.Void Login.Api.Infrastructure.Middleware.JwtProcessor::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.JwtProcessor>,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
 FNDA:0,System.Void Login.Api.Infrastructure.Middleware.JwtProcessor::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.JwtProcessor>,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
 DA:28,0
@@ -452,8 +90,6 @@ BRDA:36,248,0,0
 BRDA:36,248,1,0
 BRDA:36,268,0,0
 BRDA:36,268,1,0
-BRDA:36,300,0,0
-BRDA:36,300,1,0
 FN:38,System.Void Login.Api.Infrastructure.Middleware.JwtProcessor::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.JwtProcessor>,System.String,System.String,System.String,System.String,System.Int32)
 FNDA:0,System.Void Login.Api.Infrastructure.Middleware.JwtProcessor::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.JwtProcessor>,System.String,System.String,System.String,System.String,System.Int32)
 DA:39,0
@@ -557,38 +193,38 @@ BRDA:56,118,1,0
 BRDA:56,136,1,0
 BRDA:56,164,0,0
 BRDA:62,221,0,0
-BRDA:69,337,0,0
-BRDA:69,337,1,0
-BRDA:69,373,0,0
-BRDA:69,373,1,0
-BRDA:70,420,0,0
+BRDA:69,342,0,0
+BRDA:69,342,1,0
+BRDA:69,378,0,0
+BRDA:69,378,1,0
+BRDA:70,425,0,0
 BRDA:52,97,1,0
-BRDA:70,420,1,0
-BRDA:72,535,0,0
-BRDA:74,559,0,0
-BRDA:74,559,1,0
-BRDA:76,805,0,0
-BRDA:76,805,1,0
-BRDA:76,841,0,0
-BRDA:76,841,1,0
-BRDA:76,889,0,0
-BRDA:76,889,1,0
-BRDA:76,925,0,0
-BRDA:76,925,1,0
-BRDA:76,955,0,0
-BRDA:76,955,1,0
-BRDA:76,991,0,0
-BRDA:76,991,1,0
-BRDA:95,1075,0,0
-BRDA:97,1120,0,0
-BRDA:97,1120,1,0
-BRDA:95,1075,1,0
-BRDA:72,535,1,0
+BRDA:70,425,1,0
+BRDA:72,540,0,0
+BRDA:74,564,0,0
+BRDA:74,564,1,0
+BRDA:76,816,0,0
+BRDA:76,816,1,0
+BRDA:76,852,0,0
+BRDA:76,852,1,0
+BRDA:76,900,0,0
+BRDA:76,900,1,0
+BRDA:76,936,0,0
+BRDA:76,936,1,0
+BRDA:76,966,0,0
+BRDA:76,966,1,0
+BRDA:76,1002,0,0
+BRDA:76,1002,1,0
+BRDA:95,1086,0,0
+BRDA:97,1131,0,0
+BRDA:97,1131,1,0
+BRDA:95,1086,1,0
+BRDA:72,540,1,0
 BRDA:62,221,1,0
 BRDA:56,164,1,0
-BRDA:137,1525,0,0
+BRDA:137,1541,0,0
 BRDA:51,14,1,0
-BRDA:137,1525,1,0
+BRDA:137,1541,1,0
 FN:143,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.JwtProcessorMiddlewareExtension::UseJwtProcessor(Microsoft.AspNetCore.Builder.IApplicationBuilder)
 FNDA:0,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.JwtProcessorMiddlewareExtension::UseJwtProcessor(Microsoft.AspNetCore.Builder.IApplicationBuilder)
 DA:144,0
@@ -596,233 +232,30 @@ DA:145,0
 DA:146,0
 LF:94
 LH:0
-BRF:80
+BRF:78
 BRH:0
 FNF:9
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Middleware\SecurityHeaders.cs
-FN:22,System.Void Login.Api.Infrastructure.Middleware.SecurityHeaders::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Login.Api.Infrastructure.Middleware.SecurityHeaderOptions)
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.SecurityHeaders::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Login.Api.Infrastructure.Middleware.SecurityHeaderOptions)
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
-DA:27,0
-FN:13,System.Void Login.Api.Infrastructure.Middleware.SecurityHeaders::.cctor()
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.SecurityHeaders::.cctor()
-DA:14,0
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-FN:29,System.Void Login.Api.Infrastructure.Middleware.SecurityHeaders/<Invoke>d__4::MoveNext()
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.SecurityHeaders/<Invoke>d__4::MoveNext()
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:42,0
-DA:44,0
-DA:45,0
-BRDA:31,270,1,0
-BRDA:33,95,0,0
-BRDA:36,139,0,0
-BRDA:36,139,1,0
-BRDA:36,162,0,0
-BRDA:36,162,1,0
-BRDA:33,95,1,0
-BRDA:31,270,0,0
-BRDA:44,347,0,0
-BRDA:44,347,1,0
-FN:49,System.String Login.Api.Infrastructure.Middleware.SecurityHeaderOptions::get_ApplicationBaseUrl()
-FNDA:0,System.String Login.Api.Infrastructure.Middleware.SecurityHeaderOptions::get_ApplicationBaseUrl()
-DA:50,0
-FN:55,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.SecurityHeadersMiddlewareExtension::UseSecurityHeaders(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action`1<Login.Api.Infrastructure.Middleware.SecurityHeaderOptions>)
-FNDA:0,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.SecurityHeadersMiddlewareExtension::UseSecurityHeaders(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action`1<Login.Api.Infrastructure.Middleware.SecurityHeaderOptions>)
-DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-DA:60,0
-LF:34
-LH:0
-BRF:10
-BRH:0
-FNF:5
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Middleware\SwaggerAuthentication.cs
-FN:35,System.Boolean Login.Api.Infrastructure.Middleware.SwaggerAuthentication::IsSwaggerRequest(Microsoft.AspNetCore.Http.HttpRequest)
-FNDA:0,System.Boolean Login.Api.Infrastructure.Middleware.SwaggerAuthentication::IsSwaggerRequest(Microsoft.AspNetCore.Http.HttpRequest)
-DA:36,0
-DA:37,0
-DA:38,0
-FN:15,System.Void Login.Api.Infrastructure.Middleware.SwaggerAuthentication::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.SwaggerAuthentication>)
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.SwaggerAuthentication::.ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Infrastructure.Middleware.SwaggerAuthentication>)
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-FN:22,System.Void Login.Api.Infrastructure.Middleware.SwaggerAuthentication/<Invoke>d__4::MoveNext()
-FNDA:0,System.Void Login.Api.Infrastructure.Middleware.SwaggerAuthentication/<Invoke>d__4::MoveNext()
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
-DA:27,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-BRDA:24,34,0,0
-BRDA:24,34,1,0
-BRDA:24,65,0,0
-BRDA:24,65,1,0
-BRDA:31,142,0,0
-BRDA:31,142,1,0
-FN:43,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.SwaggerAuthenticationMiddlewareExtension::UseSwaggerAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.IApplicationBuilder Login.Api.Infrastructure.Middleware.SwaggerAuthenticationMiddlewareExtension::UseSwaggerAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-DA:44,0
-DA:45,0
-DA:46,0
-LF:20
-LH:0
-BRF:6
-BRH:0
-FNF:4
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Messages\HashedMessageIntegrity.cs
-FN:25,System.String Login.Api.Infrastructure.Messages.HashedMessageIntegrity::Encode(System.String)
-FNDA:0,System.String Login.Api.Infrastructure.Messages.HashedMessageIntegrity::Encode(System.String)
-DA:26,0
-DA:27,0
-DA:28,0
-DA:30,0
-DA:31,0
-DA:33,0
-DA:34,0
-FN:36,System.Boolean Login.Api.Infrastructure.Messages.HashedMessageIntegrity::Verify(System.String)
-FNDA:0,System.Boolean Login.Api.Infrastructure.Messages.HashedMessageIntegrity::Verify(System.String)
-DA:37,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:43,0
-DA:44,0
-DA:46,0
-DA:48,0
-DA:49,0
-DA:50,0
-DA:51,0
-FN:53,System.Byte[] Login.Api.Infrastructure.Messages.HashedMessageIntegrity::Hash(System.String)
-FNDA:0,System.Byte[] Login.Api.Infrastructure.Messages.HashedMessageIntegrity::Hash(System.String)
-DA:54,0
-DA:55,0
-DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-DA:60,0
-DA:61,0
-DA:62,0
-FN:14,System.Void Login.Api.Infrastructure.Messages.HashedMessageIntegrity::.ctor(System.String)
-FNDA:0,System.Void Login.Api.Infrastructure.Messages.HashedMessageIntegrity::.ctor(System.String)
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-FN:19,System.Void Login.Api.Infrastructure.Messages.HashedMessageIntegrity::.ctor(Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
-FNDA:0,System.Void Login.Api.Infrastructure.Messages.HashedMessageIntegrity::.ctor(Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-BRDA:22,10,0,0
-BRDA:22,10,1,0
-BRDA:22,22,0,0
-BRDA:22,22,1,0
-BRDA:22,34,0,0
-BRDA:22,34,1,0
-FN:65,System.String Login.Api.Infrastructure.Messages.HashedMessageIntegrity/Holder::get_Payload()
-FNDA:0,System.String Login.Api.Infrastructure.Messages.HashedMessageIntegrity/Holder::get_Payload()
-DA:66,0
-FN:66,System.Byte[] Login.Api.Infrastructure.Messages.HashedMessageIntegrity/Holder::get_Hash()
-FNDA:0,System.Byte[] Login.Api.Infrastructure.Messages.HashedMessageIntegrity/Holder::get_Hash()
-DA:67,0
-LF:37
-LH:0
-BRF:6
-BRH:0
-FNF:7
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\FlashScope\MemoryFlashService.cs
-FN:9,System.String Login.Api.Infrastructure.FlashScope.MemoryFlashService::Get(System.String)
-FNDA:0,System.String Login.Api.Infrastructure.FlashScope.MemoryFlashService::Get(System.String)
-DA:10,0
-DA:11,0
-DA:12,0
-DA:13,0
-FN:15,System.Void Login.Api.Infrastructure.FlashScope.MemoryFlashService::Set(System.String,System.String)
-FNDA:0,System.Void Login.Api.Infrastructure.FlashScope.MemoryFlashService::Set(System.String,System.String)
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-FN:6,System.Void Login.Api.Infrastructure.FlashScope.MemoryFlashService::.ctor()
-FNDA:0,System.Void Login.Api.Infrastructure.FlashScope.MemoryFlashService::.ctor()
-DA:7,0
-LF:11
-LH:0
-BRF:0
-BRH:0
-FNF:3
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Configuration\ApplicationConfiguration.cs
-FN:7,System.String Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_Name()
-FNDA:0,System.String Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_Name()
-DA:8,0
-FN:8,System.String Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_BaseUrl()
-FNDA:0,System.String Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_BaseUrl()
-DA:9,0
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Infrastructure\Configuration\ApplicationConfiguration.cs
 FN:9,Login.Api.Infrastructure.Configuration.AuthenticationConfiguration Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_Authentication()
 FNDA:0,Login.Api.Infrastructure.Configuration.AuthenticationConfiguration Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_Authentication()
 DA:10,0
 FN:10,Login.Api.Infrastructure.Configuration.JwtConfiguration Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_Jwt()
 FNDA:0,Login.Api.Infrastructure.Configuration.JwtConfiguration Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_Jwt()
 DA:11,0
-FN:11,System.String Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_ApplicationSalt()
-FNDA:0,System.String Login.Api.Infrastructure.Configuration.ApplicationConfiguration::get_ApplicationSalt()
-DA:12,0
-FN:4,System.Void Login.Api.Infrastructure.Configuration.ApplicationConfiguration::.ctor()
+FN:6,System.Void Login.Api.Infrastructure.Configuration.ApplicationConfiguration::.ctor()
 FNDA:0,System.Void Login.Api.Infrastructure.Configuration.ApplicationConfiguration::.ctor()
-DA:5,0
-DA:6,0
-LF:7
+DA:7,0
+DA:8,0
+LF:4
 LH:0
 BRF:0
 BRH:0
-FNF:6
+FNF:3
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Configuration\AuthenticationConfiguration.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Infrastructure\Configuration\AuthenticationConfiguration.cs
 FN:7,System.String Login.Api.Infrastructure.Configuration.AuthenticationConfiguration::get_CookieName()
 FNDA:0,System.String Login.Api.Infrastructure.Configuration.AuthenticationConfiguration::get_CookieName()
 DA:8,0
@@ -846,7 +279,7 @@ BRH:0
 FNF:5
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Infrastructure\Configuration\JwtConfiguration.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Infrastructure\Configuration\JwtConfiguration.cs
 FN:11,System.String Login.Api.Infrastructure.Configuration.JwtConfiguration::get_TokenSecret()
 FNDA:0,System.String Login.Api.Infrastructure.Configuration.JwtConfiguration::get_TokenSecret()
 DA:12,0
@@ -873,199 +306,204 @@ BRH:0
 FNF:6
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\User\LoginService.cs
-FN:63,System.Void Login.Api.Features.User.LoginService::SaveLoginSession(System.String,System.String,Login.Api.Features.Shared.Models.LoginType)
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\User\LoginService.cs
+FN:76,System.Void Login.Api.Features.User.LoginService::SaveLoginSession(System.String,System.String,Login.Api.Features.Shared.Models.LoginType)
 FNDA:0,System.Void Login.Api.Features.User.LoginService::SaveLoginSession(System.String,System.String,Login.Api.Features.Shared.Models.LoginType)
-DA:64,0
-DA:65,0
-DA:66,0
-DA:68,0
-DA:69,0
-DA:71,0
-DA:72,0
-DA:73,0
-DA:74,0
-DA:75,0
-DA:76,0
 DA:77,0
 DA:78,0
 DA:79,0
 DA:81,0
 DA:82,0
-DA:83,0
 DA:84,0
 DA:85,0
 DA:86,0
 DA:87,0
 DA:88,0
+DA:89,0
 DA:90,0
+DA:91,0
 DA:92,0
-DA:93,0
+DA:94,0
 DA:95,0
-FN:97,System.Boolean Login.Api.Features.User.LoginService::SaveSiteList(System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite>,System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite>)
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:103,0
+DA:105,0
+DA:106,0
+DA:108,0
+FN:110,System.Boolean Login.Api.Features.User.LoginService::SaveSiteList(System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite>,System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite>)
 FNDA:1,System.Boolean Login.Api.Features.User.LoginService::SaveSiteList(System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite>,System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite>)
-DA:98,1
-DA:99,1
-DA:101,1
-DA:102,1
-DA:103,1
-DA:104,1
-DA:106,1
-DA:107,7
-DA:108,2
-DA:109,2
-DA:110,1
 DA:111,1
 DA:112,1
-DA:113,2
+DA:114,1
 DA:115,1
-DA:116,0
-DA:117,0
-DA:118,0
-DA:119,0
-DA:120,0
-DA:121,0
-DA:122,1
-DA:123,1
+DA:116,1
+DA:117,1
+DA:119,1
+DA:120,7
+DA:121,2
+DA:122,2
+DA:123,2
 DA:124,1
+DA:125,1
 DA:126,1
-DA:127,0
-DA:128,0
-DA:129,0
+DA:127,2
+DA:129,1
 DA:130,0
-DA:131,1
-DA:132,1
+DA:131,0
+DA:132,0
 DA:133,0
 DA:134,0
 DA:135,0
 DA:136,0
+DA:137,0
 DA:138,0
+DA:139,0
 DA:140,1
 DA:141,1
-DA:143,1
+DA:142,1
 DA:144,1
-BRDA:107,108,1,2
-BRDA:109,77,0,1
-BRDA:109,77,1,2
-BRDA:107,108,0,1
-BRDA:115,135,0,0
-BRDA:117,185,1,0
-BRDA:117,185,0,0
-BRDA:115,135,1,1
-BRDA:126,256,0,0
-BRDA:126,256,1,1
-FN:146,System.Boolean Login.Api.Features.User.LoginService::IsValidRedirectUrl(Login.Api.Features.Shared.Models.User,System.String,System.String)
-FNDA:0,System.Boolean Login.Api.Features.User.LoginService::IsValidRedirectUrl(Login.Api.Features.Shared.Models.User,System.String,System.String)
+DA:145,0
 DA:147,0
-DA:148,0
+DA:149,0
 DA:150,0
+DA:151,0
 DA:153,0
-DA:154,0
 DA:155,0
 DA:156,0
+DA:157,0
+DA:158,1
+DA:159,1
 DA:160,0
 DA:161,0
+DA:162,0
 DA:163,0
-DA:164,0
 DA:165,0
-DA:166,0
-DA:168,0
-DA:171,0
-DA:172,0
-DA:173,0
+DA:167,1
+DA:168,1
+DA:170,1
+DA:171,1
+BRDA:120,256,1,2
+BRDA:123,220,0,1
+BRDA:123,220,1,2
+BRDA:120,256,0,1
+BRDA:129,286,0,0
+BRDA:131,503,1,0
+BRDA:134,472,0,0
+BRDA:134,472,1,0
+BRDA:131,503,0,0
+BRDA:129,286,1,1
+BRDA:144,577,0,0
+BRDA:150,626,0,0
+BRDA:150,626,1,0
+BRDA:144,577,1,1
+FN:173,System.Boolean Login.Api.Features.User.LoginService::IsValidRedirectUrl(Login.Api.Features.Shared.Models.User,System.String,System.String)
+FNDA:0,System.Boolean Login.Api.Features.User.LoginService::IsValidRedirectUrl(Login.Api.Features.Shared.Models.User,System.String,System.String)
 DA:174,0
-DA:176,0
-DA:178,0
-DA:179,0
+DA:175,0
+DA:177,0
 DA:180,0
 DA:181,0
+DA:182,0
 DA:183,0
-DA:184,0
-DA:186,0
+DA:187,0
 DA:188,0
-DA:189,0
-BRDA:154,82,0,0
-BRDA:163,137,0,0
-BRDA:163,158,0,0
-BRDA:163,137,1,0
-BRDA:163,158,1,0
-BRDA:163,183,0,0
-BRDA:172,237,0,0
-BRDA:172,237,1,0
-BRDA:178,267,0,0
-BRDA:178,267,1,0
-BRDA:163,183,1,0
-BRDA:154,82,1,0
-FN:20,System.Void Login.Api.Features.User.LoginService::.ctor(Login.Api.Features.Shared.Persistence.LoginContext,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.User.LoginService>)
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:195,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:203,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:210,0
+DA:211,0
+DA:213,0
+DA:215,0
+DA:216,0
+BRDA:181,87,0,0
+BRDA:190,142,0,0
+BRDA:190,163,0,0
+BRDA:190,142,1,0
+BRDA:190,163,1,0
+BRDA:190,188,0,0
+BRDA:199,242,0,0
+BRDA:199,242,1,0
+BRDA:205,272,0,0
+BRDA:205,272,1,0
+BRDA:190,188,1,0
+BRDA:181,87,1,0
+FN:33,System.Void Login.Api.Features.User.LoginService::.ctor(Login.Api.Features.Shared.Persistence.LoginContext,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.User.LoginService>)
 FNDA:3,System.Void Login.Api.Features.User.LoginService::.ctor(Login.Api.Features.Shared.Persistence.LoginContext,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.User.LoginService>)
-DA:21,3
-DA:22,3
-DA:23,3
-DA:24,3
-DA:25,3
-DA:26,3
-FN:18,System.Void Login.Api.Features.User.LoginService::.cctor()
-FNDA:1,System.Void Login.Api.Features.User.LoginService::.cctor()
-DA:19,1
-FN:38,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.User> Login.Api.Features.User.LoginService/<>c__DisplayClass6_0::<GetUserByEmail>b__2(Microsoft.Extensions.Caching.Memory.ICacheEntry)
-FNDA:0,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.User> Login.Api.Features.User.LoginService/<>c__DisplayClass6_0::<GetUserByEmail>b__2(Microsoft.Extensions.Caching.Memory.ICacheEntry)
-DA:39,0
-DA:40,0
-DA:41,0
-DA:42,0
-FN:28,System.Void Login.Api.Features.User.LoginService/<GetUserByEmail>d__6::MoveNext()
-FNDA:3,System.Void Login.Api.Features.User.LoginService/<GetUserByEmail>d__6::MoveNext()
-DA:29,3
-DA:30,3
-DA:31,3
-DA:33,3
 DA:34,3
 DA:35,3
-DA:38,0
-DA:43,0
-DA:44,3
-BRDA:29,14,0,3
-BRDA:33,322,0,3
-BRDA:35,368,0,0
-BRDA:35,368,1,3
-BRDA:33,322,1,0
-BRDA:38,523,0,0
-BRDA:29,14,1,0
-BRDA:38,523,1,0
-FN:55,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.User.LoginService/<>c__DisplayClass7_0::<GetSiteById>b__1(Microsoft.Extensions.Caching.Memory.ICacheEntry)
-FNDA:0,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.User.LoginService/<>c__DisplayClass7_0::<GetSiteById>b__1(Microsoft.Extensions.Caching.Memory.ICacheEntry)
-DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-FN:46,System.Void Login.Api.Features.User.LoginService/<GetSiteById>d__7::MoveNext()
-FNDA:1,System.Void Login.Api.Features.User.LoginService/<GetSiteById>d__7::MoveNext()
-DA:47,1
-DA:48,1
-DA:50,1
-DA:51,1
-DA:52,1
+DA:36,3
+DA:37,3
+DA:38,3
+DA:39,3
+FN:31,System.Void Login.Api.Features.User.LoginService::.cctor()
+FNDA:1,System.Void Login.Api.Features.User.LoginService::.cctor()
+DA:32,1
+FN:51,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.User> Login.Api.Features.User.LoginService/<>c__DisplayClass6_0::<GetUserByEmail>b__2(Microsoft.Extensions.Caching.Memory.ICacheEntry)
+FNDA:0,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.User> Login.Api.Features.User.LoginService/<>c__DisplayClass6_0::<GetUserByEmail>b__2(Microsoft.Extensions.Caching.Memory.ICacheEntry)
+DA:52,0
+DA:53,0
+DA:54,0
 DA:55,0
-DA:60,0
+FN:41,System.Void Login.Api.Features.User.LoginService/<GetUserByEmail>d__6::MoveNext()
+FNDA:3,System.Void Login.Api.Features.User.LoginService/<GetUserByEmail>d__6::MoveNext()
+DA:42,3
+DA:43,3
+DA:44,3
+DA:46,3
+DA:47,3
+DA:48,3
+DA:51,0
+DA:56,0
+DA:57,3
+BRDA:42,14,0,3
+BRDA:46,322,0,3
+BRDA:48,368,1,3
+FN:68,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.User.LoginService/<>c__DisplayClass7_0::<GetSiteById>b__1(Microsoft.Extensions.Caching.Memory.ICacheEntry)
+FNDA:0,System.Threading.Tasks.Task`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.User.LoginService/<>c__DisplayClass7_0::<GetSiteById>b__1(Microsoft.Extensions.Caching.Memory.ICacheEntry)
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+FN:59,System.Void Login.Api.Features.User.LoginService/<GetSiteById>d__7::MoveNext()
+FNDA:1,System.Void Login.Api.Features.User.LoginService/<GetSiteById>d__7::MoveNext()
+DA:60,1
 DA:61,1
-BRDA:47,14,0,1
-BRDA:50,210,0,1
-BRDA:52,256,0,0
-BRDA:52,256,1,1
-BRDA:50,210,1,0
-BRDA:55,411,0,0
-BRDA:47,14,1,0
-BRDA:55,411,1,0
-LF:126
-LH:45
-BRF:38
+DA:63,1
+DA:64,1
+DA:65,1
+DA:68,0
+DA:73,0
+DA:74,1
+BRDA:60,14,0,1
+BRDA:63,210,0,1
+BRDA:65,256,1,1
+LF:136
+LH:46
+BRF:32
 BRH:12
 FNF:9
 FNH:5
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\User\UserApiController.cs
-FN:124,Login.Api.Features.Shared.ViewModels.UserInfo Login.Api.Features.User.UserApiController::GetUserInfo(Login.Api.Features.Shared.Models.User)
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\User\UserApiController.cs
+FN:123,Login.Api.Features.Shared.ViewModels.UserInfo Login.Api.Features.User.UserApiController::GetUserInfo(Login.Api.Features.Shared.Models.User)
 FNDA:0,Login.Api.Features.Shared.ViewModels.UserInfo Login.Api.Features.User.UserApiController::GetUserInfo(Login.Api.Features.Shared.Models.User)
+DA:124,0
 DA:125,0
 DA:126,0
 DA:127,0
@@ -1079,63 +517,63 @@ DA:134,0
 DA:135,0
 DA:136,0
 DA:137,0
-DA:138,0
-BRDA:126,13,0,0
-BRDA:126,13,1,0
-BRDA:127,84,0,0
-BRDA:127,84,1,0
-FN:29,System.Void Login.Api.Features.User.UserApiController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.User.UserApiController>,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
+BRDA:125,13,0,0
+BRDA:125,13,1,0
+BRDA:126,84,0,0
+BRDA:126,84,1,0
+FN:28,System.Void Login.Api.Features.User.UserApiController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.User.UserApiController>,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
 FNDA:0,System.Void Login.Api.Features.User.UserApiController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.User.UserApiController>,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
+DA:29,0
 DA:30,0
 DA:31,0
 DA:32,0
 DA:33,0
 DA:34,0
-DA:35,0
-FN:38,System.Void Login.Api.Features.User.UserApiController/<Get>d__4::MoveNext()
+FN:37,System.Void Login.Api.Features.User.UserApiController/<Get>d__4::MoveNext()
 FNDA:0,System.Void Login.Api.Features.User.UserApiController/<Get>d__4::MoveNext()
+DA:38,0
 DA:39,0
-DA:40,0
+DA:41,0
 DA:42,0
 DA:43,0
-DA:44,0
-BRDA:42,138,0,0
-BRDA:42,138,1,0
-FN:107,System.Boolean Login.Api.Features.User.UserApiController/<>c__DisplayClass5_0::<Save>b__5(Login.Api.Features.Shared.Models.UserSite)
+BRDA:41,138,0,0
+BRDA:41,138,1,0
+FN:106,System.Boolean Login.Api.Features.User.UserApiController/<>c__DisplayClass5_0::<Save>b__5(Login.Api.Features.Shared.Models.UserSite)
 FNDA:0,System.Boolean Login.Api.Features.User.UserApiController/<>c__DisplayClass5_0::<Save>b__5(Login.Api.Features.Shared.Models.UserSite)
+DA:107,0
 DA:108,0
-DA:109,0
-BRDA:108,17,0,0
-BRDA:108,36,0,0
-BRDA:108,17,1,0
-BRDA:108,36,1,0
-FN:65,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_0(Login.Api.Features.Shared.ViewModels.SiteInfo)
+BRDA:107,17,0,0
+BRDA:107,36,0,0
+BRDA:107,17,1,0
+BRDA:107,36,1,0
+FN:64,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_0(Login.Api.Features.Shared.ViewModels.SiteInfo)
 FNDA:0,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_0(Login.Api.Features.Shared.ViewModels.SiteInfo)
-DA:66,0
-FN:66,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_2(Login.Api.Features.Shared.ViewModels.SiteInfo)
+DA:65,0
+FN:65,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_2(Login.Api.Features.Shared.ViewModels.SiteInfo)
 FNDA:0,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_2(Login.Api.Features.Shared.ViewModels.SiteInfo)
-DA:67,0
-FN:67,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_3(Login.Api.Features.Shared.ViewModels.SiteInfo)
+DA:66,0
+FN:66,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_3(Login.Api.Features.Shared.ViewModels.SiteInfo)
 FNDA:0,System.Boolean Login.Api.Features.User.UserApiController/<>c::<Save>b__5_3(Login.Api.Features.Shared.ViewModels.SiteInfo)
-DA:68,0
-FN:68,System.String Login.Api.Features.User.UserApiController/<>c::<Save>b__5_4(Login.Api.Features.Shared.Models.UserSite)
+DA:67,0
+FN:67,System.String Login.Api.Features.User.UserApiController/<>c::<Save>b__5_4(Login.Api.Features.Shared.Models.UserSite)
 FNDA:0,System.String Login.Api.Features.User.UserApiController/<>c::<Save>b__5_4(Login.Api.Features.Shared.Models.UserSite)
-DA:69,0
-FN:47,System.Void Login.Api.Features.User.UserApiController/<Save>d__5::MoveNext()
+DA:68,0
+FN:46,System.Void Login.Api.Features.User.UserApiController/<Save>d__5::MoveNext()
 FNDA:0,System.Void Login.Api.Features.User.UserApiController/<Save>d__5::MoveNext()
+DA:47,0
 DA:48,0
-DA:49,0
+DA:50,0
 DA:51,0
 DA:52,0
-DA:53,0
+DA:55,0
 DA:56,0
 DA:57,0
 DA:58,0
-DA:59,0
+DA:61,0
 DA:62,0
 DA:63,0
-DA:64,0
-DA:70,0
+DA:69,0
+DA:71,0
 DA:72,0
 DA:73,0
 DA:74,0
@@ -1146,76 +584,75 @@ DA:78,0
 DA:79,0
 DA:80,0
 DA:81,0
-DA:82,0
+DA:83,0
 DA:84,0
 DA:85,0
 DA:86,0
 DA:87,0
 DA:88,0
 DA:89,0
-DA:90,0
+DA:91,0
 DA:92,0
-DA:93,0
+DA:94,0
 DA:95,0
 DA:96,0
 DA:97,0
 DA:98,0
 DA:99,0
-DA:100,0
+DA:101,0
 DA:102,0
-DA:103,0
+DA:105,0
 DA:106,0
-DA:107,0
+DA:109,0
 DA:110,0
 DA:111,0
-DA:112,0
+DA:116,0
 DA:117,0
 DA:118,0
-DA:119,0
+DA:120,0
 DA:121,0
-DA:122,0
-BRDA:51,157,0,0
-BRDA:51,157,1,0
-BRDA:56,228,0,0
-BRDA:56,228,1,0
-BRDA:57,343,0,0
-BRDA:57,343,1,0
-BRDA:62,384,0,0
-BRDA:62,384,1,0
-BRDA:62,412,0,0
-BRDA:66,458,0,0
-BRDA:66,458,1,0
-BRDA:66,494,0,0
-BRDA:66,494,1,0
-BRDA:67,547,0,0
-BRDA:67,547,1,0
-BRDA:68,600,0,0
-BRDA:68,600,1,0
-BRDA:69,653,0,0
-BRDA:69,653,1,0
-BRDA:72,1037,1,0
-BRDA:74,803,0,0
-BRDA:72,732,1,0
-BRDA:74,803,1,0
-BRDA:75,920,0,0
-BRDA:75,920,1,0
-BRDA:72,732,0,0
-BRDA:72,1037,0,0
-BRDA:84,1259,1,0
-BRDA:84,1259,0,0
-BRDA:96,1559,1,0
-BRDA:98,1396,0,0
-BRDA:96,1330,1,0
-BRDA:98,1396,1,0
-BRDA:99,1513,0,0
-BRDA:99,1513,1,0
-BRDA:96,1330,0,0
-BRDA:96,1559,0,0
-BRDA:103,1674,0,0
-BRDA:103,1674,1,0
-BRDA:110,1889,0,0
-BRDA:110,1889,1,0
-BRDA:62,412,1,0
+BRDA:50,157,0,0
+BRDA:50,157,1,0
+BRDA:55,228,0,0
+BRDA:55,228,1,0
+BRDA:56,343,0,0
+BRDA:56,343,1,0
+BRDA:61,384,0,0
+BRDA:61,384,1,0
+BRDA:61,412,0,0
+BRDA:65,458,0,0
+BRDA:65,458,1,0
+BRDA:65,494,0,0
+BRDA:65,494,1,0
+BRDA:66,547,0,0
+BRDA:66,547,1,0
+BRDA:67,600,0,0
+BRDA:67,600,1,0
+BRDA:68,653,0,0
+BRDA:68,653,1,0
+BRDA:71,1037,1,0
+BRDA:73,803,0,0
+BRDA:71,732,1,0
+BRDA:73,803,1,0
+BRDA:74,920,0,0
+BRDA:74,920,1,0
+BRDA:71,732,0,0
+BRDA:71,1037,0,0
+BRDA:83,1259,1,0
+BRDA:83,1259,0,0
+BRDA:95,1559,1,0
+BRDA:97,1396,0,0
+BRDA:95,1330,1,0
+BRDA:97,1396,1,0
+BRDA:98,1513,0,0
+BRDA:98,1513,1,0
+BRDA:95,1330,0,0
+BRDA:95,1559,0,0
+BRDA:102,1674,0,0
+BRDA:102,1674,1,0
+BRDA:109,1889,0,0
+BRDA:109,1889,1,0
+BRDA:61,412,1,0
 LF:82
 LH:0
 BRF:52
@@ -1223,7 +660,7 @@ BRH:0
 FNF:9
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\ViewModels\LoginInfo.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\ViewModels\LoginInfo.cs
 FN:14,Login.Api.Features.Shared.ViewModels.LoginState Login.Api.Features.Shared.ViewModels.LoginInfo::get_State()
 FNDA:0,Login.Api.Features.Shared.ViewModels.LoginState Login.Api.Features.Shared.ViewModels.LoginInfo::get_State()
 DA:15,0
@@ -1240,7 +677,7 @@ BRH:0
 FNF:3
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\ViewModels\SiteInfo.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\ViewModels\SiteInfo.cs
 FN:14,System.String Login.Api.Features.Shared.ViewModels.SiteInfo::get_Id()
 FNDA:0,System.String Login.Api.Features.Shared.ViewModels.SiteInfo::get_Id()
 DA:15,0
@@ -1266,7 +703,7 @@ BRH:0
 FNF:5
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\ViewModels\UserInfo.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\ViewModels\UserInfo.cs
 FN:14,System.String Login.Api.Features.Shared.ViewModels.UserInfo::get_ThisSite()
 FNDA:0,System.String Login.Api.Features.Shared.ViewModels.UserInfo::get_ThisSite()
 DA:15,0
@@ -1301,7 +738,7 @@ BRH:0
 FNF:8
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Persistence\ContextInitializer.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Persistence\ContextInitializer.cs
 FN:10,System.Void Login.Api.Features.Shared.Persistence.ContextInitializer::InitialData(Login.Api.Features.Shared.Persistence.LoginContext)
 FNDA:0,System.Void Login.Api.Features.Shared.Persistence.ContextInitializer::InitialData(Login.Api.Features.Shared.Persistence.LoginContext)
 DA:11,0
@@ -1323,13 +760,13 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Persistence\LoginContext.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Persistence\LoginContext.cs
 FN:15,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.Login> Login.Api.Features.Shared.Persistence.LoginContext::get_Logins()
 FNDA:12,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.Login> Login.Api.Features.Shared.Persistence.LoginContext::get_Logins()
 DA:16,12
 FN:16,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.Shared.Persistence.LoginContext::get_UserSites()
-FNDA:12,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.Shared.Persistence.LoginContext::get_UserSites()
-DA:17,12
+FNDA:14,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.Shared.Persistence.LoginContext::get_UserSites()
+DA:17,14
 FN:17,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.User> Login.Api.Features.Shared.Persistence.LoginContext::get_Users()
 FNDA:13,Microsoft.EntityFrameworkCore.DbSet`1<Login.Api.Features.Shared.Models.User> Login.Api.Features.Shared.Persistence.LoginContext::get_Users()
 DA:18,13
@@ -1394,38 +831,34 @@ BRDA:60,54,0,1
 BRDA:60,54,1,2
 BRDA:75,92,0,1
 BRDA:75,92,1,2
-FN:86,System.Void Login.Api.Features.Shared.Persistence.LoginContext::SetUserSiteId()
-FNDA:0,System.Void Login.Api.Features.Shared.Persistence.LoginContext::SetUserSiteId()
-DA:87,0
-DA:88,0
-DA:90,0
-DA:91,0
-DA:92,0
-DA:93,0
-DA:94,0
-BRDA:88,18,0,0
-BRDA:88,18,1,0
-BRDA:90,109,1,0
-BRDA:90,109,0,0
-FN:96,System.Void Login.Api.Features.Shared.Persistence.LoginContext::AddTimestamps()
+FN:86,System.Void Login.Api.Features.Shared.Persistence.LoginContext::PreProcessModelUpdates()
+FNDA:22,System.Void Login.Api.Features.Shared.Persistence.LoginContext::PreProcessModelUpdates()
+DA:87,22
+DA:88,22
+DA:89,22
+FN:91,System.Void Login.Api.Features.Shared.Persistence.LoginContext::AddTimestamps()
 FNDA:22,System.Void Login.Api.Features.Shared.Persistence.LoginContext::AddTimestamps()
-DA:97,22
-DA:98,110
-DA:100,150
-DA:101,42
-DA:102,42
-DA:103,40
-DA:104,40
-DA:105,40
-DA:107,42
-DA:108,42
-DA:109,22
-BRDA:98,18,0,89
-BRDA:98,18,1,22
-BRDA:100,133,1,42
-BRDA:102,78,0,40
-BRDA:102,78,1,42
-BRDA:100,133,0,22
+DA:92,22
+DA:93,110
+DA:94,22
+DA:95,0
+DA:97,150
+DA:98,42
+DA:99,42
+DA:100,40
+DA:101,40
+DA:102,40
+DA:104,42
+DA:105,42
+DA:106,22
+BRDA:93,18,0,89
+BRDA:93,18,1,22
+BRDA:94,55,1,22
+BRDA:97,145,1,42
+BRDA:99,90,0,40
+BRDA:99,90,1,42
+BRDA:97,145,0,22
+BRDA:94,55,0,22
 FN:12,System.Void Login.Api.Features.Shared.Persistence.LoginContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Login.Api.Features.Shared.Persistence.LoginContext>)
 FNDA:4,System.Void Login.Api.Features.Shared.Persistence.LoginContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Login.Api.Features.Shared.Persistence.LoginContext>)
 DA:13,4
@@ -1436,16 +869,15 @@ DA:34,1
 DA:35,1
 DA:36,1
 DA:37,1
-BRDA:36,57,0,0
 BRDA:36,57,1,1
-LF:74
-LH:67
-BRF:20
-BRH:15
+LF:72
+LH:71
+BRF:17
+BRH:17
 FNF:11
-FNH:10
+FNH:11
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Models\BaseModel.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Models\BaseModel.cs
 FN:8,System.DateTime Login.Api.Features.Shared.Models.BaseModel::get_Created()
 FNDA:275,System.DateTime Login.Api.Features.Shared.Models.BaseModel::get_Created()
 DA:9,275
@@ -1459,7 +891,7 @@ BRH:0
 FNF:2
 FNH:2
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Models\JwtPayload.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Models\JwtPayload.cs
 FN:13,System.String Login.Api.Features.Shared.Models.JwtPayload::get_jti()
 FNDA:0,System.String Login.Api.Features.Shared.Models.JwtPayload::get_jti()
 DA:14,0
@@ -1512,16 +944,16 @@ BRH:0
 FNF:14
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Models\Login.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Models\Login.cs
 FN:11,System.Int32 Login.Api.Features.Shared.Models.Login::get_Id()
 FNDA:197,System.Int32 Login.Api.Features.Shared.Models.Login::get_Id()
 DA:12,197
 FN:12,System.String Login.Api.Features.Shared.Models.Login::get_UserDisplayName()
-FNDA:91,System.String Login.Api.Features.Shared.Models.Login::get_UserDisplayName()
-DA:13,91
+FNDA:98,System.String Login.Api.Features.Shared.Models.Login::get_UserDisplayName()
+DA:13,98
 FN:13,System.String Login.Api.Features.Shared.Models.Login::get_UserName()
-FNDA:91,System.String Login.Api.Features.Shared.Models.Login::get_UserName()
-DA:14,91
+FNDA:98,System.String Login.Api.Features.Shared.Models.Login::get_UserName()
+DA:14,98
 FN:14,Login.Api.Features.Shared.Models.LoginType Login.Api.Features.Shared.Models.Login::get_Type()
 FNDA:91,Login.Api.Features.Shared.Models.LoginType Login.Api.Features.Shared.Models.Login::get_Type()
 DA:15,91
@@ -1536,16 +968,16 @@ BRH:0
 FNF:5
 FNH:5
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Models\User.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Models\User.cs
 FN:13,System.String Login.Api.Features.Shared.Models.User::get_Name()
-FNDA:67,System.String Login.Api.Features.Shared.Models.User::get_Name()
-DA:14,67
+FNDA:73,System.String Login.Api.Features.Shared.Models.User::get_Name()
+DA:14,73
 FN:14,System.String Login.Api.Features.Shared.Models.User::get_Email()
-FNDA:165,System.String Login.Api.Features.Shared.Models.User::get_Email()
-DA:15,165
+FNDA:177,System.String Login.Api.Features.Shared.Models.User::get_Email()
+DA:15,177
 FN:15,System.String Login.Api.Features.Shared.Models.User::get_DisplayName()
-FNDA:66,System.String Login.Api.Features.Shared.Models.User::get_DisplayName()
-DA:16,66
+FNDA:72,System.String Login.Api.Features.Shared.Models.User::get_DisplayName()
+DA:16,72
 FN:16,System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.Shared.Models.User::get_Sites()
 FNDA:85,System.Collections.Generic.List`1<Login.Api.Features.Shared.Models.UserSite> Login.Api.Features.Shared.Models.User::get_Sites()
 DA:17,85
@@ -1570,16 +1002,16 @@ BRH:0
 FNF:7
 FNH:6
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Models\UserSite.cs
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\Models\UserSite.cs
 FN:15,System.String Login.Api.Features.Shared.Models.UserSite::get_Id()
-FNDA:124,System.String Login.Api.Features.Shared.Models.UserSite::get_Id()
-DA:16,124
+FNDA:140,System.String Login.Api.Features.Shared.Models.UserSite::get_Id()
+DA:16,140
 FN:16,System.String Login.Api.Features.Shared.Models.UserSite::get_Name()
-FNDA:60,System.String Login.Api.Features.Shared.Models.UserSite::get_Name()
-DA:17,60
+FNDA:67,System.String Login.Api.Features.Shared.Models.UserSite::get_Name()
+DA:17,67
 FN:17,System.String Login.Api.Features.Shared.Models.UserSite::get_Url()
-FNDA:58,System.String Login.Api.Features.Shared.Models.UserSite::get_Url()
-DA:18,58
+FNDA:65,System.String Login.Api.Features.Shared.Models.UserSite::get_Url()
+DA:18,65
 FN:21,System.Collections.Generic.List`1<System.String> Login.Api.Features.Shared.Models.UserSite::get_Permissions()
 FNDA:1,System.Collections.Generic.List`1<System.String> Login.Api.Features.Shared.Models.UserSite::get_Permissions()
 DA:22,1
@@ -1599,14 +1031,14 @@ DA:33,8
 DA:34,8
 DA:35,8
 FN:37,System.String Login.Api.Features.Shared.Models.UserSite::get_PermissionList()
-FNDA:66,System.String Login.Api.Features.Shared.Models.UserSite::get_PermissionList()
-DA:38,66
+FNDA:73,System.String Login.Api.Features.Shared.Models.UserSite::get_PermissionList()
+DA:38,73
 FN:39,System.Byte[] Login.Api.Features.Shared.Models.UserSite::get_Timestamp()
 FNDA:50,System.Byte[] Login.Api.Features.Shared.Models.UserSite::get_Timestamp()
 DA:40,50
 FN:41,System.String Login.Api.Features.Shared.Models.UserSite::get_UserEmail()
-FNDA:135,System.String Login.Api.Features.Shared.Models.UserSite::get_UserEmail()
-DA:42,135
+FNDA:149,System.String Login.Api.Features.Shared.Models.UserSite::get_UserEmail()
+DA:42,149
 FN:42,Login.Api.Features.Shared.Models.User Login.Api.Features.Shared.Models.UserSite::get_User()
 FNDA:74,Login.Api.Features.Shared.Models.User Login.Api.Features.Shared.Models.UserSite::get_User()
 DA:43,74
@@ -1623,139 +1055,73 @@ BRH:2
 FNF:10
 FNH:10
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Exceptions\ApplicationException.cs
-FN:8,System.Int32 Login.Api.Features.Shared.Exceptions.ApplicationException::get_StatusCode()
-FNDA:0,System.Int32 Login.Api.Features.Shared.Exceptions.ApplicationException::get_StatusCode()
-DA:9,0
-FN:10,System.Void Login.Api.Features.Shared.Exceptions.ApplicationException::.ctor(System.String)
-FNDA:0,System.Void Login.Api.Features.Shared.Exceptions.ApplicationException::.ctor(System.String)
-DA:11,0
-DA:12,0
-FN:13,System.Void Login.Api.Features.Shared.Exceptions.ApplicationException::.ctor(System.String,System.Exception)
-FNDA:0,System.Void Login.Api.Features.Shared.Exceptions.ApplicationException::.ctor(System.String,System.Exception)
-DA:14,0
-DA:15,0
-FN:16,System.Void Login.Api.Features.Shared.Exceptions.ApplicationException::.ctor(System.String,System.Int32)
-FNDA:0,System.Void Login.Api.Features.Shared.Exceptions.ApplicationException::.ctor(System.String,System.Int32)
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-LF:9
-LH:0
-BRF:0
-BRH:0
-FNF:4
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Exceptions\SecurityException.cs
-FN:8,System.Void Login.Api.Features.Shared.Exceptions.SecurityException::.ctor(System.String)
-FNDA:0,System.Void Login.Api.Features.Shared.Exceptions.SecurityException::.ctor(System.String)
-DA:9,0
-DA:10,0
-LF:2
-LH:0
-BRF:0
-BRH:0
-FNF:1
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\Api\AbstractApiController.cs
-FN:19,System.String Login.Api.Features.Shared.Api.AbstractApiController::get_AuthenticatedUserEmail()
-FNDA:0,System.String Login.Api.Features.Shared.Api.AbstractApiController::get_AuthenticatedUserEmail()
-DA:20,0
-DA:21,0
-DA:22,0
-BRDA:21,17,0,0
-BRDA:21,17,1,0
-BRDA:21,43,0,0
-BRDA:21,43,1,0
-BRDA:21,79,0,0
-BRDA:21,79,1,0
-FN:25,System.String Login.Api.Features.Shared.Api.AbstractApiController::Hash(System.String)
-FNDA:0,System.String Login.Api.Features.Shared.Api.AbstractApiController::Hash(System.String)
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:32,0
-LF:9
-LH:0
-BRF:6
-BRH:0
-FNF:2
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Authentication\AuthenticationController.cs
-FN:68,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::LogOff()
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Authentication\AuthenticationController.cs
+FN:65,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::LogOff()
 FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::LogOff()
+DA:66,0
+DA:67,0
 DA:69,0
 DA:70,0
+DA:71,0
 DA:72,0
 DA:73,0
-DA:74,0
 DA:75,0
 DA:76,0
-DA:78,0
-DA:79,0
-FN:171,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::Error(System.String)
-FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::Error(System.String)
+FN:160,Microsoft.AspNetCore.Mvc.ActionResult Login.Api.Features.Authentication.AuthenticationController::PrepareErrorResult(System.String)
+FNDA:0,Microsoft.AspNetCore.Mvc.ActionResult Login.Api.Features.Authentication.AuthenticationController::PrepareErrorResult(System.String)
+DA:161,0
+DA:162,0
+DA:163,0
+DA:165,0
+DA:166,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
 DA:172,0
 DA:173,0
-DA:174,0
+DA:175,0
 DA:176,0
 DA:177,0
+DA:178,0
 DA:179,0
 DA:180,0
-DA:181,0
-DA:182,0
-DA:183,0
-DA:184,0
-DA:186,0
-DA:187,0
-DA:188,0
-DA:189,0
-DA:190,0
-DA:192,0
-DA:193,0
-BRDA:176,48,0,0
-BRDA:176,48,1,0
-BRDA:180,89,0,0
-BRDA:180,89,1,0
-FN:255,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::Index()
+BRDA:165,48,0,0
+BRDA:165,48,1,0
+BRDA:169,89,0,0
+BRDA:169,89,1,0
+FN:242,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::Index()
 FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Login.Api.Features.Authentication.AuthenticationController::Index()
-DA:256,0
+DA:243,0
+DA:244,0
+DA:245,0
+FN:248,System.Void Login.Api.Features.Authentication.AuthenticationController::CommonViewData()
+FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController::CommonViewData()
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+FN:256,System.String Login.Api.Features.Authentication.AuthenticationController::get_AuthenticatedUserEmail()
+FNDA:0,System.String Login.Api.Features.Authentication.AuthenticationController::get_AuthenticatedUserEmail()
 DA:257,0
 DA:258,0
-FN:261,System.Void Login.Api.Features.Authentication.AuthenticationController::CommonViewData()
-FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController::CommonViewData()
-DA:262,0
+DA:259,0
+BRDA:258,17,0,0
+BRDA:258,17,1,0
+BRDA:258,43,0,0
+BRDA:258,43,1,0
+BRDA:258,79,0,0
+BRDA:258,79,1,0
+FN:262,System.String Login.Api.Features.Authentication.AuthenticationController::Hash(System.String)
+FNDA:0,System.String Login.Api.Features.Authentication.AuthenticationController::Hash(System.String)
 DA:263,0
 DA:264,0
 DA:265,0
-FN:269,System.String Login.Api.Features.Authentication.AuthenticationController::get_AuthenticatedUserEmail()
-FNDA:0,System.String Login.Api.Features.Authentication.AuthenticationController::get_AuthenticatedUserEmail()
-DA:270,0
-DA:271,0
-DA:272,0
-BRDA:271,17,0,0
-BRDA:271,17,1,0
-BRDA:271,43,0,0
-BRDA:271,43,1,0
-BRDA:271,79,0,0
-BRDA:271,79,1,0
-FN:275,System.String Login.Api.Features.Authentication.AuthenticationController::Hash(System.String)
-FNDA:0,System.String Login.Api.Features.Authentication.AuthenticationController::Hash(System.String)
-DA:276,0
-DA:277,0
-DA:278,0
-DA:279,0
-DA:280,0
-DA:282,0
-FN:48,System.Void Login.Api.Features.Authentication.AuthenticationController::.ctor(Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer`1<Login.Api.Features.Authentication.AuthenticationController>,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.Authentication.AuthenticationController>,Login.Api.Infrastructure.FlashScope.IFlashService,Login.Api.Infrastructure.Messages.IMessageIntegrity,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
-FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController::.ctor(Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer`1<Login.Api.Features.Authentication.AuthenticationController>,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.Authentication.AuthenticationController>,Login.Api.Infrastructure.FlashScope.IFlashService,Login.Api.Infrastructure.Messages.IMessageIntegrity,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
-DA:49,0
+DA:266,0
+DA:267,0
+DA:269,0
+FN:49,System.Void Login.Api.Features.Authentication.AuthenticationController::.ctor(Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer`1<Login.Api.Features.Authentication.AuthenticationController>,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.Authentication.AuthenticationController>,Commons.Api.FlashScope.IFlashService,Commons.Api.Messages.IMessageIntegrity,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
+FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController::.ctor(Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer`1<Login.Api.Features.Authentication.AuthenticationController>,Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.Authentication.AuthenticationController>,Commons.Api.FlashScope.IFlashService,Commons.Api.Messages.IMessageIntegrity,Login.Api.Features.User.ILoginService,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
 DA:50,0
 DA:51,0
 DA:52,0
@@ -1763,91 +1129,104 @@ DA:53,0
 DA:54,0
 DA:55,0
 DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-FN:30,System.Void Login.Api.Features.Authentication.AuthenticationController::.cctor()
+FN:31,System.Void Login.Api.Features.Authentication.AuthenticationController::.cctor()
 FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController::.cctor()
-DA:31,0
-FN:87,System.Void Login.Api.Features.Authentication.AuthenticationController/<Logout>d__9::MoveNext()
-FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<Logout>d__9::MoveNext()
+DA:32,0
+FN:84,System.Void Login.Api.Features.Authentication.AuthenticationController/<Logout>d__7::MoveNext()
+FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<Logout>d__7::MoveNext()
+DA:85,0
+DA:86,0
 DA:88,0
 DA:89,0
+DA:90,0
 DA:91,0
 DA:92,0
 DA:93,0
 DA:94,0
 DA:95,0
-DA:96,0
 DA:97,0
 DA:98,0
+DA:99,0
 DA:100,0
 DA:101,0
-DA:102,0
 DA:103,0
 DA:104,0
+DA:105,0
 DA:106,0
 DA:107,0
-DA:108,0
 DA:109,0
 DA:110,0
-DA:112,0
-DA:113,0
-BRDA:88,14,0,0
-BRDA:92,201,1,0
-BRDA:92,201,0,0
-BRDA:100,265,0,0
-BRDA:102,305,0,0
-BRDA:102,305,1,0
-BRDA:103,418,0,0
-BRDA:88,14,1,0
-BRDA:103,418,1,0
-BRDA:100,265,1,0
-FN:124,System.Void Login.Api.Features.Authentication.AuthenticationController/<AuthenticationFlow>d__10::MoveNext()
-FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<AuthenticationFlow>d__10::MoveNext()
+BRDA:85,14,0,0
+BRDA:89,201,1,0
+BRDA:89,201,0,0
+BRDA:97,265,0,0
+BRDA:99,305,0,0
+BRDA:99,305,1,0
+BRDA:100,418,0,0
+BRDA:85,14,1,0
+BRDA:100,418,1,0
+BRDA:97,265,1,0
+FN:121,System.Void Login.Api.Features.Authentication.AuthenticationController/<AuthenticationFlow>d__8::MoveNext()
+FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<AuthenticationFlow>d__8::MoveNext()
+DA:122,0
+DA:123,0
+DA:124,0
 DA:125,0
-DA:126,0
-DA:127,0
-DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
 DA:132,0
 DA:133,0
 DA:134,0
 DA:135,0
-DA:136,0
 DA:137,0
-DA:138,0
 DA:140,0
+DA:141,0
+DA:142,0
 DA:143,0
 DA:144,0
-DA:145,0
-DA:146,0
 DA:147,0
+DA:148,0
+DA:149,0
 DA:150,0
 DA:151,0
 DA:152,0
 DA:153,0
 DA:154,0
-DA:155,0
 DA:156,0
-DA:157,0
-DA:159,0
-DA:161,0
-BRDA:126,29,0,0
-BRDA:126,29,1,0
-BRDA:126,47,0,0
-BRDA:126,47,1,0
-BRDA:132,79,0,0
-BRDA:132,79,1,0
-BRDA:144,187,0,0
-BRDA:144,187,1,0
-BRDA:145,304,0,0
-BRDA:145,304,1,0
-BRDA:150,359,0,0
-BRDA:150,359,1,0
-FN:202,System.Void Login.Api.Features.Authentication.AuthenticationController/<Login>d__12::MoveNext()
-FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<Login>d__12::MoveNext()
-DA:203,0
-DA:204,0
+DA:158,0
+BRDA:123,29,0,0
+BRDA:123,29,1,0
+BRDA:123,47,0,0
+BRDA:123,47,1,0
+BRDA:129,79,0,0
+BRDA:129,79,1,0
+BRDA:141,192,0,0
+BRDA:141,192,1,0
+BRDA:142,309,0,0
+BRDA:142,309,1,0
+BRDA:147,364,0,0
+BRDA:147,364,1,0
+FN:189,System.Void Login.Api.Features.Authentication.AuthenticationController/<Login>d__10::MoveNext()
+FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<Login>d__10::MoveNext()
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+BRDA:196,57,0,0
+BRDA:196,57,1,0
+BRDA:196,93,0,0
+BRDA:198,136,0,0
+BRDA:198,136,1,0
+BRDA:196,93,1,0
+FN:204,System.Void Login.Api.Features.Authentication.AuthenticationController/<ReLogin>d__11::MoveNext()
+FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<ReLogin>d__11::MoveNext()
 DA:205,0
 DA:206,0
 DA:207,0
@@ -1856,95 +1235,46 @@ DA:210,0
 DA:211,0
 DA:212,0
 DA:213,0
-BRDA:209,57,0,0
-BRDA:209,57,1,0
-BRDA:209,93,0,0
-BRDA:211,136,0,0
-BRDA:211,136,1,0
-BRDA:209,93,1,0
-FN:217,System.Void Login.Api.Features.Authentication.AuthenticationController/<ReLogin>d__13::MoveNext()
-FNDA:0,System.Void Login.Api.Features.Authentication.AuthenticationController/<ReLogin>d__13::MoveNext()
+DA:214,0
+DA:215,0
+DA:216,0
 DA:218,0
 DA:219,0
 DA:220,0
+DA:221,0
 DA:222,0
-DA:223,0
 DA:224,0
 DA:225,0
 DA:226,0
 DA:227,0
-DA:228,0
 DA:229,0
-DA:231,0
+DA:230,0
 DA:232,0
 DA:233,0
 DA:234,0
 DA:235,0
-DA:237,0
-DA:238,0
-DA:239,0
-DA:240,0
-DA:242,0
-DA:243,0
-DA:245,0
-DA:246,0
-DA:247,0
-DA:248,0
-BRDA:219,59,0,0
-BRDA:219,59,1,0
-BRDA:219,92,0,0
-BRDA:223,258,1,0
-BRDA:223,258,0,0
-BRDA:231,322,0,0
-BRDA:233,362,0,0
-BRDA:233,362,1,0
-BRDA:234,475,0,0
-BRDA:234,475,1,0
-BRDA:231,322,1,0
-BRDA:242,620,0,0
-BRDA:242,620,1,0
-BRDA:219,92,1,0
-LF:140
+BRDA:206,59,0,0
+BRDA:206,59,1,0
+BRDA:206,92,0,0
+BRDA:210,258,1,0
+BRDA:210,258,0,0
+BRDA:218,322,0,0
+BRDA:220,362,0,0
+BRDA:220,362,1,0
+BRDA:221,475,0,0
+BRDA:221,475,1,0
+BRDA:218,322,1,0
+BRDA:229,620,0,0
+BRDA:229,620,1,0
+BRDA:206,92,1,0
+LF:135
 LH:0
 BRF:52
 BRH:0
 FNF:12
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\AppInfo\AppInfoController.cs
-FN:35,Microsoft.AspNetCore.Mvc.ActionResult`1<Login.Api.Features.AppInfo.AppInfo> Login.Api.Features.AppInfo.AppInfoController::Get()
-FNDA:0,Microsoft.AspNetCore.Mvc.ActionResult`1<Login.Api.Features.AppInfo.AppInfo> Login.Api.Features.AppInfo.AppInfoController::Get()
-DA:36,0
-DA:37,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:42,0
-DA:43,0
-FN:26,System.Void Login.Api.Features.AppInfo.AppInfoController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.AppInfo.AppInfoController>,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
-FNDA:0,System.Void Login.Api.Features.AppInfo.AppInfoController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Login.Api.Features.AppInfo.AppInfoController>,Microsoft.Extensions.Options.IOptions`1<Login.Api.Infrastructure.Configuration.ApplicationConfiguration>)
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:31,0
-FN:22,System.Void Login.Api.Features.AppInfo.AppInfoController::.cctor()
-FNDA:0,System.Void Login.Api.Features.AppInfo.AppInfoController::.cctor()
-DA:23,0
-FN:47,System.String Login.Api.Features.AppInfo.AppInfo::get_Version()
-FNDA:0,System.String Login.Api.Features.AppInfo.AppInfo::get_Version()
-DA:48,0
-FN:48,System.String Login.Api.Features.AppInfo.AppInfo::get_Runtime()
-FNDA:0,System.String Login.Api.Features.AppInfo.AppInfo::get_Runtime()
-DA:49,0
-LF:15
-LH:0
-BRF:0
-BRH:0
-FNF:5
-FNH:0
-end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Authentication\Error.cshtml
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Authentication\Error.cshtml
 FN:4,System.Void AspNetCore.Features_Authentication_Error/<ExecuteAsync>d__0::MoveNext()
 FNDA:0,System.Void AspNetCore.Features_Authentication_Error/<ExecuteAsync>d__0::MoveNext()
 DA:5,0
@@ -1970,7 +1300,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:D:\Development\dotnet\login.binggl.net\application\Login.Api\Features\Shared\_Layout.cshtml
+SF:d:\Development\dotnet\login.binggl.net.core\Login.Api\Features\Shared\_Layout.cshtml
 FN:11,System.Void AspNetCore.Features_Shared__Layout/<<ExecuteAsync>b__8_0>d::MoveNext()
 FNDA:0,System.Void AspNetCore.Features_Shared__Layout/<<ExecuteAsync>b__8_0>d::MoveNext()
 DA:12,0

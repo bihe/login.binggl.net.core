@@ -10,6 +10,19 @@ using System.Collections.Generic;
 
 namespace Login.Api.Features.User
 {
+    public interface ILoginService
+    {
+        Task<Models.User> GetUserByEmail(string email, bool noCache=false);
+
+        Task<Models.UserSite> GetSiteById(string id, bool noCache = false);
+
+        void SaveLoginSession(string username, string displayname, Models.LoginType loginType);
+
+        bool IsValidRedirectUrl(Models.User user, String siteName, String redirectUrl);
+
+        bool SaveSiteList(List<Models.UserSite> sitesToSave, List<Models.UserSite> sitesToDelete);
+    }
+
     public class LoginService : ILoginService
     {
         private LoginContext _context;
@@ -106,7 +119,8 @@ namespace Login.Api.Features.User
                     {
                         foreach (var site in sitesToSave)
                         {
-                            if (string.IsNullOrEmpty(site.Id))
+                            var item = _context.UserSites.FirstOrDefault(i => i.Id == site.Id);
+                            if (item == null)
                             {
                                 _context.UserSites.Add(site);
                             }
@@ -116,7 +130,11 @@ namespace Login.Api.Features.User
                         {
                             foreach (var site in sitesToDelete)
                             {
-                                _context.UserSites.RemoveRange(sitesToDelete);
+                                var item = _context.UserSites.FirstOrDefault(i => i.Id == site.Id);
+                                if (item != null)
+                                {
+                                    _context.UserSites.Remove(item);
+                                }
                             }
                         }
                         var awaiter = _context.SaveChangesAsync();
@@ -125,8 +143,17 @@ namespace Login.Api.Features.User
 
                         if (this._cache != null)
                         {
+                            // remove the updated sites from cache
                             sitesToSave.ForEach(s => this._cache.Remove(s.Id));
-                            this._cache.Remove(sitesToSave[0].User.Email);
+                            // clear the user cache-entry
+                            sitesToSave.ForEach(s => this._cache.Remove(s.User.Email));
+                            if (sitesToDelete != null)
+                            {
+                                // cler the deleted sites from cache
+                                sitesToDelete.ForEach(s => this._cache.Remove(s.Id));
+                                // clear the user cache-entry
+                                sitesToDelete.ForEach(s => this._cache.Remove(s.User.Email));
+                            }
                         }
                         result = true;
                     }

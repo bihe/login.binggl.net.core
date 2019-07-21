@@ -25,10 +25,33 @@
             "problemMatcher": "$msCompile"
         },
         {
+          "group": "build",
+          "type": "process",
+          "label": "BUILD: clean",
+          "command": "dotnet",
+          "args": [
+              "clean"
+          ],
+          //"isShellCommand": true,
+          "options": {
+              "cwd": "${workspaceRoot}"
+          },
+          "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": true,
+              "panel": "shared"
+          },
+          "problemMatcher": "$msCompile"
+      },
+        {
             "group": "build",
             "type": "shell",
             "label": "BUILD: RE-build",
             "command": "dotnet build --no-incremental --verbosity n --force",
+            "dependsOn": [
+              "BUILD: clean"
+            ],
             //"isShellCommand": true,
             "options": {
                 "cwd": "${workspaceRoot}"
@@ -90,6 +113,7 @@
               "test",
               "/p:CollectCoverage=true",
               "/p:CoverletOutputFormat=lcov",
+              "/p:Exclude=\"[xunit.*]*,[*]Login.Api.Infrastructure.Startup,[*]Login.Api.Features.Shared.Persistence.ContextInitializer\"",
               "/p:CoverletOutput=./lcov.info",
               "${workspaceFolder}/Login.XTests/Login.XTests.csproj"
           ],
