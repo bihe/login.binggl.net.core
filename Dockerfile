@@ -7,7 +7,7 @@ RUN npm install -g @angular/cli@latest && npm install && npm run build -- --prod
 ## backend build-phase
 FROM microsoft/dotnet:2.2-sdk AS BACKEND-BUILD
 ARG buildtime_variable_version=2.1.0.0-local
-ENV BUILD_BUILDNUMBER=${buildtime_variable_version}
+ENV AppVersion=${buildtime_variable_version}
 WORKDIR /backend-build
 COPY ./Login.Api .
 RUN dotnet build -c Release && dotnet publish Login.Api.csproj -c Release -v m -o output
