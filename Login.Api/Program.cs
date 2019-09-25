@@ -13,10 +13,10 @@ namespace Login.Api
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
@@ -39,11 +39,19 @@ namespace Login.Api
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
 
-            return WebHost.CreateDefaultBuilder(args)
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(configuration)
-                .UseStartup<Startup>()
-                .UseSerilog();
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureKestrel(serverOptions =>
+                    {
+                        // .UseContentRoot(Directory.GetCurrentDirectory())
+                        // .UseConfiguration(configuration)
+                        // .UseSerilog();
+                    })
+                    .UseStartup<Startup>();
+                });
+
+
         }
 
     }
